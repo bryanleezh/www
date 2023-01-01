@@ -2,7 +2,12 @@ class GameObject {
     constructor(config) {
         this.x = config.x || 0;
         this.y = config.y || 0;
-        this.sprite = null;
-        
+        this.sprite = new Sprite({
+            gameObject: this, //gameObject would include this.x & this.y
+            src: config.src || "./images/characters/people/main_character.png", //if no src is given, default will just be main character
+            
+
+        });
+
     }
 }

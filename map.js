@@ -15,39 +15,21 @@ class Map{
         image.src = "./images/maps/DemoLower.png";
         
 
-        const x = 5; //coords based on x-coord of map
-        const y = 6; // coords based on y-coord of map
+        //Game Objects
+        const main = new GameObject({
+            x : 5,
+            y : 6,
+        })
+        const npc1 = new GameObject({
+            x : 7,
+            y : 9,
+            src : "./images/characters/people/npc1.png"
+        })
 
-        const shadow = new Image();
-        shadow.onload = () => {
-            this.ctx.drawImage(
-                shadow,
-                0, //left cut of starting frame
-                0, // top cut of starting frame
-                32, //width of cut from sprite sheet
-                32, //height of cut from sprite sheet
-                x * 16 - 8, //x coord on canvas, -8 is to compensate for 32x32 spritesheet
-                y * 16 - 18, //y coord on canvas, -18 is to compensate for 32x32 spritesheet
-                32, //width of sprite to draw on canvas
-                32 //height of sprite to draw on canvas
-            )
-        }
-        shadow.src = "./images/characters/shadow.png"
-
-        const main = new Image();
-        main.onload = () => {
-            this.ctx.drawImage(
-                main,
-                0, //left cut of starting frame
-                0, // top cut of starting frame
-                32, //width of cut from sprite sheet
-                32, //height of cut from sprite sheet
-                x * 16 - 8, //x coord on canvas, -8 is to compensate for 32x32 spritesheet
-                y * 16 - 18, //y coord on canvas, -18 is to compensate for 32x32 spritesheet
-                32, //width of sprite to draw on canvas
-                32 //height of sprite to draw on canvas
-            )
-        }
-        main.src = "./images/characters/people/main_character.png"
+        setTimeout( () => {
+            main.sprite.draw(this.ctx)
+            npc1.sprite.draw(this.ctx)
+        }, 200)
+        
     }
 }
