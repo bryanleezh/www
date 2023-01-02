@@ -38,6 +38,7 @@ class Sprite {
         
         this.isShadowLoaded && ctx.drawImage(this.shadow, x, y)
         //Drawing will only be done once this.isLoaded is True, when the image is done being loaded into the browser
+        // drawImage takes in context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
         this.isLoaded && ctx.drawImage(this.image,
             0,0, //left cut of starting frame, top cut of starting frame
             32,32, //width of cut from sprite sheet, height of cut from sprite sheet
