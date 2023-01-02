@@ -68,9 +68,9 @@ class Sprite {
 
     }
 
-    draw(ctx) {
-        const x = this.gameObject.x - 8; //x coord on canvas, -8 is to compensate for 32x32 spritesheet
-        const y = this.gameObject.y - 18; //y coord on canvas, -18 is to compensate for 32x32 spritesheet
+    draw(ctx, camera) {
+        const x = this.gameObject.x - 8 + utilities.withGrid(10.5) - camera.x; //x coord on canvas, -8 is to compensate for 32x32 spritesheet //10.5 is basically half the size of the screen width that we are using now
+        const y = this.gameObject.y - 18 + utilities.withGrid(6) - camera.y; //y coord on canvas, -18 is to compensate for 32x32 spritesheet // 6 is basically half the size of the screen height that we are using now
         
         this.isShadowLoaded && ctx.drawImage(this.shadow, x, y)
         //Drawing will only be done once this.isLoaded is True, when the image is done being loaded into the browser
