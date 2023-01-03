@@ -1,15 +1,16 @@
 class OverworldMap {
     constructor(config) {
         this.gameObjects = config.gameObjects;
-
         this.walls = config.walls || {};
-
 
         this.lowerImage = new Image(); //actual map
         this.lowerImage.src = config.lowerSrc;
         
         this.upperImage = new Image(); // all the upper portions of the map
         this.upperImage.src = config.upperSrc;
+
+        this.cutScene = false;
+
     }
 
     drawLowerImage(ctx, camera) {
@@ -29,6 +30,21 @@ class OverworldMap {
         return this.walls[`${x},${y}`] || false;
     }
 
+    async startCutscene(events){ //events would be an array
+        this.cutScene = true;
+        //Start loop of async events
+        //Await each one
+        for (let i=0; i<events.length; i++) {
+            const eventHandler = new OverworldEvent({
+                event: events[i],
+                map : this,
+            })
+            await eventHandler.init(); //wait for all the events in the loop to finish before initialising the event
+        }
+
+        this.cutScene = false; //Once cutscene is done, the cutScene flag will be set back to false and everyone's movement will be back to normal
+    }
+
     addWall(x,y) {
         this.walls[`${x},${y}`] = true;
     }
@@ -44,11 +60,14 @@ class OverworldMap {
     }
     //loops through all gameObjects and mounts all the gameObjects being loaded into the current screen
     mountObjects() {
-        Object.values(this.gameObjects).forEach(o => {
+        Object.keys(this.gameObjects).forEach(key => {
             
+            let object = this.gameObjects[key]
+            object.id = key //id of the object will be the name given to the object such as player,npc1,npc2 etc
+
             //TODO: determine if this object should actually mount
 
-            o.mount(this);
+            object.mount(this);
         })
     }
 }
@@ -62,13 +81,30 @@ window.OverworldMaps = {
                 isPlayer: true,
                 x : utilities.withGrid(5),
                 y : utilities.withGrid(6),
-                // src : "./images/characters/people/basicman.png",
             }),
             npc1: new Character({
                 x : utilities.withGrid(7),
                 y : utilities.withGrid(9),
+                src : "./images/characters/people/main_character.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 800},
+                    {type : "stand", direction : "down", time : 800},
+                    {type : "stand", direction : "right", time : 1200},
+                    {type : "stand", direction : "down", time : 300},
+                ]
+            }),
+            npc2: new Character({
+                x : utilities.withGrid(3),
+                y : utilities.withGrid(7),
                 src : "./images/characters/people/npc1.png",
-            })
+                behaviourLoop : [ //basic npc movement
+                    {type : "walk", direction : "left"},
+                    {type : "stand", direction : "up", time: 800 },
+                    {type : "walk", direction : "up"},
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "down"},
+                ]
+            }),
         },
         walls: {
             [utilities.gridCoord(7,6)] : true,

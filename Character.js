@@ -20,7 +20,7 @@ class Character extends GameObject {
             //Other walk cases
 
             //when there are no cutscenes and keys are pressed
-            if (this.isPlayer && state.arrow) {
+            if (!state.map.cutScene && this.isPlayer && state.arrow) {
                 this.startBehaviour(state,{
                     type: "walk",
                     direction: state.arrow,
@@ -37,11 +37,25 @@ class Character extends GameObject {
         if (behaviour.type === "walk") {
             //if player collides with something, the function stops and player cannot move to that next part of the grid
             if (state.map.isCollided(this.x, this.y, this.direction)){
+                
+                behaviour.retry && setTimeout(() => {
+                    this.startBehaviour(state, behaviour);
+                }, 10);
+
                 return;
             }
             //character will start moving if there is nothing it will collide with 
             state.map.moveWall(this.x,this.y, this.direction);
             this.movingProgressRemaining = 16;
+            this.updateSprite(); // allows the animation of the sprite when walking
+        }
+
+        if (behaviour.type === "stand") {
+            setTimeout(() => {
+                utilities.emitEvent("PersonStandComplete", {
+                    whoId : this.id,
+                })
+            }, behaviour.time)
         }
     }
 
@@ -50,6 +64,13 @@ class Character extends GameObject {
         this[property] += change;
         this.movingProgressRemaining -= 1;
         
+        if (this.movingProgressRemaining === 0) {
+            //walking done
+            //creating custom events on the browser itself, in this case for npc walking animation
+            utilities.emitEvent("PersonWalkingComplete", {
+                whoId : this.id,
+            })
+        }
     }
 
     updateSprite() {

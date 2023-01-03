@@ -21,4 +21,12 @@ const utilities = {
         }
         return {x,y};
     },
+    //creating custom events on the browser itself
+    emitEvent(name, detail) {
+        const event = new CustomEvent(name, { 
+            detail
+        });
+        document.dispatchEvent(event);
+    },
+    
 }

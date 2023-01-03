@@ -28,7 +28,9 @@ class Map{
             this.map.drawLowerImage(this.ctx, camera);
 
             //Draw Game Objects
-            Object.values(this.map.gameObjects).forEach(object => {
+            Object.values(this.map.gameObjects).sort((a,b) => {
+                return a.y - b.y;                                   //Sorts the gameObjects according ascending y coord values so that there would not be overlaps when gameObjects are drawn on screen
+            }).forEach(object => {
                 object.sprite.draw(this.ctx, camera);
             });
             
@@ -50,6 +52,13 @@ class Map{
         this.directionInput.init();
 
         this.startGameLoop();
-        
+        //cutscene event that happens
+        this.map.startCutscene([
+            { who : "main", type : "walk", direction: "down" },
+            { who : "main", type : "walk", direction: "down" },
+            { who : "npc1", type : "walk", direction: "left" },
+            { who : "npc1", type : "walk", direction: "left" },
+            { who : "npc1", type : "stand", direction: "up", time: 800 },
+        ])
     }
 }
