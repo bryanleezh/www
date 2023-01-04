@@ -43,6 +43,20 @@ class OverworldMap {
         }
 
         this.cutScene = false; //Once cutscene is done, the cutScene flag will be set back to false and everyone's movement will be back to normal
+
+        //Reset npc behaviour
+        Object.values(this.gameObjects).forEach(object => object.doBehaviourEvent(this));
+    }
+
+    checkForActionCutscene() {
+        const main = this.gameObjects["main"];
+        const nextCoords = utilities.nextPosition(main.x, main.y, main.direction); //checks coord in front of the main character to see if there is any gameObject to interact with
+        const match = Object.values(this.gameObjects).find(object => {
+            return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
+        });
+        if (!this.cutScene && match && match.talking.length) {
+            this.startCutscene(match.talking[0].events)
+        }
     }
 
     addWall(x,y) {
@@ -91,6 +105,15 @@ window.OverworldMaps = {
                     {type : "stand", direction : "down", time : 800},
                     {type : "stand", direction : "right", time : 1200},
                     {type : "stand", direction : "down", time : 300},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "harassment!" , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "shoo!"},
+                            {who:"main", type : "walk", direction : "left"},
+                        ]
+                    },
                 ]
             }),
             npc2: new Character({

@@ -2,6 +2,7 @@ class Character extends GameObject {
     constructor(config) {
         super(config);
         this.movingProgressRemaining = 0;
+        this.isStanding = false; //flag for whether character will be standing or walking
 
         this.isPlayer = config.isPlayer || false;
 
@@ -51,10 +52,12 @@ class Character extends GameObject {
         }
 
         if (behaviour.type === "stand") {
+            this.isStanding = true;
             setTimeout(() => {
                 utilities.emitEvent("PersonStandComplete", {
                     whoId : this.id,
                 })
+                this.isStanding = false;
             }, behaviour.time)
         }
     }

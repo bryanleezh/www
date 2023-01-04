@@ -44,21 +44,35 @@ class Map{
         step();
     }
 
+    bindActionInput() {
+        new KeyPressListener("Enter", () => {
+            //check on map if there is anything/anyone to interact with
+            this.map.checkForActionCutscene();
+        })
+    }
+
     init() {
         this.map = new OverworldMap(window.OverworldMaps.DemoRoom);
         this.map.mountObjects();
+
+        this.bindActionInput();
 
         this.directionInput = new DirectionInput();
         this.directionInput.init();
 
         this.startGameLoop();
         //cutscene event that happens
-        this.map.startCutscene([
-            { who : "main", type : "walk", direction: "down" },
-            { who : "main", type : "walk", direction: "down" },
-            { who : "npc1", type : "walk", direction: "left" },
-            { who : "npc1", type : "walk", direction: "left" },
-            { who : "npc1", type : "stand", direction: "up", time: 800 },
-        ])
+        // this.map.startCutscene([
+        //     { who : "main", type : "walk", direction: "down" },
+        //     { who : "main", type : "walk", direction: "down" },
+        //     { who : "npc1", type : "walk", direction: "up" },
+        //     { who : "npc1", type : "walk", direction: "left" },
+        //     { who : "main", type : "stand", direction: "right", time:200 },
+        //     { type: "textMessage", text: "Hello"},
+
+        //     // { who : "npc1", type : "walk", direction: "left" },
+        //     // { who : "npc1", type : "walk", direction: "left" },
+        //     // { who : "npc1", type : "stand", direction: "up", time: 800 },
+        // ])
     }
 }

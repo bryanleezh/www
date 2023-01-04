@@ -44,6 +44,20 @@ class OverworldEvent {
 
     }
 
+    textMessage(resolve){
+
+        if (this.event.faceMain) {
+            const obj = this.map.gameObjects[this.event.faceMain];
+            obj.direction = utilities.oppositeDirection(this.map.gameObjects["main"].direction)//character will face opp direction of where main character is facing
+        }
+
+        const message = new TextMessage({
+            text: this.event.text,
+            onComplete: () => resolve()
+        })
+        message.init( document.querySelector(".game-container"))
+    }
+
     init() {
         return new Promise(resolve => {
             this[this.event.type](resolve);
