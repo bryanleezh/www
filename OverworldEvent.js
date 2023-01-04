@@ -55,7 +55,22 @@ class OverworldEvent {
             text: this.event.text,
             onComplete: () => resolve()
         })
-        message.init( document.querySelector(".game-container"))
+        message.init(document.querySelector(".game-container"))
+    }
+
+    changeMap(resolve) {
+
+        //Call for the map transition to happen, where we add the div before changing the map
+        const mapTransition = new MapTransition();
+        mapTransition.init(document.querySelector(".game-container"), () => { //parameters are container, callback
+            //Change the map
+            this.map.overworld.startMap(window.OverworldMaps[this.event.map]) //In the event parameter the key is just map so this.event.map would work
+            resolve(); //basically resets the overworld event into the new map
+            // console.log("map change complete");
+            //remove div where transition happened
+            mapTransition.fadeOut();
+        })
+        
     }
 
     init() {

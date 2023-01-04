@@ -11,9 +11,15 @@ class TextMessage {
         this.element.classList.add("TextMessage");
 
         this.element.innerHTML = (`
-        <p class="TextMessage_p">${this.text}</p>
+        <p class="TextMessage_p"></p>
         <button class="TextMessage_button">Next</button>
-        `)
+        `);
+
+        //Initialize slow text effect on the text message itself, which converts all the text characters into indiv span elements
+        this.revealText = new RevealText({
+            element: this.element.querySelector(".TextMessage_p"),
+            text: this.text,
+        })
 
         this.element.querySelector("button").addEventListener("click", () => {
             //Close text message
@@ -21,21 +27,27 @@ class TextMessage {
         });
 
         this.actionListener = new KeyPressListener( "Enter", () => {
-            this.actionListener.unbind(); //removes the eventListener for enter key
-            this.done();
+            this.done(); //calls function below
         })
     }
 
     //removes whole textMessage element
     done() {
-        this.element.remove();
-        this.onComplete();
+        if (this.revealText.isDone){ //if the whole reveal text is completed
+            this.element.remove(); //removes the text element
+            this.actionListener.unbind(); //removes the eventListener for enter key
+            this.onComplete(); //changes flag
+        } else { //if the revealing of text is not completed and player presses enter key, the rest of the text will immediately show
+            this.revealText.autoComplete(); //immediately shows all the text
+        }
+        
     }
 
     //Appends the element into a container which will be put on the HTML file to be shown on screen
     init(container) {
         this.createElement();
         container.appendChild(this.element);
+        this.revealText.init();
     }
 
 }

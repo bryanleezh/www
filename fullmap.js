@@ -51,11 +51,29 @@ class Map{
         })
     }
 
-    init() {
-        this.map = new OverworldMap(window.OverworldMaps.DemoRoom);
-        this.map.mountObjects();
+    //uses the custom event of PersonWalkingComplete to check at which coords is the main character at, then checks if there is any cutscenes at that particular coordinate
+    bindMainPositionCheck() {
+        document.addEventListener("PersonWalkingComplete", e => { 
+            if (e.detail.whoId === "main") {
+                // console.log("new main character position check")
+                //main character position changed
+                this.map.checkForFootstepCutscene();
+            }
+        })
+    }
 
-        this.bindActionInput();
+    //Initialises starting map when the whole game boots up, which can easily be changed now with the custom event changeMap in OverworldEvent.js and the map can change easily
+    startMap(mapConfig) {
+        this.map = new OverworldMap(mapConfig);
+        this.map.overworld = this; //sets the overworld in OverworldMap.js to the current map main character is in
+        this.map.mountObjects();
+    }
+
+    init() {
+        this.startMap(window.OverworldMaps.Kitchen);
+
+        this.bindActionInput(); //check if there is anywhere for main character/player to interact with the next position based on where it is standing at
+        this.bindMainPositionCheck(); // checks for where the main character/player is standing
 
         this.directionInput = new DirectionInput();
         this.directionInput.init();
@@ -63,16 +81,8 @@ class Map{
         this.startGameLoop();
         //cutscene event that happens
         // this.map.startCutscene([
-        //     { who : "main", type : "walk", direction: "down" },
-        //     { who : "main", type : "walk", direction: "down" },
-        //     { who : "npc1", type : "walk", direction: "up" },
-        //     { who : "npc1", type : "walk", direction: "left" },
-        //     { who : "main", type : "stand", direction: "right", time:200 },
-        //     { type: "textMessage", text: "Hello"},
-
-        //     // { who : "npc1", type : "walk", direction: "left" },
-        //     // { who : "npc1", type : "walk", direction: "left" },
-        //     // { who : "npc1", type : "stand", direction: "up", time: 800 },
+        //     { type : "changeMap", map : "DemoRoom" },
+        //     { type: "textMessage", text: "this is the very first message"},
         // ])
     }
 }

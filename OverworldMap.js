@@ -1,6 +1,8 @@
 class OverworldMap {
     constructor(config) {
+        this.overworld = null; //empty in initial state, but will change once map is initialised
         this.gameObjects = config.gameObjects;
+        this.cutsceneSpaces = config.cutsceneSpaces || {}; //if there is no cutsceneSpaces listed, default to empty
         this.walls = config.walls || {};
 
         this.lowerImage = new Image(); //actual map
@@ -56,6 +58,15 @@ class OverworldMap {
         });
         if (!this.cutScene && match && match.talking.length) {
             this.startCutscene(match.talking[0].events)
+        }
+    }
+
+    checkForFootstepCutscene() {
+        const main = this.gameObjects["main"];
+        const match = this.cutsceneSpaces[`${main.x},${main.y}`]; //if the coords the main character is stepping on matches the coords specified in cutSceneSpaces, it will show the objects events in that coord
+        // console.log(match);
+        if (!this.cutScene && match) {
+            this.startCutscene(match[0].events);
         }
     }
 
@@ -117,16 +128,16 @@ window.OverworldMaps = {
                 ]
             }),
             npc2: new Character({
-                x : utilities.withGrid(3),
-                y : utilities.withGrid(7),
+                x : utilities.withGrid(8),
+                y : utilities.withGrid(5),
                 src : "./images/characters/people/npc1.png",
-                behaviourLoop : [ //basic npc movement
-                    {type : "walk", direction : "left"},
-                    {type : "stand", direction : "up", time: 800 },
-                    {type : "walk", direction : "up"},
-                    {type : "walk", direction : "right"},
-                    {type : "walk", direction : "down"},
-                ]
+                // behaviourLoop : [ //basic npc movement
+                //     {type : "walk", direction : "left"},
+                //     {type : "stand", direction : "up", time: 800 },
+                //     {type : "walk", direction : "up"},
+                //     {type : "walk", direction : "right"},
+                //     {type : "walk", direction : "down"},
+                // ]
             }),
         },
         walls: {
@@ -134,26 +145,60 @@ window.OverworldMaps = {
             [utilities.gridCoord(8,6)] : true,
             [utilities.gridCoord(7,7)] : true,
             [utilities.gridCoord(8,7)] : true,
+        },
+        cutsceneSpaces :{ //when there are areas in the map where there will start a cutscene
+            [utilities.gridCoord(7,4)] : [
+                {
+                    events: [
+                        { who: "npc2", type: "walk", direction: "left"},
+                        { who: "npc2", type: "stand", direction: "up", time: 500},
+                        { type: "textMessage", text: "You can't be in there!"},
+                        { who: "npc2", type: "walk", direction: "right"},
+                        { who: "main", type: "walk", direction: "down"},
+                        { who: "main", type : "walk", direction: "left"}
+                    ]
+                }
+            ],
+            [utilities.gridCoord(5,10)] : [
+                {
+                    events: [
+                        { type : "changeMap", map: "Kitchen"}
+                    ]
+                }
+            ]
         }
+
     },
     Kitchen: {
         lowerSrc: "./images/maps/KitchenLower.png",
         upperSrc: "./images/maps/KitchenUpper.png",
         gameObjects: {
-            main: new GameObject({
-                x : 3,
-                y : 5,
+            main: new Character({
+                isPlayer: true,
+                x : utilities.withGrid(5),
+                y : utilities.withGrid(5),
             }),
-            npc1: new GameObject({
-                x : 9,
-                y : 8,
-                src : "./images/characters/people/npc1.png",
-            }),
-            npc2: new GameObject({
-                x : 6,
-                y : 6,
-                src : "./images/characters/people/npc2.png",
+            npcB: new Character({
+                x : utilities.withGrid(10),
+                y : utilities.withGrid(8),
+                src : "./images/characters/people/npc4.png",
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "You made it!" , faceMain: "npcB"}, //faceMain allows character to face main character when interacting
+                        ]
+                    },
+                ]
             })
+        },
+        cutsceneSpaces :{
+            [utilities.gridCoord(5,10)] : [
+                {
+                    events: [
+                        { type : "changeMap", map: "DemoRoom"}
+                    ]
+                }
+            ]
         }
     },
 }
