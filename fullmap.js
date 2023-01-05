@@ -70,6 +70,10 @@ class Map{
     }
 
     init() {
+
+        this.hud = new Hud();
+        this.hud.init(document.querySelector(".game-container"));
+
         this.startMap(window.OverworldMaps.Kitchen);
 
         this.bindActionInput(); //check if there is anywhere for main character/player to interact with the next position based on where it is standing at

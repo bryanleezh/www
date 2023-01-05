@@ -27,6 +27,20 @@ const utilities = {
         if (direction==="up") {return "down"}
         return "up"
     },
+
+    wait(ms) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve()
+            }, ms)
+        })
+    },
+    
+    //returns a random object from the array
+    randomFromArray(array) {
+        return array[Math.floor(Math.random() * array.length)]
+    },
+
     //creating custom events on the browser itself
     emitEvent(name, detail) {
         const event = new CustomEvent(name, { 
