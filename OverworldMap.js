@@ -12,6 +12,7 @@ class OverworldMap {
         this.upperImage.src = config.upperSrc;
 
         this.cutScene = false;
+        this.isPause = false;
 
     }
 

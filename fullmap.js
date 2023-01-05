@@ -37,9 +37,13 @@ class Map{
             //Draw upper layer
             this.map.drawUpperImage(this.ctx, camera);
 
-            requestAnimationFrame( () => { //mad loop that works better than setInterval, which will call this function again whenever a new frame starts
-                step();
-            })
+            //if the player pauses causing the flag isPause to become true, gameloop will stop so that everything will not move
+            if (!this.map.isPause) {
+                requestAnimationFrame( () => { //mad loop that works better than setInterval, which will call this function again whenever a new frame starts
+                    step();
+                });
+            };
+            
         }
         step();
     }
@@ -48,6 +52,14 @@ class Map{
         new KeyPressListener("Enter", () => {
             //check on map if there is anything/anyone to interact with
             this.map.checkForActionCutscene();
+        })
+        //when escape key is pressed, if there is no cutscene currently, start a new cutscene so that everything around stops moving and the pause menu will come up
+        new KeyPressListener("Escape", () => {
+            if (!this.map.cutScene) {
+                this.map.startCutscene([
+                    {type : "pause"}
+                ])
+            }
         })
     }
 
@@ -70,9 +82,6 @@ class Map{
     }
 
     init() {
-
-        this.hud = new Hud();
-        this.hud.init(document.querySelector(".game-container"));
 
         this.startMap(window.OverworldMaps.Kitchen);
 

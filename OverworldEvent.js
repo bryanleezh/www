@@ -73,6 +73,19 @@ class OverworldEvent {
         
     }
 
+    pause(resolve) {
+        // console.log("Pause");
+        this.map.isPause = true;
+        const menu = new PauseMenu( {
+            onComplete: () => {
+                resolve(); //resolve the event
+                this.map.isPause = false; //unpause the map
+                this.map.overworld.startGameLoop(); //unfreeze the screen by updating evrtyhing again
+            }
+        });
+        menu.init(document.querySelector(".game-container")); //initialises the pause menu and brings it up onto the screen
+    }
+
     init() {
         return new Promise(resolve => {
             this[this.event.type](resolve);

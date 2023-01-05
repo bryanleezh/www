@@ -1,11 +1,13 @@
 //Creates a menu on screen that uses up and down keys to navigate, can be called recursively when wanting to enter menu within menus
 
 class KeyboardMenu {
-    constructor(){
+    //if config is not provided, it will default to be empty
+    constructor(config={}){
         this.options = []; //Options will be set up using setOptions()
         this.up = null; //Keybinding for up arrow using keypresslistener 
         this.down = null; //Keybinding for down arrow using keypresslistener
         this.prevFocus = null; //For last focused option highlighted by player
+        this.descriptionContainer = config.descriptionContainer || null;
     }
 
     setOptions(options) {
@@ -15,7 +17,7 @@ class KeyboardMenu {
             return (`
                 <div class="option">
                     <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
-                        ${options.label}
+                        ${option.label}
                     </button>
                     <span class="right">${option.right ? option.right() : ""}<span>
                 </div>
@@ -68,7 +70,8 @@ class KeyboardMenu {
 
     init(container) {
         this.createElement();
-        container.appendChild(this.descriptionElement)
+        //if this.descriptionContainer exists, it will use that, but otherwise it will default to container and then append to the descriptionElement
+        (this.descriptionContainer || container).appendChild(this.descriptionElement);
         container.appendChild(this.element);
 
         this.up = new KeyPressListener("ArrowUp", () => {
