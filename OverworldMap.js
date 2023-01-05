@@ -108,6 +108,7 @@ class OverworldMap {
 
 window.OverworldMaps = {
     DemoRoom: {
+        id: "DemoRoom" ,
         lowerSrc: "./images/maps/DemoLower.png",
         upperSrc: "./images/maps/DemoUpper.png",
         gameObjects: {
@@ -185,7 +186,13 @@ window.OverworldMaps = {
             [utilities.gridCoord(5,10)] : [
                 {
                     events: [
-                        { type : "changeMap", map: "Kitchen"}
+                        { 
+                            type : "changeMap", 
+                            map: "Street",
+                            x : utilities.withGrid(5),
+                            y : utilities.withGrid(9),
+                            direction: "down",
+                    }
                     ]
                 }
             ]
@@ -193,6 +200,7 @@ window.OverworldMaps = {
 
     },
     Kitchen: {
+        id : "Kitchen",
         lowerSrc: "./images/maps/KitchenLower.png",
         upperSrc: "./images/maps/KitchenUpper.png",
         gameObjects: {
@@ -218,10 +226,44 @@ window.OverworldMaps = {
             [utilities.gridCoord(5,10)] : [
                 {
                     events: [
-                        { type : "changeMap", map: "DemoRoom"}
+                        { 
+                            type : "changeMap", 
+                            map: "Street",
+                            x: utilities.withGrid(29),
+                            y: utilities.withGrid(9),
+                            direction: "down",
+                        }
                     ]
                 }
             ]
         }
     },
+    Street: {
+        id : "Street",
+        lowerSrc : "./images/maps/StreetLower.png",
+        upperSrc : "./images/maps/StreetUpper.png",
+        gameObjects : {
+            main: new Character({
+                isPlayer: true,
+                x : utilities.withGrid(30),
+                y : utilities.withGrid(10),
+            }),       
+        },
+
+        cutsceneSpaces :{
+            [utilities.gridCoord(29,9)] : [
+                {
+                    events: [
+                        { 
+                            type : "changeMap", 
+                            map: "Kitchen",
+                            x : utilities.withGrid(5),
+                            y : utilities.withGrid(10),
+                            direction: "up",
+                    }
+                    ]
+                }
+            ]
+        }
+    }
 }

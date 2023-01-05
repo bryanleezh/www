@@ -18,6 +18,7 @@ body{
     padding: 0;
     margin: 0;
     overflow: hidden;
+    font-family: 'DotGothic16', sans-serif;
 }
 
 .game-container {

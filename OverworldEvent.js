@@ -64,7 +64,11 @@ class OverworldEvent {
         const mapTransition = new MapTransition();
         mapTransition.init(document.querySelector(".game-container"), () => { //parameters are container, callback
             //Change the map
-            this.map.overworld.startMap(window.OverworldMaps[this.event.map]) //In the event parameter the key is just map so this.event.map would work
+            this.map.overworld.startMap(window.OverworldMaps[this.event.map], {  //In the event parameter the key is just map so this.event.map would work
+                x: this.event.x,
+                y: this.event.y,
+                direction: this.event.direction
+            }); 
             resolve(); //basically resets the overworld event into the new map
             // console.log("map change complete");
             //remove div where transition happened
@@ -77,6 +81,7 @@ class OverworldEvent {
         // console.log("Pause");
         this.map.isPause = true;
         const menu = new PauseMenu( {
+            progress: this.map.overworld.progress,
             onComplete: () => {
                 resolve(); //resolve the event
                 this.map.isPause = false; //unpause the map

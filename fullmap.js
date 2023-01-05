@@ -75,22 +75,66 @@ class Map{
     }
 
     //Initialises starting map when the whole game boots up, which can easily be changed now with the custom event changeMap in OverworldEvent.js and the map can change easily
-    startMap(mapConfig) {
+    //mainInitialState is where the player will spawn when entering a room
+    startMap(mapConfig, mainInitialState=null) {
         this.map = new OverworldMap(mapConfig);
         this.map.overworld = this; //sets the overworld in OverworldMap.js to the current map main character is in
         this.map.mountObjects();
+
+        //overrides the coords at where the player will be and adds the player wall into the current map
+        if (mainInitialState) {
+            const {main} = this.map.gameObjects;
+            this.map.removeWall(main.x,main.y);
+            main.x = mainInitialState.x;
+            main.y = mainInitialState.y;
+            main.direction = mainInitialState.direction;
+            this.map.addWall(main.x,main.y);
+        }
+
+        //for the save state config
+        this.progress.mapId = mapConfig.id;
+        this.progress.startingMainX = this.map.gameObjects.main.x;
+        this.progress.startingMainY = this.map.gameObjects.main.y;
+        this.progress.startingMainDirection = this.map.gameObjects.main.direction;
     }
 
-    init() {
+    async init() {
 
-        this.startMap(window.OverworldMaps.DemoRoom);
+        const container = document.querySelector(".game-container");
 
+        //Creates new progress tracker
+        this.progress = new Progress();
+
+        //Title Screen
+        this.titleScreen = new TitleScreen({ 
+            progress: this.progress
+        });
+        const useSaveFile = await this.titleScreen.init(container);
+
+        //Check for saved data
+        let initialMainState = null;
+        //try to find a save file on the local storage, if there is a savefile, load the savefile
+        if (useSaveFile) {
+            this.progress.load();
+            //Reconfig where the player will be in the map that is spawned in
+            initialMainState = {
+                x: this.progress.startingMainX,
+                y: this.progress.startingMainY,
+                direction: this.progress.startingMainDirection,
+            }
+        }
+
+        //Initialises the map
+        this.startMap(window.OverworldMaps[this.progress.mapId], initialMainState);
+
+        //Initialises controls
         this.bindActionInput(); //check if there is anywhere for main character/player to interact with the next position based on where it is standing at
         this.bindMainPositionCheck(); // checks for where the main character/player is standing
 
         this.directionInput = new DirectionInput();
         this.directionInput.init();
 
+        //Starts gameloop
         this.startGameLoop();
         //cutscene event that happens
         // this.map.startCutscene([
