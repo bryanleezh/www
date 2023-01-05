@@ -58,7 +58,15 @@ class OverworldMap {
             return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
         });
         if (!this.cutScene && match && match.talking.length) {
-            this.startCutscene(match.talking[0].events)
+
+            const relevantScenario = match.talking.find(scenario => {
+                //iterates through everything and all items must pass certain req before this can return true
+                return (scenario.required || []).every(storyflag => { //if there is no relevant scenario, it will just be an empty array
+                    return playerState.storyFlags[storyflag];
+                }) 
+            });
+
+            relevantScenario && this.startCutscene(relevantScenario.events);
         }
     }
 
@@ -120,6 +128,12 @@ window.OverworldMaps = {
                 ],
                 talking: [
                     {
+                        required: ["TALKED_TO_SOMEONE"],
+                        events: [
+                            { type: "textMessage", text: "Hello r u new here?" , faceMain: "npc1"},
+                        ]
+                    },
+                    {
                         events: [
                             { type: "textMessage", text: "harassment!" , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "shoo!"},
@@ -139,6 +153,14 @@ window.OverworldMaps = {
                 //     {type : "walk", direction : "right"},
                 //     {type : "walk", direction : "down"},
                 // ]
+                talking: [
+                    {
+                        events: [
+                            {type:"textMessage", text:"hello wats up", faceMain:"npc2"},
+                            {type: "addStoryFlag", flag: "TALKED_TO_SOMEONE"},
+                        ]
+                    }
+                ]
             }),
         },
         walls: {

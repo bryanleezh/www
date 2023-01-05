@@ -83,7 +83,7 @@ class Map{
 
     init() {
 
-        this.startMap(window.OverworldMaps.Kitchen);
+        this.startMap(window.OverworldMaps.DemoRoom);
 
         this.bindActionInput(); //check if there is anywhere for main character/player to interact with the next position based on where it is standing at
         this.bindMainPositionCheck(); // checks for where the main character/player is standing
