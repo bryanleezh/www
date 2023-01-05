@@ -84,11 +84,9 @@ class Map{
         //overrides the coords at where the player will be and adds the player wall into the current map
         if (mainInitialState) {
             const {main} = this.map.gameObjects;
-            this.map.removeWall(main.x,main.y);
             main.x = mainInitialState.x;
             main.y = mainInitialState.y;
             main.direction = mainInitialState.direction;
-            this.map.addWall(main.x,main.y);
         }
 
         //for the save state config

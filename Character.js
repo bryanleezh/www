@@ -3,6 +3,7 @@ class Character extends GameObject {
         super(config);
         this.movingProgressRemaining = 0;
         this.isStanding = false; //flag for whether character will be standing or walking
+        this.intentPosition = null; // will either be null or [x,y]
 
         this.isPlayer = config.isPlayer || false;
 
@@ -33,6 +34,11 @@ class Character extends GameObject {
 
     // starts the walking animation
     startBehaviour(state, behaviour) {
+
+        if (!this.isMounted) {
+            return;
+        }
+
         //Set character direction
         this.direction = behaviour.direction;
         if (behaviour.type === "walk") {
@@ -46,9 +52,16 @@ class Character extends GameObject {
                 return;
             }
             //character will start moving if there is nothing it will collide with 
-            state.map.moveWall(this.x,this.y, this.direction);
             this.movingProgressRemaining = 16;
-            this.updateSprite(); // allows the animation of the sprite when walking
+
+            //Adds next predicted position 
+            const intentPosition = utilities.nextPosition(this.x,this.y,this.direction);
+            this.intentPosition = [
+                intentPosition.x,
+                intentPosition.y,
+            ]
+
+            this.updateSprite(state); // allows the animation of the sprite when walking
         }
 
         if (behaviour.type === "stand") {
@@ -70,6 +83,7 @@ class Character extends GameObject {
         if (this.movingProgressRemaining === 0) {
             //walking done
             //creating custom events on the browser itself, in this case for npc walking animation
+            this.intentPosition = null;
             utilities.emitEvent("PersonWalkingComplete", {
                 whoId : this.id,
             })

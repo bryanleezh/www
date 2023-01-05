@@ -1,7 +1,10 @@
 class OverworldMap {
     constructor(config) {
         this.overworld = null; //empty in initial state, but will change once map is initialised
-        this.gameObjects = config.gameObjects;
+        this.gameObjects ={}; //Live objects of all the classes
+        this.configObjects = config.configObjects; //All the config of all the characters
+
+
         this.cutsceneSpaces = config.cutsceneSpaces || {}; //if there is no cutsceneSpaces listed, default to empty
         this.walls = config.walls || {};
 
@@ -30,7 +33,37 @@ class OverworldMap {
     //if it is a wall that is found from this.walls, function will return true, otherwise it will just be false
     isCollided (currentX, currentY, direction){
         const {x,y} = utilities.nextPosition(currentX, currentY, direction);
-        return this.walls[`${x},${y}`] || false;
+        if (this.walls[`${x},${y}`]) {
+            return true;
+        }
+        //Check for game objects at this position
+        return Object.values(this.gameObjects).find(obj => {
+            if (obj.x === x && obj.y === y) { return true; }
+            if (obj.intentPosition && obj.intentPosition[0] === x && obj.intentPosition[1] === y ) {
+                return true
+            }
+            return false;
+        })
+    }
+
+    //loops through all gameObjects and mounts all the gameObjects being loaded into the current screen
+    mountObjects() {
+        Object.keys(this.configObjects).forEach(key => {
+            
+            let object = this.configObjects[key]
+            object.id = key //id of the object will be the name given to the object such as player,npc1,npc2 etc
+            //create the game instance of class from gameconfig object
+            let instance;
+            if (object.type === "Character") {
+                instance = new Character(object);
+            }
+            //TODO: Add other object types if we end up adding other things in
+
+            this.gameObjects[key] = instance;
+            this.gameObjects[key].id = key;
+            console.log(this.gameObjects[key]);
+            instance.mount(this);
+        })
     }
 
     async startCutscene(events){ //events would be an array
@@ -79,31 +112,21 @@ class OverworldMap {
         }
     }
 
-    addWall(x,y) {
-        this.walls[`${x},${y}`] = true;
-    }
+    // addWall(x,y) {
+    //     this.walls[`${x},${y}`] = true;
+    // }
 
-    removeWall(x,y) {
-        delete this.walls[`${x},${y}`];
-    }
-    //removes wall at current x & y coord, locates the next position it will be after moving, then add the wall at that next coord
-    moveWall(wasX,wasY,direction){
-        this.removeWall(wasX,wasY);
-        const {x,y} = utilities.nextPosition(wasX,wasY,direction);
-        this.addWall(x,y);
-    }
-    //loops through all gameObjects and mounts all the gameObjects being loaded into the current screen
-    mountObjects() {
-        Object.keys(this.gameObjects).forEach(key => {
-            
-            let object = this.gameObjects[key]
-            object.id = key //id of the object will be the name given to the object such as player,npc1,npc2 etc
+    // removeWall(x,y) {
+    //     delete this.walls[`${x},${y}`];
+    // }
+    // //removes wall at current x & y coord, locates the next position it will be after moving, then add the wall at that next coord
+    // moveWall(wasX,wasY,direction){
+    //     this.removeWall(wasX,wasY);
+    //     const {x,y} = utilities.nextPosition(wasX,wasY,direction);
+    //     this.addWall(x,y);
+    // }
 
-            //TODO: determine if this object should actually mount
-
-            object.mount(this);
-        })
-    }
+    
 }
 
 window.OverworldMaps = {
@@ -111,13 +134,15 @@ window.OverworldMaps = {
         id: "DemoRoom" ,
         lowerSrc: "./images/maps/DemoLower.png",
         upperSrc: "./images/maps/DemoUpper.png",
-        gameObjects: {
-            main: new Character({
+        configObjects: {
+            main: {
+                type: "Character",
                 isPlayer: true,
                 x : utilities.withGrid(5),
                 y : utilities.withGrid(6),
-            }),
-            npc1: new Character({
+            },
+            npc1: {
+                type: "Character",
                 x : utilities.withGrid(7),
                 y : utilities.withGrid(9),
                 src : "./images/characters/people/main_character.png",
@@ -142,18 +167,19 @@ window.OverworldMaps = {
                         ]
                     },
                 ]
-            }),
-            npc2: new Character({
+            },
+            npc2: {
+                type: "Character",
                 x : utilities.withGrid(8),
                 y : utilities.withGrid(5),
                 src : "./images/characters/people/npc1.png",
-                // behaviourLoop : [ //basic npc movement
-                //     {type : "walk", direction : "left"},
-                //     {type : "stand", direction : "up", time: 800 },
-                //     {type : "walk", direction : "up"},
-                //     {type : "walk", direction : "right"},
-                //     {type : "walk", direction : "down"},
-                // ]
+                behaviourLoop : [ //basic npc movement
+                    {type : "walk", direction : "left"},
+                    {type : "stand", direction : "up", time: 800 },
+                    {type : "walk", direction : "up"},
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "down"},
+                ],
                 talking: [
                     {
                         events: [
@@ -162,7 +188,7 @@ window.OverworldMaps = {
                         ]
                     }
                 ]
-            }),
+            },
         },
         walls: {
             [utilities.gridCoord(7,6)] : true,
@@ -188,7 +214,7 @@ window.OverworldMaps = {
                     events: [
                         { 
                             type : "changeMap", 
-                            map: "Street",
+                            map: "Kitchen",
                             x : utilities.withGrid(5),
                             y : utilities.withGrid(9),
                             direction: "down",
@@ -203,13 +229,15 @@ window.OverworldMaps = {
         id : "Kitchen",
         lowerSrc: "./images/maps/KitchenLower.png",
         upperSrc: "./images/maps/KitchenUpper.png",
-        gameObjects: {
-            main: new Character({
+        configObjects: {
+            main: {
+                type: "Character",
                 isPlayer: true,
                 x : utilities.withGrid(5),
                 y : utilities.withGrid(5),
-            }),
-            npcB: new Character({
+            },
+            npcB: {
+                type: "Character",
                 x : utilities.withGrid(10),
                 y : utilities.withGrid(8),
                 src : "./images/characters/people/npc4.png",
@@ -220,7 +248,7 @@ window.OverworldMaps = {
                         ]
                     },
                 ]
-            })
+            }
         },
         cutsceneSpaces :{
             [utilities.gridCoord(5,10)] : [
@@ -242,12 +270,13 @@ window.OverworldMaps = {
         id : "Street",
         lowerSrc : "./images/maps/StreetLower.png",
         upperSrc : "./images/maps/StreetUpper.png",
-        gameObjects : {
-            main: new Character({
+        configObjects : {
+            main: {
+                type: "Character",
                 isPlayer: true,
                 x : utilities.withGrid(30),
                 y : utilities.withGrid(10),
-            }),       
+            },
         },
 
         cutsceneSpaces :{

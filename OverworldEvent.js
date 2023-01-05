@@ -59,6 +59,10 @@ class OverworldEvent {
     }
 
     changeMap(resolve) {
+        //Deactivate all objects
+        Object.values(this.map.gameObjects).forEach(obj => {
+            obj.isMounted = false;
+        })
 
         //Call for the map transition to happen, where we add the div before changing the map
         const mapTransition = new MapTransition();

@@ -14,11 +14,12 @@ class GameObject {
         this.behaviourLoopIndex = 0;
 
         this.talking = config.talking || []; //for any talking animation by characters, if there isnt any talking stuff, just default to empty list
+        this.retryTimeout = null;
     }
     mount(map){
         console.log("mounting")
         this.isMounted = true;
-        map.addWall(this.x, this.y);
+        // map.addWall(this.x, this.y);
 
         //if there is a behaviour, start behaviourLoop for npc
         setTimeout(() => {
@@ -30,7 +31,20 @@ class GameObject {
 
     async doBehaviourEvent(map) {
         //Edge cases: if there is no behaviour provided or there is cutscenes playing, this will pause the character's behaviour temporarily
-        if (map.cutScene || this.behaviourLoop.length === 0 || this.isStanding) { //this.isStanding is a condition cos otherwise if a cutscene is playing and the character is already idle, the setTimeout will multiply
+        if (map.cutScene || this.behaviourLoop.length === 0) { //this.isStanding is a condition cos otherwise if a cutscene is playing and the character is already idle, the setTimeout will multiply
+            return;
+        }
+
+        //let npc continue its behaviour
+        if (map.cutScene) {
+            //clear settimeout
+            if (this.retryTimeout) {
+                clearTimeout(this.retryTimeout);
+            }
+
+            this.retryTimeout = setTimeout(() => {
+                this.doBehaviourEvent(map);
+            }, 1000);
             return;
         }
 
