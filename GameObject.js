@@ -17,9 +17,8 @@ class GameObject {
         this.retryTimeout = null;
     }
     mount(map){
-        console.log("mounting")
+        // console.log("mounting")
         this.isMounted = true;
-        // map.addWall(this.x, this.y);
 
         //if there is a behaviour, start behaviourLoop for npc
         setTimeout(() => {
