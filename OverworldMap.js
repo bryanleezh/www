@@ -335,18 +335,18 @@ window.OverworldMaps = {
             [utilities.gridCoord(8,7)] : true,
         },
         cutsceneSpaces :{ //when there are areas in the map where there will start a cutscene
-            [utilities.gridCoord(7,4)] : [
-                {
-                    events: [
-                        { who: "npc2", type: "walk", direction: "left"},
-                        { who: "npc2", type: "stand", direction: "up", time: 500},
-                        { type: "textMessage", text: "You can't be in there!"},
-                        { who: "npc2", type: "walk", direction: "right"},
-                        { who: "main", type: "walk", direction: "down"},
-                        { who: "main", type : "walk", direction: "left"}
-                    ]
-                }
-            ],
+            // [utilities.gridCoord(7,4)] : [
+            //     {
+            //         events: [
+            //             { who: "npc2", type: "walk", direction: "left"},
+            //             { who: "npc2", type: "stand", direction: "up", time: 500},
+            //             { type: "textMessage", text: "You can't be in there!"},
+            //             { who: "npc2", type: "walk", direction: "right"},
+            //             { who: "main", type: "walk", direction: "down"},
+            //             { who: "main", type : "walk", direction: "left"}
+            //         ]
+            //     }
+            // ],
             [utilities.gridCoord(5,10)] : [
                 {
                     events: [
