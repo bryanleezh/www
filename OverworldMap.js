@@ -129,6 +129,62 @@ class OverworldMap {
 }
 
 window.OverworldMaps = {
+    StartTruck: {
+        id: "StartTruck",
+        lowerSrc: "./images/maps/starting_truck_lower.png",
+        upperSrc: "./images/maps/starting_truck_upper.png",
+        configObjects: {
+            main : {
+                type: "Character",
+                isPlayer: true,
+                x : utilities.withGrid(3),
+                y : utilities.withGrid(3),
+            },
+            main_character: {
+                type: "Character",
+                x : utilities.withGrid(5),
+                y : utilities.withGrid(3),
+                src : "./images/characters/people/main_character.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 800},
+                    {type : "stand", direction : "right", time : 800},
+                    {type : "stand", direction : "down", time : 300},
+                ],
+                talking: [
+                    {
+                        events: [
+                            
+                        ]
+                    },
+                ]
+            }
+        },
+        cutsceneSpaces: {
+            [utilities.gridCoord(4,3)] : [
+                    {
+                        events: [
+                            // { who: "main_character", type: "stand", direction: "left"},
+                            { type: "textMessage", text: "Hey! Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "As you step out, you will be able to explore all the buildings"},
+                            { type: "textMessage", text: "If you are lost or not sure what each building represents,"},
+                            { type: "textMessage", text: "feel free to interact with anyone around!"},
+                            { who: "main_character" ,type: "walk", direction: "right" },
+                            { who: "main_character" ,type: "walk", direction: "down" },
+                            { who: "main_character" ,type: "stand", direction: "up" },
+                            {who:"main", type : "walk", direction : "right"},
+                            {who:"main", type : "walk", direction : "right"},
+                            { 
+                                type : "changeMap", 
+                                map: "MainMap",
+                                x: utilities.withGrid(21),
+                                y: utilities.withGrid(14),
+                                direction: "right",
+                            }
+                        ]
+                    }
+                ],
+        }
+    },
     MainMap : {
         id : "MainMap",
         lowerSrc : "./images/maps/main_map_lower.png",
@@ -210,7 +266,6 @@ window.OverworldMaps = {
                 let [x,y] = coord.split(",");
                 walls[utilities.gridCoord(x,y)] = true;
             })
-            console.log(walls);
             return walls;
         }(),
         cutsceneSpaces :{
@@ -219,9 +274,9 @@ window.OverworldMaps = {
                     events: [
                         { 
                             type : "changeMap", 
-                            map: "DemoRoom",
-                            x: utilities.withGrid(5),
-                            y: utilities.withGrid(10),
+                            map: "MyHouse",
+                            x: utilities.withGrid(3),
+                            y: utilities.withGrid(9),
                             direction: "up",
                         }
                     ]
@@ -267,6 +322,111 @@ window.OverworldMaps = {
                 }
             ],
         }
+    },
+    MyHouse : {
+        id : "MyHouse",
+        lowerSrc: "./images/maps/housebottomfloor_lower.png",
+        upperSrc: "./images/maps/housebottomfloor_upper.png",
+        configObjects: {
+            main: {
+                type: "Character",
+                isPlayer: true,
+                x : utilities.withGrid(4),
+                y : utilities.withGrid(17),
+            },
+            me: {
+                type: "Character",
+                x : utilities.withGrid(8),
+                y : utilities.withGrid(5),
+                src : "./images/characters/people/main_character.png",
+                behaviourLoop : [
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "down"},
+                    {type : "walk", direction : "down"},
+                    {type : "walk", direction : "left"},
+                    {type : "walk", direction : "left"},
+                    {type : "walk", direction : "up"},
+                    {type : "walk", direction : "up"},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Sorry! This upper floor is still under construction." , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "Please come back at a later date once it is done!"},
+                        ]
+                    },
+                ]
+            },
+            npc1: {
+                type: "Character",
+                x : utilities.withGrid(4),
+                y : utilities.withGrid(3),
+                src : "./images/characters/people/npc2.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "right", time : 1200},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Sorry! This upper floor is still under construction." , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "Please come back at a later date once it is done!"},
+                            {who:"main", type : "walk", direction : "down"},
+                        ]
+                    },
+                ]
+            },
+            npc2: {
+                type: "Character",
+                x : utilities.withGrid(4),
+                y : utilities.withGrid(4),
+                src : "./images/characters/people/npc2.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "right", time : 1200},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Sorry! This upper floor is still under construction." , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "Please come back at a later date once it is done!"},
+                            {who:"main", type : "walk", direction : "down"},
+                        ]
+                    },
+                ]
+            },
+        },
+        walls: function() {
+            let walls  = {};
+            [
+               "1,0","1,1","1,2","1,3","1,4","1,5","1,6","1,7","1,8","1,9","1,10","3,11",
+               "2,10","4,10","5,10","6,10","7,10","8,10","9,10","10,10","11,10","12,10","13,10","14,10",
+               "2,0","3,0","4,0","5,0","6,0","7,0","8,0","9,0","10,0","11,0","12,0","13,0","14,0",
+               "14,0","14,1","14,2","14,3","14,4","14,5","14,6","14,7","14,8","14,9",
+                "4,2","5,2","6,2","7,2","8,2","9,2","10,2","11,2","12,2","13,2",
+                "7,3","8,3","9,3","11,3","13,3",
+                "2,4","3,4","11,4","2,5","3,5","4,5","13,6","4,7","5,7","6,7",
+                "2,8","3,8","4,8","5,8","10,8","11,8","12,8","13,8","13,9"
+            ].forEach(coord => {
+                let [x,y] = coord.split(",");
+                walls[utilities.gridCoord(x,y)] = true;
+            })
+            return walls;
+        }(),
+        cutsceneSpaces: {
+            [utilities.gridCoord(3,10)] : [
+                {
+                    events: [
+                        { 
+                            type : "changeMap", 
+                            map: "MainMap",
+                            x: utilities.withGrid(4),
+                            y: utilities.withGrid(13),
+                            direction: "down",
+                        }
+                    ]
+                }
+            ],
+        },
     },
     DemoRoom: {
         id: "DemoRoom" ,
