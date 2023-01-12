@@ -150,20 +150,22 @@ window.OverworldMaps = {
                     {type : "stand", direction : "right", time : 800},
                     {type : "stand", direction : "down", time : 300},
                 ],
-                talking: [
-                    {
-                        events: [
-                            
-                        ]
-                    },
-                ]
             }
         },
+        walls: function() {
+            let walls  = {};
+            [
+                "2,2","2,3","2,4","3,2","3,4"
+            ].forEach(coord => {
+                let [x,y] = coord.split(",");
+                walls[utilities.gridCoord(x,y)] = true;
+            })
+            return walls;
+        }(),
         cutsceneSpaces: {
             [utilities.gridCoord(4,3)] : [
                     {
                         events: [
-                            // { who: "main_character", type: "stand", direction: "left"},
                             { type: "textMessage", text: "Hey! Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "As you step out, you will be able to explore all the buildings"},
                             { type: "textMessage", text: "If you are lost or not sure what each building represents,"},
@@ -216,8 +218,8 @@ window.OverworldMaps = {
                     },
                     {
                         events: [
-                            { type: "textMessage", text: "harassment!" , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "shoo!"},
+                            { type: "textMessage", text: "This building right here is more information about my background" , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "so head on in if you want to know more about me!"},
                             // {who:"main", type : "walk", direction : "left"},
                         ]
                     },
@@ -232,16 +234,71 @@ window.OverworldMaps = {
                     {type : "walk", direction : "up"},
                     {type : "walk", direction : "up"},
                     {type : "walk", direction : "up"},
+                    {type : "walk", direction : "up"},
                     {type : "walk", direction : "down"},
                     {type : "walk", direction : "down"},
                     {type : "walk", direction : "down"},
-                    {type : "stand", direction : "down", time : 1200},
+                    {type : "walk", direction : "down"},
                 ],
                 talking: [
                     {
                         events: [
-                            {type:"textMessage", text:"hello wats up", faceMain:"npc2"},
-                            {type: "addStoryFlag", flag: "TALKED_TO_SOMEONE"},
+                            {type:"textMessage", text:"Move out of the way! I'm trying to get to the washroom!", faceMain:"npc2"},
+                            // {type: "addStoryFlag", flag: "TALKED_TO_SOMEONE"},
+                        ]
+                    }
+                ]
+            },
+            //Copman
+            npc3: {
+                type: "Character",
+                x : utilities.withGrid(26),
+                y : utilities.withGrid(13),
+                src : "./images/characters/people/cop_npc.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 800},
+                    {type : "stand", direction : "down", time : 800},
+                    {type : "stand", direction : "right", time : 1200},
+                    {type : "stand", direction : "down", time : 300},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Hey! On your right is the projects building!" , faceMain: "npc3"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "Enter this building here to see the past projects "},
+                            { type: "textMessage", text: " that Bryan has done!"},
+                        ]
+                    },
+                ]
+            },
+            //Biker
+            npc4: {
+                type: "Character",
+                x : utilities.withGrid(14),
+                y : utilities.withGrid(14),
+                src : "./images/characters/people/biker.png",
+                behaviourLoop : [ //basic npc movement
+                    {type : "walk", direction : "left"},
+                    {type : "walk", direction : "left"},
+                    {type : "walk", direction : "left"},
+                    {type : "walk", direction : "left"},
+                    {type : "walk", direction : "left"},
+                    {type : "walk", direction : "down"},
+                    {type : "walk", direction : "down"},
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "right"},
+                    {type : "walk", direction : "up"},
+                    {type : "walk", direction : "up"},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type:"textMessage", text:"Have you checked out the HUB?", faceMain:"npc2"},
+                            {type:"textMessage", text:"You can find all Bryan's socials in there, its right up here!"},
+                            // {type: "addStoryFlag", flag: "TALKED_TO_SOMEONE"},
                         ]
                     }
                 ]
@@ -287,9 +344,9 @@ window.OverworldMaps = {
                     events: [
                         { 
                             type : "changeMap", 
-                            map: "DemoRoom",
-                            x: utilities.withGrid(5),
-                            y: utilities.withGrid(10),
+                            map: "Hub",
+                            x: utilities.withGrid(10),
+                            y: utilities.withGrid(17),
                             direction: "up",
                         }
                     ]
@@ -300,9 +357,9 @@ window.OverworldMaps = {
                     events: [
                         { 
                             type : "changeMap", 
-                            map: "DemoRoom",
-                            x: utilities.withGrid(5),
-                            y: utilities.withGrid(10),
+                            map: "Hub",
+                            x: utilities.withGrid(11),
+                            y: utilities.withGrid(17),
                             direction: "up",
                         }
                     ]
@@ -427,6 +484,66 @@ window.OverworldMaps = {
                 }
             ],
         },
+    },
+    Hub: {
+        id: "Hub",
+        lowerSrc: "./images/maps/my_hub_lower.png",
+        upperSrc: "./images/maps/my_hub_upper.png",
+        configObjects: {
+            main: {
+                type: "Character",
+                isPlayer: true,
+                x : utilities.withGrid(10),
+                y : utilities.withGrid(12),
+            },
+        },
+        walls: function() {
+            let walls  = {};
+            [
+                "1,8","1,9","1,10","1,11","1,12","1,13","1,14","1,15","2,16",
+                "2,9","3,9","4,9","5,9","6,9","7,9","8,9","13,9","14,9","15,9","16,9","17,9","18,9","19,9",
+                "2,17","3,17","4,17","5,17","6,17","7,17","8,17","9,17","12,17","13,17","14,17","15,17","16,17","17,17","18,17",
+                "20,10","20,11","20,12","20,13","20,14","20,15","19,16",
+                "8,10","13,10",
+                "18,10", //reserved for pc
+                "8,11","9,11","10,11","11,11","12,11","13,11",
+                "17,12","18,12","17,13","18,13",
+                "5,15","6,15","14,15","15,15"
+
+            ].forEach(coord => {
+                let [x,y] = coord.split(",");
+                walls[utilities.gridCoord(x,y)] = true;
+            })
+            return walls;
+        }(),
+        cutsceneSpaces :{
+            [utilities.gridCoord(10,17)] : [
+                {
+                    events: [
+                        { 
+                            type : "changeMap", 
+                            map: "MainMap",
+                            x: utilities.withGrid(13),
+                            y: utilities.withGrid(13),
+                            direction: "down",
+                        }
+                    ]
+                }
+            ],
+            [utilities.gridCoord(11,17)] : [
+                {
+                    events: [
+                        { 
+                            type : "changeMap", 
+                            map: "MainMap",
+                            x: utilities.withGrid(14),
+                            y: utilities.withGrid(13),
+                            direction: "down",
+                        }
+                    ]
+                }
+            ]
+        }
     },
     DemoRoom: {
         id: "DemoRoom" ,

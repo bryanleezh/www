@@ -3,7 +3,7 @@
 
 class Progress {
     constructor() {
-        this.mapId = "StartTruck";
+        this.mapId = "MainMap";
         this.startingMainX = 0;
         this.startingMainY = 0;
         this.startingMainDirection = "down";
