@@ -8,16 +8,16 @@ class PauseMenu {
 
         if (pageKey === "root") {
             return [
-                {
-                    label : "Exit Game",
-                    description: "Exit the game and see more of this website!",
-                    handler: () => {
-                        //have scrolling animation to another part of the site?
-                    }
-                },
+                // {
+                //     label : "Exit Game",
+                //     description: "Exit the game and see more of this website!",
+                //     handler: () => {
+                //         //have scrolling animation to another part of the site?
+                //     }
+                // },
                 {
                     label : "Save",
-                    description: "Save the game maybe idk",
+                    description: "Save the game in current map",
                     handler: () => {
                         this.progress.save();
                         this.close();

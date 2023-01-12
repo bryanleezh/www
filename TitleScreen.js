@@ -24,13 +24,13 @@ class TitleScreen {
                     resolve(saveFile);
                 }
             } : null,
-            {
-                label: "Leave Game",
-                description: "Explore the rest of this page maybe",
-                handler: () => {
-                    //maybe can have a function below to scroll past this whole game canvas
-                }
-            }
+            // {
+            //     label: "Leave Game",
+            //     description: "Explore the rest of this page maybe",
+            //     handler: () => {
+            //         //maybe can have a function below to scroll past this whole game canvas
+            //     }
+            // }
         ].filter(v => v); //filter will correct the length of this dictionary appropriately, if the savefile is null, the length of this will just be 2, if there is a savefile, then the length will be 3
     }
 

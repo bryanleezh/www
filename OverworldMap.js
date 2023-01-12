@@ -166,9 +166,12 @@ window.OverworldMaps = {
             [utilities.gridCoord(4,3)] : [
                     {
                         events: [
-                            { type: "textMessage", text: "Hey! Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "As you step out, you will be able to explore all the buildings"},
-                            { type: "textMessage", text: "If you are lost or unsure of what each building represents, feel free to interact with anyone around!"},
+                            { type: "textMessage", text: "Hey!Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "I built this website without any framework,using purely HTML,CSS,and Javascript,as a challenge."},
+                            { type: "textMessage", text: "However,due to school commitments,this is still a work in progress and I am still actively updating this project"},
+                            { type: "textMessage", text: "Most of the buildings are already accessible,but they are currently plain as they are in the works."},
+                            { type: "textMessage", text: "As you step out,you will be able to explore all the buildings"},
+                            { type: "textMessage", text: "If you are lost or unsure of what each building represents,feel free to interact with anyone around!"},
                             { who: "main_character" ,type: "walk", direction: "right" },
                             { who: "main_character" ,type: "walk", direction: "down" },
                             { who: "main_character" ,type: "stand", direction: "up" },
@@ -302,6 +305,7 @@ window.OverworldMaps = {
                     }
                 ]
             },
+            //Projects bulding bouncer
             npc5: {
                 type: "Character",
                 x : utilities.withGrid(29),
@@ -316,8 +320,8 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "Hey! This building behind me is the projects building" , faceMain: "npc5"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "Unfortunately, this building is still under construction, to check out the projects that was built by Bryan, "},
+                            { type: "textMessage", text: "Hey! This building behind me is the projects building." , faceMain: "npc5"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "Unfortunately, this building is still under construction, to check out the projects that was built by Bryan,"},
                             { type: "textMessage", text: "you can head over to his github at https://github.com/bryanleezh"},
                         ]
                     },
@@ -339,6 +343,7 @@ window.OverworldMaps = {
                 "3,11","11,11","12,11","13,11","14,11","15,11","16,11","17,11","19,11","20,11","27,11","31,11",
                 "3,12","5,12","6,12","7,12","8,12","9,12","10,12","11,12","12,12","15,12","16,12","17,12","18,12","27,12","28,12","30,12","31,12",
                 "17,14","18,14","19,14","20,14",
+                "19,12","20,12",
             ].forEach(coord => {
                 let [x,y] = coord.split(",");
                 walls[utilities.gridCoord(x,y)] = true;
@@ -408,8 +413,25 @@ window.OverworldMaps = {
             main: {
                 type: "Character",
                 isPlayer: true,
-                x : utilities.withGrid(4),
-                y : utilities.withGrid(17),
+                x : utilities.withGrid(3),
+                y : utilities.withGrid(10),
+            },
+            laptop: {
+                type: "Character",
+                x : utilities.withGrid(13),
+                y : utilities.withGrid(9),
+                src: "./images/characters/laptop_room.png",
+                behaviourLoop :[
+                    {type : "stand", direction: "left", time: 1200},
+                ],
+                talking: [ 
+                    {
+                        events: [
+                            { type: "textMessage", text: "Log: I am currently proficient in Python,HTML,CSS,SQL and PHP"},
+                            { type: "textMessage", text: "Tech & Libraries: MySQL,Vue.js,Google Cloud,Bootstrap."}
+                        ]
+                    }
+                ]
             },
             me: {
                 type: "Character",
@@ -429,8 +451,11 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "Sorry! This upper floor is still under construction." , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "Please come back at a later date once it is done!"},
+                            { type: "textMessage", text: "Hey,it's me again,seems like you managed to find your way here." , faceMain: "me"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "I am currently an undergraduate at Singapore Management University,pursuing a degree in Information Systems."},
+                            { type: "textMessage", text: "I will be specialising in Digital Cloud Solution next year, with the intention of pursuing a full-stack or"},
+                            { type: "textMessage", text: "software engineering role in the future."},
+                            { type: "textMessage", text: "For my technical skills,you can access it from the laptop at the bottom right of my house."},
                         ]
                     },
                 ]
@@ -515,6 +540,27 @@ window.OverworldMaps = {
                 isPlayer: true,
                 x : utilities.withGrid(10),
                 y : utilities.withGrid(12),
+            },
+            me: {
+                type: "Character",
+                x : utilities.withGrid(11),
+                y : utilities.withGrid(12),
+                src : "./images/characters/people/main_character.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 400},
+                    {type : "stand", direction : "down", time : 800},
+                    {type : "stand", direction : "right", time : 1200},
+                    {type : "stand", direction : "down", time : 300},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Hey,sorry this hub is currently empty, this is one of the buildings that is still in the works." , faceMain: "me"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "As for my socials, my LinkedIn profile is https://www.linkedin.com/in/bryan-lee-b3aa551ba/"},
+                            { type: "textMessage", text: "Again,sorry for such an empty HUB right now, be sure to check back when everything is fully built!"},
+                        ]
+                    },
+                ]
             },
         },
         walls: function() {
