@@ -30,7 +30,7 @@ class GameObject {
 
     async doBehaviourEvent(map) {
         //Edge cases: if there is no behaviour provided or there is cutscenes playing, this will pause the character's behaviour temporarily
-        if (map.cutScene || this.behaviourLoop.length === 0) { //this.isStanding is a condition cos otherwise if a cutscene is playing and the character is already idle, the setTimeout will multiply
+        if (this.behaviourLoop.length === 0) { //this.isStanding is a condition cos otherwise if a cutscene is playing and the character is already idle, the setTimeout will multiply
             return;
         }
 
@@ -43,7 +43,7 @@ class GameObject {
 
             this.retryTimeout = setTimeout(() => {
                 this.doBehaviourEvent(map);
-            }, 1000);
+            }, 500);
             return;
         }
 

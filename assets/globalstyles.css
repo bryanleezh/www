@@ -1,11 +1,17 @@
 :root {
-    --border-color: #291D4D;
+    /* --border-color: #291D4D; */
     --dialog-background: #FFF3B4;
+    /* --dialog-background: #94b0c2; */
 
-    --menu-background: #FFE8D2;
-    --menu-border-color: #A48465;
-    --menu-font-color: #3A160D;
-    --menu-selected-background: #7fc2ff;
+    /* --menu-background: #FFE8D2; */
+    --menu-background: #94b0c2;
+    /* --menu-border-color: #A48465; */
+    --menu-border-color: black;
+
+    /* --menu-font-color: #3A160D; */
+    --menu-font-color: #fff6d3;
+    /* --menu-selected-background: #7fc2ff; */
+    --menu-selected-background: #f9a875;
     
 }
 
@@ -26,7 +32,7 @@ body{
     width: 352px;
     height: 198px;
     margin: 0 auto;
-    outline: 1px solid white;
+    outline: 2px solid white;
 
     transform: scale(3) translateY(50%);
 }
@@ -41,5 +47,5 @@ body{
     bottom: 0;
     text-align:center;
     font-size: 16px;
-    color: #fff;
+    color: white;
   }

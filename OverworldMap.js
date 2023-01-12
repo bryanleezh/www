@@ -168,8 +168,7 @@ window.OverworldMaps = {
                         events: [
                             { type: "textMessage", text: "Hey! Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "As you step out, you will be able to explore all the buildings"},
-                            { type: "textMessage", text: "If you are lost or not sure what each building represents,"},
-                            { type: "textMessage", text: "feel free to interact with anyone around!"},
+                            { type: "textMessage", text: "If you are lost or unsure of what each building represents, feel free to interact with anyone around!"},
                             { who: "main_character" ,type: "walk", direction: "right" },
                             { who: "main_character" ,type: "walk", direction: "down" },
                             { who: "main_character" ,type: "stand", direction: "up" },
@@ -218,13 +217,14 @@ window.OverworldMaps = {
                     },
                     {
                         events: [
-                            { type: "textMessage", text: "This building right here is more information about my background" , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "This building right here has more information about my background" , faceMain: "npc1"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "so head on in if you want to know more about me!"},
                             // {who:"main", type : "walk", direction : "left"},
                         ]
                     },
                 ]
             },
+            //woman walking up and down 
             npc2: {
                 type: "Character",
                 x : utilities.withGrid(21),
@@ -253,7 +253,7 @@ window.OverworldMaps = {
             npc3: {
                 type: "Character",
                 x : utilities.withGrid(26),
-                y : utilities.withGrid(13),
+                y : utilities.withGrid(8),
                 src : "./images/characters/people/cop_npc.png",
                 behaviourLoop : [
                     {type : "stand", direction : "left", time : 800},
@@ -265,8 +265,7 @@ window.OverworldMaps = {
                     {
                         events: [
                             { type: "textMessage", text: "Hey! On your right is the projects building!" , faceMain: "npc3"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "Enter this building here to see the past projects "},
-                            { type: "textMessage", text: " that Bryan has done!"},
+                            { type: "textMessage", text: "Enter this building here to see the past projects that Bryan has done!"},
                         ]
                     },
                 ]
@@ -296,11 +295,32 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            {type:"textMessage", text:"Have you checked out the HUB?", faceMain:"npc2"},
-                            {type:"textMessage", text:"You can find all Bryan's socials in there, its right up here!"},
+                            {type:"textMessage", text:"Have you checked out the HUB?", faceMain:"npc4"},
+                            {type:"textMessage", text:"You can find all of Bryan's socials in there, it's right up here!"},
                             // {type: "addStoryFlag", flag: "TALKED_TO_SOMEONE"},
                         ]
                     }
+                ]
+            },
+            npc5: {
+                type: "Character",
+                x : utilities.withGrid(29),
+                y : utilities.withGrid(13),
+                src : "./images/characters/people/cop_npc.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 500},
+                    {type : "stand", direction : "down", time : 1000},
+                    {type : "stand", direction : "right", time : 800},
+                    {type : "stand", direction : "down", time : 1200},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Hey! This building behind me is the projects building" , faceMain: "npc5"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "Unfortunately, this building is still under construction, to check out the projects that was built by Bryan, "},
+                            { type: "textMessage", text: "you can head over to his github at https://github.com/bryanleezh"},
+                        ]
+                    },
                 ]
             },
         },
