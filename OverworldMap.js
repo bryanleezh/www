@@ -428,7 +428,7 @@ window.OverworldMaps = {
                     {
                         events: [
                             { type: "textMessage", text: "Log: I am currently proficient in Python,HTML,CSS,SQL and PHP"},
-                            { type: "textMessage", text: "Tech & Libraries: MySQL,Vue.js,Google Cloud,Bootstrap."}
+                            { type: "textMessage", text: "Tech & Libraries: MySQL,Vue.js,Google Cloud,Bootstrap,Flask."}
                         ]
                     }
                 ]
