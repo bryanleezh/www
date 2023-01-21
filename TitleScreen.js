@@ -38,7 +38,7 @@ class TitleScreen {
         this.element = document.createElement("div");
         this.element.classList.add("TitleScreen");
         this.element.innerHTML = (`
-            <img class="TitleScreen_logo" src="./images/icons/veggie.png" alt="logo" />
+            <img class="TitleScreen_logo" src="./images/icons/namelogo.png" alt="logo" />
         `)
     }
 
