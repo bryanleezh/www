@@ -49,7 +49,7 @@ class Map{
     }
 
     bindActionInput() {
-        new KeyPressListener("Enter", () => {
+        new KeyPressListener("Space", () => {
             //check on map if there is anything/anyone to interact with
             this.map.checkForActionCutscene();
         })

@@ -26,7 +26,7 @@ class TextMessage {
             this.done();
         });
 
-        this.actionListener = new KeyPressListener( "Enter", () => {
+        this.actionListener = new KeyPressListener( "Space", () => {
             this.done(); //calls function below
         })
     }
