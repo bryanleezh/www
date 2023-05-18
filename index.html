@@ -47,5 +47,29 @@
         <script src="progress.js"></script>
         <script src="TitleScreen.js"></script>
         <script src="init.js"></script>
+        <script>
+            function updateOrientation() {
+                var gameContainer = document.querySelector('.game-container');
+                if (window.innerWidth < 468) {
+                    gameContainer.style.width = '300px';
+                    gameContainer.style.height = '280px';
+                    gameContainer.style.transform = 'scale(1.5) translateY(50%) rotate(90deg)';
+                    gameContainer.style.overflow = 'hidden';
+                } 
+                else if (window,innerWidth < 768) {
+                    gameContainer.style.width = '352px';
+                    gameContainer.style.height = '198px';
+                    gameContainer.style.transform = 'scale(2) translateY(50%)';
+                }
+                else {
+                    gameContainer.style.width = '352px';
+                    gameContainer.style.height = '198px';
+                    gameContainer.style.transform = 'scale(3) translateY(50%)';
+                }
+            }
+            updateOrientation();
+            window.addEventListener('resize', updateOrientation);
+
+        </script>
 </body>
 </html>

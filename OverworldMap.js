@@ -453,7 +453,7 @@ window.OverworldMaps = {
                         events: [
                             { type: "textMessage", text: "Hey,it's me again,seems like you managed to find your way here." , faceMain: "me"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "I am currently an undergraduate at Singapore Management University,pursuing a degree in Information Systems."},
-                            { type: "textMessage", text: "I will be specialising in Digital Cloud Solution next year, with the intention of pursuing a full-stack or"},
+                            { type: "textMessage", text: "I will be specialising in Digitalisation & Cloud Solutions, with the intention of pursuing a full-stack or"},
                             { type: "textMessage", text: "software engineering role in the future."},
                             { type: "textMessage", text: "For my technical skills,you can access it from the laptop at the bottom right of my house."},
                         ]
@@ -556,7 +556,7 @@ window.OverworldMaps = {
                     {
                         events: [
                             { type: "textMessage", text: "Hey,sorry this hub is currently empty, this is one of the buildings that is still in the works." , faceMain: "me"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "As for my socials, my LinkedIn profile is https://www.linkedin.com/in/bryan-lee-b3aa551ba/"},
+                            { type: "textMessage", text: "As for my socials, my LinkedIn profile is https://www.linkedin.com/in/leezhihaobryan"},
                             { type: "textMessage", text: "Again,sorry for such an empty HUB right now, be sure to check back when everything is fully built!"},
                         ]
                     },
