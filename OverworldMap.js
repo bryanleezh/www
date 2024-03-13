@@ -671,6 +671,22 @@ window.OverworldMaps = {
                     }
                 ]
             },
+            pc: {
+                type: "Character",
+                x : utilities.withGrid(6),
+                y : utilities.withGrid(8),
+                src : "./images/characters/projectpc.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 200},
+                ],
+                talking: [
+                    {
+                        events: [
+                            {type:"textMessage", text:"hello wats up", faceMain:"pc"},
+                        ]
+                    }
+                ]
+            }
         },
         walls: {
             [utilities.gridCoord(7,6)] : true,
