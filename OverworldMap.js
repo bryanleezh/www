@@ -167,8 +167,8 @@ window.OverworldMaps = {
                     {
                         events: [
                             { type: "textMessage", text: "Hey!Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "I built this website without any framework,using purely HTML,CSS,and Javascript,as a challenge."},
-                            { type: "textMessage", text: "However,due to school commitments,this is still a work in progress and I am still actively updating this project"},
+                            { type: "textMessage", text: "Unfortunately,due to school commitments,this is still a work in progress, but I am excited to show you what"},
+                            { type: "textMessage", text: "I have built so far!"},
                             { type: "textMessage", text: "Most of the buildings are already accessible,but they are currently plain as they are in the works."},
                             { type: "textMessage", text: "As you step out,you will be able to explore all the buildings"},
                             { type: "textMessage", text: "If you are lost or unsure of what each building represents,feel free to interact with anyone around!"},
