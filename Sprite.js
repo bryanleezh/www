@@ -32,7 +32,7 @@ class Sprite {
             "walk-up" : [ [1,2], [2,2] , [3,2], [0,2] ],
             "walk-left" : [ [1,3], [2,3] , [3,3], [0,3] ],
         }
-        this.currentAnimation = "idle-right" //config.currentAnimation || "idle-down"; 
+        this.currentAnimation = config.currentAnimation || "idle-down"; 
         this.currentAnimationFrame = 0; // which array or position within the animation array
 
         this.animationFrameLimit = config.animationFrameLimit || 8; // how many frames would the character stay in that current animationframe before changing
