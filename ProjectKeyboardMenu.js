@@ -16,15 +16,55 @@ class ProjectKeyboardMenu {
         this.options = options;
         this.element.innerHTML = this.options.map((option, index) => { //use index to keep track of which option was clicked
             const disabledAttr = option.disabled ? "disabled" : ""; //if the option config does not specify that it is disabled then it will jsut be a button
-            // TODO: Add img into options, can be one entire button area (need to style new div if not using button)
-            return (`
-                <div class="option">
-                    <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
-                        ${option.label}
-                    </button>
-                    <span class="right">${option.right ? option.right() : ""}<span>
-                </div>
-            `)
+            if (index == 1) {
+                // img
+                return (`
+                    <div class="option">
+                            <img src=${option.img}>
+                        <span class="right">${option.right ? option.right() : ""}<span>
+                    </div>
+                `)
+            } else if (index == 2) {
+                // description
+                return (`
+                    <div class="option">
+                        <button ${disabledAttr} data-button="${index}">
+                            ${option.description}
+                        </button>
+                        <span class="right">${option.right ? option.right() : ""}<span>
+                    </div>
+                `)
+            } else if (index == 3) {
+                // link
+                return (`
+                    <div class="option">
+                        <button ${disabledAttr} data-button="${index}">
+                            Project Link: ${option.link}
+                        </button>
+                        <span class="right">${option.right ? option.right() : ""}<span>
+                    </div>
+                `)
+            } else if (index == 4) {
+                // techstack
+                return (`
+                    <div class="option">
+                        <button ${disabledAttr} data-button="${index}">
+                            Tech Stack: ${option.techstack}
+                        </button>
+                        <span class="right">${option.right ? option.right() : ""}<span>
+                    </div>
+                `)
+            } else if (index == 5) {
+                // close menu button
+                return (`
+                    <div class="option">
+                        <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
+                            ${option.label}
+                        </button>
+                        <span class="right">${option.right ? option.right() : ""}<span>
+                    </div>
+                `)
+            }
         }).join("")
 
         this.element.querySelectorAll("button").forEach(button => {
@@ -38,7 +78,7 @@ class ProjectKeyboardMenu {
             })
             button.addEventListener("focus", () => {
                 this.prevFocus = button; //uodate the most recent button that was focused on so that even when u r not focusing on any of the options, it will show the description of the last focused button
-                this.descriptionElementText.innerText = button.dataset.description; //description text will be from the description that was put in the button data-description
+                // this.descriptionElementText.innerText = button.dataset.description; //description text will be from the description that was put in the button data-description
             })
         })
 
@@ -56,9 +96,9 @@ class ProjectKeyboardMenu {
 
         //description element
         this.descriptionElement = document.createElement("div");
-        this.descriptionElement.classList.add("DescriptionBox");
-        this.descriptionElement.innerHTML = (`<p></p>`);
-        this.descriptionElementText = this.descriptionElement.querySelector("p"); //references whatever p tag that is currently being focused on in the options
+        // this.descriptionElement.classList.add("DescriptionBox");
+        // this.descriptionElement.innerHTML = (`<p></p>`);
+        // this.descriptionElementText = this.descriptionElement.querySelector("p"); //references whatever p tag that is currently being focused on in the options
     }
     
     //Basically unbinds the up and down arrow keys and deletes/ends the keyboard menu
