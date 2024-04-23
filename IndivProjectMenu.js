@@ -10,7 +10,7 @@ class IndivProjectMenu {
 
     getOptions() {
         // TODO: Add info on img and logo
-        const base = Projects[this.project[0]];
+        const base = Projects[this.project];
         return [{
             label: base.name,
             description: base.description,
@@ -25,7 +25,8 @@ class IndivProjectMenu {
         this.element.classList.add("ProjectMenu");
         this.element.classList.add("overlayMenu");
         // TODO: Edit header for project menu to be project name
-        const proj = Projects[this.project]
+        const proj = Projects[this.project];
+        console.log(this.project);
         this.element.innerHTML = (`
             <h2>${proj.name}</h2>
         `)
