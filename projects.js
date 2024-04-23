@@ -24,7 +24,7 @@ window.Projects = {
   },
   "Portfolio-Manager": {
     name: "Stocks Portfolio Manager",
-    description: "A Fully Managed Portoflio Analyzer in conjunction with Goldman Sachs with secure account management & real-time analysis of stock profiles",
+    description: "A Fully Managed Portfolio Analyzer in conjunction with Goldman Sachs with secure account management & real-time analysis of stock profiles",
     src: "/images/projects/portfolio-analyzer.png",
     link: "https://github.com/bryanleezh/goldman-sachs-portfolio-manager",
     techstack: "Next.js, SpringBoot, MongoDB",
