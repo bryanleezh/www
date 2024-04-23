@@ -101,10 +101,23 @@ class OverworldEvent {
         resolve();
     }
 
+    // custom event for opening up projects menu on pc
     projectMenu(resolve) {
         // this.map.isPause = true;
         const menu = new ProjectMenu({
             projects: this.event.projects,
+            onComplete: () => {
+                resolve();
+            }
+        });
+        menu.init(document.querySelector(`.game-container`));
+    }
+
+    // custom event for opening up individual project on arcade pc
+    indivProjectMenu(resolve) {
+        // this.map.isPause = true;
+        const menu = new IndivProjectMenu({
+            project: this.event.project,
             onComplete: () => {
                 resolve();
             }
