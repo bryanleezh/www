@@ -587,7 +587,6 @@ window.OverworldMaps = {
                 type: "ProjectPc",
                 x : utilities.withGrid(12),
                 y : utilities.withGrid(13),
-                src : "./images/characters/projectpc.png",
                 projects: [
                     "MoneyPig", 
                     "Access-Logger", 
