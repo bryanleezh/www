@@ -50,12 +50,15 @@ class OverworldMap {
     mountObjects() {
         Object.keys(this.configObjects).forEach(key => {
             
-            let object = this.configObjects[key]
-            object.id = key //id of the object will be the name given to the object such as player,npc1,npc2 etc
+            let object = this.configObjects[key];
+            object.id = key; //id of the object will be the name given to the object such as player,npc1,npc2 etc
             //create the game instance of class from gameconfig object
             let instance;
             if (object.type === "Character") {
                 instance = new Character(object);
+            }
+            if (object.type === "ProjectPc") {
+                instance = new ProjectPc(object);
             }
             //TODO: Add other object types if we end up adding other things in
 
@@ -671,21 +674,19 @@ window.OverworldMaps = {
                     }
                 ]
             },
-            pc: {
-                type: "Character",
+            projectPc: {
+                type: "ProjectPc",
                 x : utilities.withGrid(6),
                 y : utilities.withGrid(8),
                 src : "./images/characters/projectpc.png",
-                behaviourLoop : [
-                    {type : "stand", direction : "left", time : 200},
+                projects: [
+                    "MoneyPig", 
+                    "Access-Logger", 
+                    "Portfolio-Manager", 
+                    "Algo-Visualizer", 
+                    "Club-Management", 
+                    "PyPlatformer"
                 ],
-                talking: [
-                    {
-                        events: [
-                            {type:"textMessage", text:"hello wats up", faceMain:"pc"},
-                        ]
-                    }
-                ]
             }
         },
         walls: {
