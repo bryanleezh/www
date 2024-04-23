@@ -5,21 +5,29 @@ class ProjectMenu {
     }
 
     getOptions() {
-        console.log(this.projects);
         const intermediateArray = this.projects.map(id => {
             const base = Projects[id];
             return  {
                 label: base.name,
                 description: base.description,
                 handler: () => {
-                    this.redirect(base.link);
+                    // this.close();
+                    this.keyboardMenu.removeDesc();
+                    const menu = new IndivProjectMenu({
+                        project: id,
+                        onComplete: () => {
+                            // resolve();
+                            // this.keyboardMenu.init();
+                        }
+                    });
+                    menu.init(document.querySelector(`.game-container`));
                 }
             }
         });
 
         const closeOption = {
             label: "Close",
-            description: "Close the pause menu",
+            description: "Close the projects menu",
             handler: () => {
                 this.close();
             }
