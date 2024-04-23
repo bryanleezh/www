@@ -8,14 +8,11 @@ class ProjectMenu {
         console.log(this.projects);
         const intermediateArray = this.projects.map(id => {
             const base = Projects[id];
-            // TODO: Add picture and link to ProjectMenu
             return  {
                 label: base.name,
                 description: base.description,
                 handler: () => {
-                    // TODO: Change to relocate site to link
                     this.redirect(base.link);
-                    // this.close();
                 }
             }
         });
@@ -38,8 +35,7 @@ class ProjectMenu {
     createElement() {
         this.element = document.createElement("div");
         this.element.classList.add("ProjectMenu");
-        // TODO: need to edit css to make it scrollable or at least overflow
-        this.element.classList.add("overlayMenu");
+        this.element.classList.add("projectMenu");
         this.element.innerHTML = (`
             <h2>Projects</h2>
         `)
@@ -50,6 +46,7 @@ class ProjectMenu {
     }
 
     close() {
+        this.esc?.unbind();
         this.keyboardMenu.end();
         this.element.remove();
         this.onComplete();
@@ -64,5 +61,12 @@ class ProjectMenu {
         this.keyboardMenu.setOptions(this.getOptions())
 
         container.appendChild(this.element);
+
+        // bind escape key to leaving the project menu
+        // have a delay to prevent escape key from leaving the menu without it getting to open 1st
+        utilities.wait(200);
+        this.esc = new KeyPressListener("Escape" , () => {
+            this.close();
+        })
     }
 }
