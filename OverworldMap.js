@@ -336,7 +336,7 @@ window.OverworldMaps = {
             // PC that lists all projects
             projectsPc: {
                 type: "ProjectPc",
-                x : utilities.withGrid(24),
+                x : utilities.withGrid(28),
                 y : utilities.withGrid(13),
                 src : "./images/characters/projectpc.png",
                 projects: [
@@ -585,8 +585,8 @@ window.OverworldMaps = {
             },
             projectsPc: {
                 type: "ProjectPc",
-                x : utilities.withGrid(12),
-                y : utilities.withGrid(13),
+                x : utilities.withGrid(9),
+                y : utilities.withGrid(12),
                 projects: [
                     "MoneyPig", 
                     "Access-Logger", 
