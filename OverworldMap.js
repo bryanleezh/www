@@ -60,6 +60,9 @@ class OverworldMap {
             if (object.type === "ProjectPc") {
                 instance = new ProjectPc(object);
             }
+            if (object.type === "IndivProjectArcade") {
+                instance = new IndivProjectArcade(object);
+            }
             //TODO: Add other object types if we end up adding other things in
 
             this.gameObjects[key] = instance;
@@ -325,11 +328,26 @@ window.OverworldMaps = {
                         events: [
                             { type: "textMessage", text: "Hey! This building behind me is the projects building." , faceMain: "npc5"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "Unfortunately, this building is still under construction, to check out the projects that was built by Bryan,"},
-                            { type: "textMessage", text: "you can head over to his github at https://github.com/bryanleezh"},
+                            { type: "textMessage", text: "however, you can use this PC on my left to have an overview of all his projects!"},
                         ]
                     },
                 ]
             },
+            // PC that lists all projects
+            projectsPc: {
+                type: "ProjectPc",
+                x : utilities.withGrid(28),
+                y : utilities.withGrid(13),
+                src : "./images/characters/projectpc.png",
+                projects: [
+                    "MoneyPig", 
+                    "Access-Logger", 
+                    "Portfolio-Manager", 
+                    "Algo-Visualizer", 
+                    "Club-Management", 
+                    "PyPlatformer"
+                ],
+            }
         },
         walls: function() {
             let walls  = {};
@@ -687,7 +705,15 @@ window.OverworldMaps = {
                     "Club-Management", 
                     "PyPlatformer"
                 ],
-            }
+            },
+            projectArcade: {
+                type: "IndivProjectArcade",
+                x : utilities.withGrid(5),
+                y : utilities.withGrid(4),
+                src : "./images/characters/projectpc.png",
+                project: "MoneyPig"
+            },
+            
         },
         walls: {
             [utilities.gridCoord(7,6)] : true,
