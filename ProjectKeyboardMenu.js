@@ -29,7 +29,7 @@ class ProjectKeyboardMenu {
                 return (`
                     <div class="option">
                         <button ${disabledAttr} data-button="${index}">
-                            ${option.description}
+                            <i>${option.description}</i>
                         </button>
                         <span class="right">${option.right ? option.right() : ""}<span>
                     </div>
@@ -39,7 +39,7 @@ class ProjectKeyboardMenu {
                 return (`
                     <div class="option">
                         <button ${disabledAttr} data-button="${index}">
-                            Project Link: ${option.link}
+                            <b>Project Link:</b> ${option.link}
                         </button>
                         <span class="right">${option.right ? option.right() : ""}<span>
                     </div>
@@ -49,7 +49,7 @@ class ProjectKeyboardMenu {
                 return (`
                     <div class="option">
                         <button ${disabledAttr} data-button="${index}">
-                            Tech Stack: ${option.techstack}
+                            <b>Tech Stack</b>: ${option.techstack}
                         </button>
                         <span class="right">${option.right ? option.right() : ""}<span>
                     </div>
@@ -59,7 +59,7 @@ class ProjectKeyboardMenu {
                 return (`
                     <div class="option">
                         <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
-                            ${option.label}
+                            <span>${option.label}</span>
                         </button>
                         <span class="right">${option.right ? option.right() : ""}<span>
                     </div>
