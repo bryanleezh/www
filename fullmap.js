@@ -108,6 +108,8 @@ class Map{
             progress: this.progress
         });
         const useSaveFile = await this.titleScreen.init(container);
+        // * For development
+        // const useSaveFile = false;
 
         //Check for saved data
         let initialMainState = null;
