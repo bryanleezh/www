@@ -1,5 +1,5 @@
-//Records which map the player is in, its current coords, and the savefile
-//Allows for saving and loading files
+//* Records which map the player is in, its current coords, and the savefile
+//* Allows for saving and loading files
 
 class Progress {
     constructor() {
