@@ -1,6 +1,4 @@
-window.ProjectTypes = {
-    normal: "normal",
-}
+// * All Projects
 
 window.Projects = {
   "Template": {
@@ -26,7 +24,7 @@ window.Projects = {
   },
   "Portfolio-Manager": {
     name: "Stocks Portfolio Manager",
-    description: "A Fully Managed Portoflio Analyzer in conjunction with Goldman Sachs with secure account management and permission control, along with real-time analysis of stock profiles",
+    description: "A Fully Managed Portoflio Analyzer in conjunction with Goldman Sachs with secure account management & real-time analysis of stock profiles",
     src: "/images/projects/portfolio-analyzer.png",
     link: "https://github.com/bryanleezh/goldman-sachs-portfolio-manager",
     techstack: "Next.js, SpringBoot, MongoDB",
@@ -40,7 +38,7 @@ window.Projects = {
   },
   "Algo-Visualizer": {
     name: "Algorithm Visualizer",
-    description: "Interactive mario-themed visualiser allows users to understand more about algorithms through fun and interactive visualisations from start to end, along with the shortest paths",
+    description: "Interactive mario-themed visualiser with fun and interactive visualisations from start to end, along with the shortest paths",
     src: "/images/projects/algo-visualiser.gif",
     link: "https://algorithm-visualizer-tau-amber.vercel.app/",
     techstack: "Vue.js"
