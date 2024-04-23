@@ -20,7 +20,7 @@ class ProjectPc extends GameObject {
         this.talking = [
             {
                 events: [
-                    { type: "textMessage", text: "Booting up the PC..." },
+                    { type: "textMessage", text: "Accessing projects from the PC..." },
                     { type: "projectMenu", projects: this.projects },
                 ]
             }
