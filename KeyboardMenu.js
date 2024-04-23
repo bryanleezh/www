@@ -14,6 +14,16 @@ class KeyboardMenu {
         this.options = options;
         this.element.innerHTML = this.options.map((option, index) => { //use index to keep track of which option was clicked
             const disabledAttr = option.disabled ? "disabled" : ""; //if the option config does not specify that it is disabled then it will jsut be a button
+            if (option.label == "Close") {
+                return (`
+                    <div class="option">
+                        <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
+                            <span>${option.label}</span>
+                        </button>
+                        <span class="right">${option.right ? option.right() : ""}<span>
+                    </div>
+                `)
+            } else {
             return (`
                 <div class="option">
                     <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
@@ -21,7 +31,7 @@ class KeyboardMenu {
                     </button>
                     <span class="right">${option.right ? option.right() : ""}<span>
                 </div>
-            `)
+            `)}
         }).join("")
 
         this.element.querySelectorAll("button").forEach(button => {
