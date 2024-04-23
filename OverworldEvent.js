@@ -101,6 +101,17 @@ class OverworldEvent {
         resolve();
     }
 
+    projectMenu(resolve) {
+        // this.map.isPause = true;
+        const menu = new ProjectMenu({
+            projects: this.event.projects,
+            onComplete: () => {
+                resolve();
+            }
+        });
+        menu.init(document.querySelector(`.game-container`));
+    }
+
     init() {
         return new Promise(resolve => {
             this[this.event.type](resolve);
