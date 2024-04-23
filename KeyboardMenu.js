@@ -68,6 +68,17 @@ class KeyboardMenu {
         this.down.unbind();
     }
 
+    removeDesc() {
+        this.descriptionElement.remove();
+    }
+
+    createDesc() {
+        this.descriptionElement = document.createElement("div");
+        this.descriptionElement.classList.add("DescriptionBox");
+        this.descriptionElement.innerHTML = (`<p></p>`);
+        this.descriptionElementText = this.descriptionElement.querySelector("p"); //references whatever p tag that is currently being focused on in the options
+    }
+
     init(container) {
         this.createElement();
         //if this.descriptionContainer exists, it will use that, but otherwise it will default to container and then append to the descriptionElement
