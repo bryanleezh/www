@@ -128,6 +128,13 @@ class OverworldEvent {
         menu.init(document.querySelector(`.game-container`));
     }
 
+    // custom event to change state of pc
+    changePCState(resolve) {
+        if (this.event.sprite.currentAnimation == "turned-on") this.event.sprite.currentAnimation = "turned-off";
+        else this.event.sprite.currentAnimation = "turned-on";
+        resolve();
+    }
+
     init() {
         return new Promise(resolve => {
             this[this.event.type](resolve);
