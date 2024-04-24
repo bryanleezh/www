@@ -1,4 +1,5 @@
-// * All Projects
+// * All Projects & Experience
+// TODO: Add skills
 
 window.Projects = {
   "Template": {
