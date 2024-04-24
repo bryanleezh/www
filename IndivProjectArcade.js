@@ -1,13 +1,11 @@
-// Arcade pc that shows only 1 project
-// TODO: Add another pc class that would show individual projects that uses ProjectKeyboardMenu.js
-// ! Done with logic
+// * Arcade pc that shows only 1 project or experience
 
 class IndivProjectArcade extends GameObject {
     constructor(config) {
         super(config);
         this.sprite = new Sprite({
             gameObject: this,
-            src: config.src || "/images/characters/arcade-red.png",
+            src: config.src || "/images/objects/arcade-red.png",
             animations: {
                 "turned-on" : [ [1,0] ],
                 "turned-off": [ [2,0] ],
