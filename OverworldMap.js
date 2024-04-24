@@ -583,10 +583,23 @@ window.OverworldMaps = {
                     },
                 ]
             },
-            projectsPc: {
+            projectsPc1: {
                 type: "ProjectPc",
                 x : utilities.withGrid(9),
                 y : utilities.withGrid(12),
+                projects: [
+                    "MoneyPig", 
+                    "Access-Logger", 
+                    "Portfolio-Manager", 
+                    "Algo-Visualizer", 
+                    "Club-Management", 
+                    "PyPlatformer"
+                ],
+            },
+            projectsPc2: {
+                type: "ProjectPc",
+                x : utilities.withGrid(18),
+                y : utilities.withGrid(10),
                 projects: [
                     "MoneyPig", 
                     "Access-Logger", 
@@ -723,7 +736,7 @@ window.OverworldMaps = {
                 type: "IndivProjectArcade",
                 x : utilities.withGrid(5),
                 y : utilities.withGrid(4),
-                src : "./images/characters/projectpc.png",
+                // src : "./images/characters/arcade-blue.png",
                 project: "Access-Logger"
                 // project: "MoneyPig"
             },
