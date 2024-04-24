@@ -7,13 +7,12 @@ class IndivProjectArcade extends GameObject {
         super(config);
         this.sprite = new Sprite({
             gameObject: this,
-            // TODO: Add new project arcade sprite
-            src: "/images/characters/projectpc.png",
+            src: config.src || "/images/characters/arcade-red.png",
             animations: {
-                "turned-on" : [ [0,0] ],
+                "turned-on" : [ [1,0] ],
                 "turned-off": [ [2,0] ],
             },
-            currentAnimation: "turned-on"
+            currentAnimation: "turned-off"
         });
         // this.storyFlag = config.storyFlag;
         // instantiate projects
@@ -22,14 +21,15 @@ class IndivProjectArcade extends GameObject {
         this.talking = [
             {
                 events: [
-                    { type: "textMessage", text: "Booting up the PC..." },
+                    { type: "changePCState", sprite: this.sprite },
+                    { type: "textMessage", text: "Booting up the project arcade..." },
                     { type: "indivProjectMenu", project: this.project },
+                    { type: "changePCState", sprite: this.sprite },
                 ]
             }
         ];
     }
 
-    // TODO: Figure out how else i can turn on and off pc through state
     update() {
         // this.sprite.currentAnimation = "turned-off";
         // this.sprite.currentAnimation = playerState.storyFlag[this.storyFlag]
