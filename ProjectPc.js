@@ -9,9 +9,9 @@ class ProjectPc extends GameObject {
             src: "/images/characters/projectpc.png",
             animations: {
                 "turned-on" : [ [0,0] ],
-                "turned-off": [ [2,0] ],
+                "turned-off": [ [1,0] ],
             },
-            currentAnimation: "turned-on"
+            currentAnimation: "turned-off"
         });
         // this.storyFlag = config.storyFlag;
         // instantiate projects
@@ -20,8 +20,10 @@ class ProjectPc extends GameObject {
         this.talking = [
             {
                 events: [
+                    { type: "changePCState", sprite: this.sprite },
                     { type: "textMessage", text: "Accessing projects from the PC..." },
                     { type: "projectMenu", projects: this.projects },
+                    { type: "changePCState", sprite: this.sprite },
                 ]
             }
         ];
