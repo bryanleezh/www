@@ -105,6 +105,7 @@ class OverworldEvent {
         this.map.isPause = true;
         const menu = new ProjectMenu({
             projects: this.event.projects,
+            pcType: this.event.pcType,
             onComplete: () => {
                 resolve();
                 this.map.isPause = false; //unpause the map
