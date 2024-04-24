@@ -1,33 +1,47 @@
 class ProjectMenu {
-    constructor({ projects, onComplete }) {
+    constructor({ projects, pcType, onComplete }) {
         this.projects = projects;
         this.onComplete = onComplete;
+        this.pcType = pcType;
     }
 
     getOptions() {
         const intermediateArray = this.projects.map(id => {
-            const base = Projects[id];
-            return  {
-                label: base.name,
-                description: base.description,
-                handler: () => {
-                    // this.close();
-                    this.keyboardMenu.removeDesc();
-                    const menu = new IndivProjectMenu({
-                        project: id,
-                        onComplete: () => {
-                            // resolve();
-                            // this.keyboardMenu.init();
-                        }
-                    });
-                    menu.init(document.querySelector(`.game-container`));
+            var base = Projects[id];
+            // instantiate base on pc type: project, work, skills
+            if (this.pcType === "project") {
+                base = Projects[id];
+                return  {
+                    label: base.name,
+                    description: base.description,
+                    handler: () => {
+                        // this.close();
+                        this.keyboardMenu.removeDesc();
+                        const menu = new IndivProjectMenu({
+                            project: id,
+                            onComplete: () => {
+                                // resolve();
+                                // this.keyboardMenu.init();
+                            }
+                        });
+                        menu.init(document.querySelector(`.game-container`));
+                    }
+                }
+            } else if (this.pcType === "work") {
+                base = Work[id];
+                return  {
+                    label: base.name,
+                    description: base.techstack,
+                    handler: () => {
+                        this.redirect(base.link);
+                    }
                 }
             }
         });
 
         const closeOption = {
             label: "Close",
-            description: "Close the projects menu",
+            description: "Close this menu",
             handler: () => {
                 this.close();
             }
