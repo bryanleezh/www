@@ -1,28 +1,28 @@
-// PC that shows all projects with redirecting to Github
-// TODO: Add another pc class that would show individual projects that uses ProjectKeyboardMenu.js
+// * PC that shows all projects with redirecting to Github
 
 class ProjectPc extends GameObject {
     constructor(config) {
         super(config);
         this.sprite = new Sprite({
             gameObject: this,
-            src: "/images/characters/projectpc.png",
+            src: config.src || "/images/objects/projectpc.png",
             animations: {
                 "turned-on" : [ [0,0] ],
                 "turned-off": [ [1,0] ],
             },
             currentAnimation: "turned-off"
         });
-        // this.storyFlag = config.storyFlag;
+
         // instantiate projects
         this.projects = config.projects;
+        this.pcType = config.pcType;
         // can be placed here or extracted out to the main OverworldMap
         this.talking = [
             {
                 events: [
                     { type: "changePCState", sprite: this.sprite },
-                    { type: "textMessage", text: "Accessing projects from the PC..." },
-                    { type: "projectMenu", projects: this.projects },
+                    { type: "textMessage", text: "Booting up PC..." },
+                    { type: "projectMenu", projects: this.projects, pcType: this.pcType },
                     { type: "changePCState", sprite: this.sprite },
                 ]
             }
