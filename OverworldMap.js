@@ -181,8 +181,8 @@ window.OverworldMaps = {
                             { who: "main_character" ,type: "walk", direction: "right" },
                             { who: "main_character" ,type: "walk", direction: "down" },
                             { who: "main_character" ,type: "stand", direction: "up" },
-                            {who:"main", type : "walk", direction : "right"},
-                            {who:"main", type : "walk", direction : "right"},
+                            { who:"main", type : "walk", direction : "right"},
+                            { who:"main", type : "walk", direction : "right"},
                             { 
                                 type : "changeMap", 
                                 map: "MainMap",
@@ -325,10 +325,21 @@ window.OverworldMaps = {
                 ],
                 talking: [
                     {
+                        required: ["OPEN_PROJECTS_BUILDING"],
+                        events: [
+                            { type: "textMessage", text: "Be careful when you're in there!" , faceMain: "npc5"},
+                            { type: "textMessage", text: "Psst, if I'm blocking the entrance again, refresh the site!"},
+                        ]
+                    },
+                    {
                         events: [
                             { type: "textMessage", text: "Hey! This building behind me is the projects building." , faceMain: "npc5"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "Unfortunately, this building is still under construction, to check out the projects that was built by Bryan,"},
-                            { type: "textMessage", text: "however, you can use this PC on my left to have an overview of all his projects!"},
+                            { type: "textMessage", text: "Unfortunately, this building is still under construction and the building is unstable! Are you sure?"},
+                            { type: "textMessage", text: "Fine, if you still want to enter, be my guest!"},
+                            { type: "textMessage", text: "If you choose not to, you can use this PC on my left to have an overview of all his projects!"},
+                            { who: "npc5" ,type: "walk", direction: "right" },
+                            { type: "textMessage", text: "Here you go!." , faceMain: "npc5"},
+                            {type: "addStoryFlag", flag: "OPEN_PROJECTS_BUILDING"},
                         ]
                     },
                 ]
@@ -338,7 +349,8 @@ window.OverworldMaps = {
                 type: "ProjectPc",
                 x : utilities.withGrid(28),
                 y : utilities.withGrid(13),
-                src : "./images/characters/projectpc.png",
+                src : "./images/objects/projectpc.png",
+                pcType: "project",
                 projects: [
                     "MoneyPig", 
                     "Access-Logger", 
@@ -416,9 +428,9 @@ window.OverworldMaps = {
                     events: [
                         { 
                             type : "changeMap", 
-                            map: "DemoRoom",
-                            x: utilities.withGrid(5),
-                            y: utilities.withGrid(10),
+                            map: "ProjectRoom",
+                            x: utilities.withGrid(10),
+                            y: utilities.withGrid(16),
                             direction: "up",
                         }
                     ]
@@ -722,7 +734,8 @@ window.OverworldMaps = {
                 type: "ProjectPc",
                 x : utilities.withGrid(6),
                 y : utilities.withGrid(8),
-                src : "./images/characters/projectpc.png",
+                src : "./images/objects/projectpc.png",
+                pcType: 'project',
                 projects: [
                     "MoneyPig", 
                     "Access-Logger", 
@@ -732,13 +745,22 @@ window.OverworldMaps = {
                     "PyPlatformer"
                 ],
             },
+            workPc: {
+                type: "ProjectPc",
+                x : utilities.withGrid(3),
+                y : utilities.withGrid(5),
+                src : "./images/objects/workpc.png",
+                pcType: 'work',
+                projects: [
+                    "Cybernatics", "Shopee", "WSAudiology", "Switcheo"
+                ],
+            },
             projectArcade: {
                 type: "IndivProjectArcade",
                 x : utilities.withGrid(5),
                 y : utilities.withGrid(4),
                 // src : "./images/characters/arcade-blue.png",
                 project: "Access-Logger"
-                // project: "MoneyPig"
             },
             
         },
@@ -777,4 +799,48 @@ window.OverworldMaps = {
         }
 
     },
+    ProjectRoom: {
+        id: "ProjectRoom" ,
+        lowerSrc: "./images/maps/projects_map_lower.png",
+        upperSrc: "./images/maps/projects_map_upper.png",
+        configObjects: {
+            main: {
+                type: "Character",
+                isPlayer: true,
+                x : utilities.withGrid(10),
+                y : utilities.withGrid(16),
+            },
+        },
+        walls :{
+
+        },
+        cutsceneSpaces: {
+            [utilities.gridCoord(10,18)] : [
+                {
+                    events: [
+                        { 
+                            type : "changeMap", 
+                            map: "MainMap",
+                            x: utilities.withGrid(29),
+                            y: utilities.withGrid(14),
+                            direction: "down",
+                        }
+                    ]
+                }
+            ],
+            [utilities.gridCoord(11,18)] : [
+                {
+                    events: [
+                        { 
+                            type : "changeMap", 
+                            map: "MainMap",
+                            x: utilities.withGrid(29),
+                            y: utilities.withGrid(14),
+                            direction: "down",
+                        }
+                    ]
+                }
+            ],
+        },
+    }
 }
