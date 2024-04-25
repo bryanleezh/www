@@ -5,9 +5,7 @@ class Progress {
     constructor() {
         this.mapId = "StartTruck";
         // * For development
-        // this.mapId = "ProjectRoom";
-        // this.mapId = "MainMap";
-        // this.mapId = "DemoRoom";
+        // this.mapId = "ProjectBuilding";
         this.startingMainX = 0;
         this.startingMainY = 0;
         this.startingMainDirection = "down";
