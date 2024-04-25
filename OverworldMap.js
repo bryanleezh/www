@@ -73,6 +73,7 @@ class OverworldMap {
 
     async startCutscene(events){ //events would be an array
         this.cutScene = true;
+
         //Start loop of async events
         //Await each one
         for (let i=0; i<events.length; i++) {
@@ -95,8 +96,8 @@ class OverworldMap {
         const match = Object.values(this.gameObjects).find(object => {
             return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
         });
-        if (!this.cutScene && match && match.talking.length) {
 
+        if (!this.cutScene && match && match.talking.length) {
             const relevantScenario = match.talking.find(scenario => {
                 //iterates through everything and all items must pass certain req before this can return true
                 return (scenario.required || []).every(storyflag => { //if there is no relevant scenario, it will just be an empty array
@@ -111,7 +112,7 @@ class OverworldMap {
     checkForFootstepCutscene() {
         const main = this.gameObjects["main"];
         const match = this.cutsceneSpaces[`${main.x},${main.y}`]; //if the coords the main character is stepping on matches the coords specified in cutSceneSpaces, it will show the objects events in that coord
-        // console.log(match);
+        // TODO: Check if storyflag is in player, if in, execute relevant scenario
         if (!this.cutScene && match) {
             this.startCutscene(match[0].events);
         }
@@ -352,7 +353,7 @@ window.OverworldMaps = {
                 src : "./images/objects/projectpc.png",
                 pcType: "project",
                 projects: [
-                    "MoneyPig", 
+                    "Money-Pig", 
                     "Access-Logger", 
                     "Portfolio-Manager", 
                     "Algo-Visualizer", 
@@ -384,6 +385,7 @@ window.OverworldMaps = {
             return walls;
         }(),
         cutsceneSpaces :{
+            // house
             [utilities.gridCoord(4,12)] : [
                 {
                     events: [
@@ -397,6 +399,7 @@ window.OverworldMaps = {
                     ]
                 }
             ],
+            // hub
             [utilities.gridCoord(13,12)] : [
                 {
                     events: [
@@ -423,14 +426,15 @@ window.OverworldMaps = {
                     ]
                 }
             ],
+            // Project building
             [utilities.gridCoord(29,12)] : [
                 {
                     events: [
                         { 
                             type : "changeMap", 
-                            map: "ProjectRoom",
-                            x: utilities.withGrid(10),
-                            y: utilities.withGrid(16),
+                            map: "ProjectBuilding",
+                            x: utilities.withGrid(9),
+                            y: utilities.withGrid(13),
                             direction: "up",
                         }
                     ]
@@ -595,12 +599,12 @@ window.OverworldMaps = {
                     },
                 ]
             },
-            projectsPc1: {
+            projectsPc: {
                 type: "ProjectPc",
                 x : utilities.withGrid(9),
                 y : utilities.withGrid(12),
                 projects: [
-                    "MoneyPig", 
+                    "Money-Pig", 
                     "Access-Logger", 
                     "Portfolio-Manager", 
                     "Algo-Visualizer", 
@@ -608,19 +612,16 @@ window.OverworldMaps = {
                     "PyPlatformer"
                 ],
             },
-            projectsPc2: {
+            workPc: {
                 type: "ProjectPc",
                 x : utilities.withGrid(18),
                 y : utilities.withGrid(10),
+                // src : "./images/objects/workpc.png",
+                pcType: 'work',
                 projects: [
-                    "MoneyPig", 
-                    "Access-Logger", 
-                    "Portfolio-Manager", 
-                    "Algo-Visualizer", 
-                    "Club-Management", 
-                    "PyPlatformer"
+                    "Cybernatics", "Shopee", "WSAudiology", "Switcheo"
                 ],
-            }
+            },
         },
         walls: function() {
             let walls  = {};
@@ -737,7 +738,7 @@ window.OverworldMaps = {
                 src : "./images/objects/projectpc.png",
                 pcType: 'project',
                 projects: [
-                    "MoneyPig", 
+                    "Money-Pig", 
                     "Access-Logger", 
                     "Portfolio-Manager", 
                     "Algo-Visualizer", 
@@ -799,36 +800,162 @@ window.OverworldMaps = {
         }
 
     },
-    ProjectRoom: {
-        id: "ProjectRoom" ,
-        lowerSrc: "./images/maps/projects_map_lower.png",
+    ProjectBuilding: {
+        id: "ProjectBuilding" ,
+        // lowerSrc: "./images/maps/projects_map_lower.png",
+        lowerSrc: "./images/maps/new_proj_room_lower.png",
         upperSrc: "./images/maps/projects_map_upper.png",
         configObjects: {
             main: {
                 type: "Character",
                 isPlayer: true,
+                x : utilities.withGrid(9),
+                y : utilities.withGrid(13),
+            },
+            // Security Guard
+            securityGuard: {
+                type: "Character",
                 x : utilities.withGrid(10),
-                y : utilities.withGrid(16),
+                y : utilities.withGrid(12),
+                src : "./images/characters/people/cop_npc.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 800},
+                    {type : "stand", direction : "down", time : 800},
+                    {type : "stand", direction : "up", time : 1600},
+                    {type : "stand", direction : "right", time : 1200},
+                    {type : "stand", direction : "down", time : 1200},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Hey! Have you checked out all the cool projects Bryan has built?" , faceMain: "securityGuard"},
+                            { type: "textMessage", text: "You can access all his projects straight from the table up front, but you can also access each individual project from the arcade machines!" },
+                        ]
+                    }
+                ]
+            },
+            // talking wall beside projectstable
+            talkingWall1: {
+                type: "Character",
+                x : utilities.withGrid(8),
+                y : utilities.withGrid(7),
+                src : "./images/objects/empty_object.png",
+                talking: [
+                    {
+                        required: ["SECRET_PROJ_ROOM_ACCESS"],
+                        events: [
+                            {type:"textMessage", text:"What?! He told you?!"},
+                            {type:"textMessage", text:"Fine, you can get past this point if you walk around the arcade machines..."},
+                        ]
+                    },
+                    {
+                        events: [
+                            {type:"textMessage", text:"Access past this point is prohibited!"},
+                        ]
+                    }
+                ]
+            },
+            // talking wall beside projectstable
+            talkingWall2: {
+                type: "Character",
+                x : utilities.withGrid(10),
+                y : utilities.withGrid(7),
+                src : "./images/objects/empty_object.png",
+                talking: [
+                    {
+                        events: [
+                            {type:"textMessage", text:"Access past this point is prohibited!"},
+                            {type:"textMessage", text:"Psst, just walk around the arcade machines, there's a secret behind!"},
+                            {type: "addStoryFlag", flag: "SECRET_PROJ_ROOM_ACCESS"},
+                        ]
+                    }
+                ]
+            },
+            // PC that lists all projects
+            projectsTable: {
+                type: "ProjectPc",
+                x : utilities.withGrid(9),
+                y : utilities.withGrid(7),
+                src : "./images/objects/empty_object.png",
+                pcType: "project",
+                projects: [
+                    "Money-Pig", 
+                    "Access-Logger", 
+                    "Portfolio-Manager", 
+                    "Algo-Visualizer", 
+                    "Club-Management", 
+                    "PyPlatformer"
+                ],
+            },
+            // Money-Pig proj
+            projectArcade1: {
+                type: "IndivProjectArcade",
+                x : utilities.withGrid(13),
+                y : utilities.withGrid(7),
+                project: "Money-Pig"
+            },
+            // Access-Logger proj
+            projectArcade2: {
+                type: "IndivProjectArcade",
+                x : utilities.withGrid(12),
+                y : utilities.withGrid(7),
+                src : "./images/objects/arcade-wood.png",
+                project: "Access-Logger"
+            },
+            // Portfolio-Manager proj
+            projectArcade3: {
+                type: "IndivProjectArcade",
+                x : utilities.withGrid(11),
+                y : utilities.withGrid(7),
+                src : "./images/objects/arcade-green.png",
+                project: "Portfolio-Manager"
+            },
+            // Club-Management proj
+            projectArcade4: {
+                type: "IndivProjectArcade",
+                x : utilities.withGrid(5),
+                y : utilities.withGrid(7),
+                src : "./images/objects/arcade-yellow.png",
+                project: "Club-Management"
+            },
+            // Algo-Visualizer proj
+            projectArcade5: {
+                type: "IndivProjectArcade",
+                x : utilities.withGrid(6),
+                y : utilities.withGrid(7),
+                src : "./images/objects/arcade-green.png",
+                project: "Portfolio-Manager"
+            },
+            // Python Platformer proj
+            projectArcade6: {
+                type: "IndivProjectArcade",
+                x : utilities.withGrid(7),
+                y : utilities.withGrid(7),
+                src : "./images/objects/arcade-blue.png",
+                project: "PyPlatformer"
             },
         },
         walls :{
 
         },
         cutsceneSpaces: {
-            [utilities.gridCoord(10,18)] : [
-                {
-                    events: [
-                        { 
-                            type : "changeMap", 
-                            map: "MainMap",
-                            x: utilities.withGrid(29),
-                            y: utilities.withGrid(14),
-                            direction: "down",
-                        }
-                    ]
-                }
-            ],
-            [utilities.gridCoord(11,18)] : [
+            // project building walkthrough
+            // [utilities.gridCoord(9,12)] : [
+            //     {
+            //         required: ["test_flag"],
+            //         events: [
+            //             { type: "textMessage", text: "tutorial time storyflag"},
+            //         ]
+            //     },            
+            //     {
+            //         events: [
+            //             { type: "textMessage", text: "tutorial time storyflag"},
+            //             { type: "addStoryFlag", flag: "test_flag"}
+            //         ]
+            //     },
+            // ],
+            // return to main map
+            [utilities.gridCoord(9,14)] : [
                 {
                     events: [
                         { 
