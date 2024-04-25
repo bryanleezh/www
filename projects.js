@@ -9,7 +9,7 @@ window.Projects = {
     link: "",
     techstack: "",
   },
-  "MoneyPig": {
+  "Money-Pig": {
     name: "Money Pig",
     description: "Expenses Trips Tracker built in Next.js",
     src: "/images/projects/money-pig.png",
