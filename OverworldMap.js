@@ -603,6 +603,7 @@ window.OverworldMaps = {
                 type: "ProjectPc",
                 x : utilities.withGrid(9),
                 y : utilities.withGrid(12),
+                pcType: "project",
                 projects: [
                     "Money-Pig", 
                     "Access-Logger", 
