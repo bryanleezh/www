@@ -836,7 +836,7 @@ window.OverworldMaps = {
                     {
                         events: [
                             { type: "textMessage", text: "Hey! Have you checked out all the cool projects Bryan has built?" , faceMain: "securityGuard"},
-                            { type: "textMessage", text: "You can access all his projects straight from the table up front, but you can also access each individual project from the arcade machines!" },
+                            { type: "textMessage", text: "You can access all his projects straight from the table up front, but you can also access each individual project from the arcade machines too!" },
                         ]
                     }
                 ]
@@ -954,7 +954,8 @@ window.OverworldMaps = {
                     events: [
                         // empty
                     ]
-                },            
+                },
+                // tutorial for when 1st entering projects building
                 {
                     events: [
                         { who: "securityGuard" ,type: "walk", direction: "left" },
