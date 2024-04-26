@@ -111,10 +111,16 @@ class OverworldMap {
 
     checkForFootstepCutscene() {
         const main = this.gameObjects["main"];
-        const match = this.cutsceneSpaces[`${main.x},${main.y}`]; //if the coords the main character is stepping on matches the coords specified in cutSceneSpaces, it will show the objects events in that coord
-        // TODO: Check if storyflag is in player, if in, execute relevant scenario
+        //if the coords the main character is stepping on matches the coords specified in cutSceneSpaces, it will show the objects events in that coord
+        const match = this.cutsceneSpaces[`${main.x},${main.y}`]; 
         if (!this.cutScene && match) {
-            this.startCutscene(match[0].events);
+            const relevantScenario = match.find(scenario => {
+                //iterates through everything and all items must pass certain req before this can return true
+                return (scenario.required || []).every(storyflag => { //if there is no relevant scenario, it will just be an empty array
+                    return playerState.storyFlags[storyflag];
+                }) 
+            });
+            relevantScenario && this.startCutscene(relevantScenario.events);
         }
     }
 
@@ -817,7 +823,7 @@ window.OverworldMaps = {
             securityGuard: {
                 type: "Character",
                 x : utilities.withGrid(10),
-                y : utilities.withGrid(12),
+                y : utilities.withGrid(11),
                 src : "./images/characters/people/cop_npc.png",
                 behaviourLoop : [
                     {type : "stand", direction : "left", time : 800},
@@ -941,20 +947,26 @@ window.OverworldMaps = {
         },
         cutsceneSpaces: {
             // project building walkthrough
-            // [utilities.gridCoord(9,12)] : [
-            //     {
-            //         required: ["test_flag"],
-            //         events: [
-            //             { type: "textMessage", text: "tutorial time storyflag"},
-            //         ]
-            //     },            
-            //     {
-            //         events: [
-            //             { type: "textMessage", text: "tutorial time storyflag"},
-            //             { type: "addStoryFlag", flag: "test_flag"}
-            //         ]
-            //     },
-            // ],
+            [utilities.gridCoord(9,12)] : [
+                {
+                    // prevent tutorial from playing again
+                    required: ["PROJECT_BUILDING_TUTORIAL"],
+                    events: [
+                        // empty
+                    ]
+                },            
+                {
+                    events: [
+                        { who: "securityGuard" ,type: "walk", direction: "left" },
+                        { type: "textMessage", text: "This is the projects building! Where all Bryan's projects are held.", faceMain: "securityGuard"},
+                        { type: "textMessage", text: "Right up ahead on the main table, you can see a list of all his projects, and click on it for more information!" },
+                        { type: "textMessage", text: "Each individual project is also stored on separate arcade machines! You can check them out too!" },
+                        { type: "textMessage", text: "Alright, I'll let you explore now, if you need anything, I'll be here!" },
+                        { type: "addStoryFlag", flag: "PROJECT_BUILDING_TUTORIAL"},
+                        { who: "securityGuard" ,type: "walk", direction: "right" },
+                    ]
+                },
+            ],
             // return to main map
             [utilities.gridCoord(9,14)] : [
                 {
