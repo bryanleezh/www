@@ -176,13 +176,12 @@ window.OverworldMaps = {
             return walls;
         }(),
         cutsceneSpaces: {
+            // Opening introduction
             [utilities.gridCoord(4,3)] : [
                     {
                         events: [
-                            { type: "textMessage", text: "Hey!Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "Unfortunately,due to school commitments,this is still a work in progress, but I am excited to show you what"},
-                            { type: "textMessage", text: "I have built so far!"},
-                            { type: "textMessage", text: "Most of the buildings are already accessible,but they are currently plain as they are in the works."},
+                            { type: "textMessage", text: "Hey! Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "I am excited to show you whatI have built so far!"},
                             { type: "textMessage", text: "As you step out,you will be able to explore all the buildings"},
                             { type: "textMessage", text: "If you are lost or unsure of what each building represents,feel free to interact with anyone around!"},
                             { who: "main_character" ,type: "walk", direction: "right" },
@@ -405,7 +404,7 @@ window.OverworldMaps = {
                     ]
                 }
             ],
-            // hub
+            // Hub
             [utilities.gridCoord(13,12)] : [
                 {
                     events: [
@@ -419,6 +418,7 @@ window.OverworldMaps = {
                     ]
                 }
             ],
+            // Hub
             [utilities.gridCoord(14,12)] : [
                 {
                     events: [
@@ -586,8 +586,8 @@ window.OverworldMaps = {
             },
             me: {
                 type: "Character",
-                x : utilities.withGrid(11),
-                y : utilities.withGrid(12),
+                x : utilities.withGrid(10.5),
+                y : utilities.withGrid(10),
                 src : "./images/characters/people/main_character.png",
                 behaviourLoop : [
                     {type : "stand", direction : "left", time : 400},
@@ -595,20 +595,43 @@ window.OverworldMaps = {
                     {type : "stand", direction : "right", time : 1200},
                     {type : "stand", direction : "down", time : 300},
                 ],
+            },
+            meEmptySpaceConversation1: {
+                type: "Character",
+                x : utilities.withGrid(10),
+                y : utilities.withGrid(11),
+                src: "./images/objects/empty_object.png",
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "Hey,sorry this hub is currently empty, this is one of the buildings that is still in the works." , faceMain: "me"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "As for my socials, my LinkedIn profile is https://www.linkedin.com/in/leezhihaobryan"},
-                            { type: "textMessage", text: "Again,sorry for such an empty HUB right now, be sure to check back when everything is fully built!"},
+                            { type: "textMessage", text: "Hey, this room is where I place the people that has been a part of my journey so far." , faceMain: "me"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "I am currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
+                            { type: "textMessage", text: "This is also the main place where you can find all information about me!."},
+                            { type: "textMessage", text: "On the left there is a PC that stores all my projects, and on my right it stores all my experiences!"},
+                        ]
+                    },
+                ]
+            },
+            meEmptySpaceConversation2: {
+                type: "Character",
+                x : utilities.withGrid(11),
+                y : utilities.withGrid(11),
+                src: "./images/objects/empty_object.png",
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Hey, this room is where I place the people that has been a part of my journey so far." , faceMain: "me"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "I am currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
+                            { type: "textMessage", text: "This is also the main place where you can find all information about me!."},
+                            { type: "textMessage", text: "On the left there is a PC that stores all my projects, and on my right it stores all my experiences!"},
                         ]
                     },
                 ]
             },
             projectsPc: {
                 type: "ProjectPc",
-                x : utilities.withGrid(9),
-                y : utilities.withGrid(12),
+                x : utilities.withGrid(7),
+                y : utilities.withGrid(10),
                 pcType: "project",
                 projects: [
                     "Money-Pig", 
@@ -621,9 +644,8 @@ window.OverworldMaps = {
             },
             workPc: {
                 type: "ProjectPc",
-                x : utilities.withGrid(18),
+                x : utilities.withGrid(14),
                 y : utilities.withGrid(10),
-                // src : "./images/objects/workpc.png",
                 pcType: 'work',
                 projects: [
                     "Cybernatics", "Shopee", "WSAudiology", "Switcheo"
@@ -639,7 +661,6 @@ window.OverworldMaps = {
                 "20,10","20,11","20,12","20,13","20,14","20,15","19,16",
                 "8,10","13,10",
                 "10,18","11,18",
-                "18,10", //reserved for pc
                 "8,11","9,11","10,11","11,11","12,11","13,11",
                 "17,12","18,12","17,13","18,13",
                 "5,15","6,15","14,15","15,15"
@@ -743,7 +764,8 @@ window.OverworldMaps = {
                 x : utilities.withGrid(6),
                 y : utilities.withGrid(8),
                 src : "./images/objects/projectpc.png",
-                pcType: 'project',
+                pcType: 'skills',
+                // pcType: 'project',
                 projects: [
                     "Money-Pig", 
                     "Access-Logger", 
@@ -878,6 +900,23 @@ window.OverworldMaps = {
                     }
                 ]
             },
+            // secret on big wardrobe
+            secretWardrobe: {
+                type: "Character",
+                x : utilities.withGrid(9),
+                y : utilities.withGrid(5),
+                src: "./images/objects/empty_object.png",
+                talking: [
+                    {   
+                        required: ["SECRET_PROJ_ROOM_ACCESS"],
+                        events: [
+                            {type:"textMessage", text:"Bryan: Congrats! You found the secret room!"},
+                            {type:"textMessage", text:"Bryan: Now behind this room is..."},
+                            {type:"textMessage", text:"Bryan: Nothing! Goodbye!"},
+                        ]
+                    }
+                ]
+            },
             // PC that lists all projects
             projectsTable: {
                 type: "ProjectPc",
@@ -942,9 +981,31 @@ window.OverworldMaps = {
                 project: "PyPlatformer"
             },
         },
-        walls :{
-
-        },
+        walls: function() {
+            let walls  = {};
+            [
+                // side walls
+                "1,4", "1,5", "1,6", "1,7", "1,8", "1,9", "1,10", "1,11", "1,12", "1,13",
+                "17,4", "17,5", "17,6", "17,7", "17,8", "17,9", "17,10", "17,11", "17,12", "17,13",
+                "2,6", "2,7", "2,8", "2,9", "2,10", "2,11", "2,12",
+                "16,6", "16,7", "16,8", "16,9", "16,10", "16,11", "16,12",
+                // bottom walls
+                "2,13", "3,13", "4,13", "5,13", "6,13", "7,13", "8,13", "10,13", "11,13", "12,13", "13,13", "14,13", "15,13", "16,13", 
+                // remaining walls
+                "2,4", "3,4", "4,4", "5,4", "6,4", "7,4", "10,4", "11,4", "12,4", "13,4", "14,4", "15,4", "16,4", 
+                "8,5", "9,5", "10,5", "13,5", "14,5", "15,5",
+                // left shelf beside arcade machines
+                "4,8",
+                // bottom left bookshelf
+                "4,10", "5,10",
+                // 2 shelves on the right of building
+                "14,7", "14,11"
+            ].forEach(coord => {
+                let [x,y] = coord.split(",");
+                walls[utilities.gridCoord(x,y)] = true;
+            })
+            return walls;
+        }(),
         cutsceneSpaces: {
             // project building walkthrough
             [utilities.gridCoord(9,12)] : [
@@ -961,7 +1022,7 @@ window.OverworldMaps = {
                         { who: "securityGuard" ,type: "walk", direction: "left" },
                         { type: "textMessage", text: "This is the projects building! Where all Bryan's projects are held.", faceMain: "securityGuard"},
                         { type: "textMessage", text: "Right up ahead on the main table, you can see a list of all his projects, and click on it for more information!" },
-                        { type: "textMessage", text: "Each individual project is also stored on separate arcade machines! You can check them out too!" },
+                        { type: "textMessage", text: "Each individual project is also stored on separate arcade machines! The oldest project starts from the left! Go check them out too!" },
                         { type: "textMessage", text: "Alright, I'll let you explore now, if you need anything, I'll be here!" },
                         { type: "addStoryFlag", flag: "PROJECT_BUILDING_TUTORIAL"},
                         { who: "securityGuard" ,type: "walk", direction: "right" },
