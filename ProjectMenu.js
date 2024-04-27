@@ -36,6 +36,17 @@ class ProjectMenu {
                         this.redirect(base.link);
                     }
                 }
+            } else if (this.pcType === "skills") {
+                // TODO: Add skills to pc
+                base = Skills;
+                console.log(base);
+                return {
+                    label: `${base}`,
+                    description: "",
+                    handler: () => {
+                        this.close();
+                    }
+                }
             }
         });
 
@@ -58,9 +69,15 @@ class ProjectMenu {
         this.element = document.createElement("div");
         this.element.classList.add("ProjectMenu");
         this.element.classList.add("projectMenu");
-        this.element.innerHTML = (`
-            <h2>Projects</h2>
-        `)
+        if (this.pcType === "project") {
+            this.element.innerHTML = (`
+                <h2>Projects</h2>
+            `);
+        } else if (this.pcType === "work") {
+            this.element.innerHTML = (`
+                <h2>Work Experiences</h2>
+            `);
+        }
     }
 
     redirect(link) {
