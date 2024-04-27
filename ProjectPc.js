@@ -7,8 +7,8 @@ class ProjectPc extends GameObject {
             gameObject: this,
             src: config.src || "/images/objects/projectpc.png",
             animations: {
-                "turned-on" : [ [0,0] ],
-                "turned-off": [ [1,0] ],
+                "turned-on" : [ [1,0] ],
+                "turned-off": [ [2,0] ],
             },
             currentAnimation: "turned-off"
         });
