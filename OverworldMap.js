@@ -183,6 +183,7 @@ window.OverworldMaps = {
                             { type: "textMessage", text: "Hey! Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "I am excited to show you whatI have built so far!"},
                             { type: "textMessage", text: "As you step out,you will be able to explore all the buildings"},
+                            { type: "textMessage", text: "Additionally, the projects arcade is finally open, so be sure to go check it out!"},
                             { type: "textMessage", text: "If you are lost or unsure of what each building represents,feel free to interact with anyone around!"},
                             { who: "main_character" ,type: "walk", direction: "right" },
                             { who: "main_character" ,type: "walk", direction: "down" },
@@ -279,7 +280,7 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "Hey! On your right is the projects building!" , faceMain: "npc3"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "Hey! On your right is the projects arcade!" , faceMain: "npc3"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "Enter this building here to see the past projects that Bryan has done!"},
                         ]
                     },
@@ -320,7 +321,7 @@ window.OverworldMaps = {
             //Projects bulding bouncer
             npc5: {
                 type: "Character",
-                x : utilities.withGrid(29),
+                x : utilities.withGrid(30),
                 y : utilities.withGrid(13),
                 src : "./images/characters/people/cop_npc.png",
                 behaviourLoop : [
@@ -331,41 +332,29 @@ window.OverworldMaps = {
                 ],
                 talking: [
                     {
-                        required: ["OPEN_PROJECTS_BUILDING"],
                         events: [
-                            { type: "textMessage", text: "Be careful when you're in there!" , faceMain: "npc5"},
-                            { type: "textMessage", text: "Psst, if I'm blocking the entrance again, refresh the site!"},
-                        ]
-                    },
-                    {
-                        events: [
-                            { type: "textMessage", text: "Hey! This building behind me is the projects building." , faceMain: "npc5"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "Unfortunately, this building is still under construction and the building is unstable! Are you sure?"},
-                            { type: "textMessage", text: "Fine, if you still want to enter, be my guest!"},
-                            { type: "textMessage", text: "If you choose not to, you can use this PC on my left to have an overview of all his projects!"},
-                            { who: "npc5" ,type: "walk", direction: "right" },
-                            { type: "textMessage", text: "Here you go!." , faceMain: "npc5"},
-                            {type: "addStoryFlag", flag: "OPEN_PROJECTS_BUILDING"},
+                            { type: "textMessage", text: "Hey! This building right here is the projects arcade." , faceMain: "npc5"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "Step right in to see all of Bryan's projects!"},
                         ]
                     },
                 ]
             },
             // PC that lists all projects
-            projectsPc: {
-                type: "ProjectPc",
-                x : utilities.withGrid(28),
-                y : utilities.withGrid(13),
-                src : "./images/objects/projectpc.png",
-                pcType: "project",
-                projects: [
-                    "Money-Pig", 
-                    "Access-Logger", 
-                    "Portfolio-Manager", 
-                    "Algo-Visualizer", 
-                    "Club-Management", 
-                    "PyPlatformer"
-                ],
-            }
+            // projectsPc: {
+            //     type: "ProjectPc",
+            //     x : utilities.withGrid(28),
+            //     y : utilities.withGrid(13),
+            //     src : "./images/objects/projectpc.png",
+            //     pcType: "project",
+            //     projects: [
+            //         "Money-Pig", 
+            //         "Access-Logger", 
+            //         "Portfolio-Manager", 
+            //         "Algo-Visualizer", 
+            //         "Club-Management", 
+            //         "PyPlatformer"
+            //     ],
+            // }
         },
         walls: function() {
             let walls  = {};
@@ -459,6 +448,7 @@ window.OverworldMaps = {
                 x : utilities.withGrid(3),
                 y : utilities.withGrid(10),
             },
+            // TODO: Update laptop to have keyboard menu
             laptop: {
                 type: "Character",
                 x : utilities.withGrid(13),
@@ -470,8 +460,8 @@ window.OverworldMaps = {
                 talking: [ 
                     {
                         events: [
-                            { type: "textMessage", text: "Log: I am currently proficient in Python,HTML,CSS,SQL and PHP"},
-                            { type: "textMessage", text: "Tech & Libraries: MySQL,Vue.js,Google Cloud,Bootstrap,Flask."}
+                            { type: "textMessage", text: "Log: I am currently proficient in Python, Java, TypeScript, JavaScript and SQL"},
+                            { type: "textMessage", text: "Tech & Libraries: React.js, Next.js, Vue.js, AWS, Node.js,SpringBoot, Flask, Firebase, MongoDB."}
                         ]
                     }
                 ]
@@ -1037,7 +1027,7 @@ window.OverworldMaps = {
                             type : "changeMap", 
                             map: "MainMap",
                             x: utilities.withGrid(29),
-                            y: utilities.withGrid(14),
+                            y: utilities.withGrid(13),
                             direction: "down",
                         }
                     ]
