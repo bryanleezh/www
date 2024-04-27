@@ -548,6 +548,7 @@ window.OverworldMaps = {
             return walls;
         }(),
         cutsceneSpaces: {
+            // Change map
             [utilities.gridCoord(3,10)] : [
                 {
                     events: [
@@ -754,8 +755,7 @@ window.OverworldMaps = {
                 x : utilities.withGrid(6),
                 y : utilities.withGrid(8),
                 src : "./images/objects/projectpc.png",
-                pcType: 'skills',
-                // pcType: 'project',
+                pcType: 'project',
                 projects: [
                     "Money-Pig", 
                     "Access-Logger", 
@@ -763,6 +763,16 @@ window.OverworldMaps = {
                     "Algo-Visualizer", 
                     "Club-Management", 
                     "PyPlatformer"
+                ],
+            },
+            skillsPc: {
+                type: "ProjectPc",
+                x : utilities.withGrid(2),
+                y : utilities.withGrid(6),
+                src : "./images/objects/arcade-green.png",
+                pcType: 'skills',
+                projects: [
+                    "Languages", "Frameworks", "Tools"
                 ],
             },
             workPc: {
