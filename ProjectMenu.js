@@ -36,18 +36,7 @@ class ProjectMenu {
                         this.redirect(base.link);
                     }
                 }
-            } else if (this.pcType === "skills") {
-                // TODO: Add skills to pc
-                base = Skills;
-                console.log(base);
-                return {
-                    label: `${base}`,
-                    description: "",
-                    handler: () => {
-                        this.close();
-                    }
-                }
-            }
+            } 
         });
 
         const closeOption = {
