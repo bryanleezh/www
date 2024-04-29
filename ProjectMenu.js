@@ -39,12 +39,12 @@ class ProjectMenu {
             } else if (this.pcType === "skills") {
                 // TODO: Add skills to pc
                 base = Skills[id];
-                
+                console.log(base);
                 return {
                     label: `${id}`,
                     description: "",
                     handler: () => {
-                        this.close();
+                        this.keyboardMenu.setOptions( this.getMoreOptions(Skills,id, finalArray) );
                     }
                 }
             }
@@ -64,6 +64,30 @@ class ProjectMenu {
         return finalArray;
     }
 
+    getMoreOptions(page, id, prevOptions) {
+        const intermediateArray = page[id].map(option => {
+            return {
+                label: option.name,
+                description: option.description,
+                handler: () => {
+                    this.redirect(option.link);
+                }
+            }
+        });
+
+        const closeOption = {
+            label: "Close",
+            description: "Close this menu",
+            handler:() => {
+                // returns to prev options
+                this.keyboardMenu.setOptions(prevOptions);
+            }
+        };
+
+        const finalArray = intermediateArray.concat(closeOption);
+
+        return finalArray;
+    }
 
     createElement() {
         this.element = document.createElement("div");
@@ -76,6 +100,10 @@ class ProjectMenu {
         } else if (this.pcType === "work") {
             this.element.innerHTML = (`
                 <h2>Work Experiences</h2>
+            `);
+        } else if (this.pcType === "skills") {
+            this.element.innerHTML = (`
+                <h2>Skills</h2>
             `);
         }
     }
