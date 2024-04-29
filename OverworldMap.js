@@ -1,17 +1,23 @@
 class OverworldMap {
     constructor(config) {
-        this.overworld = null; //empty in initial state, but will change once map is initialised
-        this.gameObjects ={}; //Live objects of all the classes
-        this.configObjects = config.configObjects; //All the config of all the characters
+        //empty in initial state, but will change once map is initialised
+        this.overworld = null; 
+        //Live objects of all the classes
+        this.gameObjects ={}; 
+        //All the config of all the characters
+        this.configObjects = config.configObjects; 
 
 
-        this.cutsceneSpaces = config.cutsceneSpaces || {}; //if there is no cutsceneSpaces listed, default to empty
+        //if there is no cutsceneSpaces listed, default to empty
+        this.cutsceneSpaces = config.cutsceneSpaces || {}; 
         this.walls = config.walls || {};
 
-        this.lowerImage = new Image(); //actual map
+        //actual map
+        this.lowerImage = new Image(); 
         this.lowerImage.src = config.lowerSrc;
         
-        this.upperImage = new Image(); // all the upper portions of the map
+        // all the upper portions of the map
+        this.upperImage = new Image(); 
         this.upperImage.src = config.upperSrc;
 
         this.cutScene = false;
@@ -51,7 +57,8 @@ class OverworldMap {
         Object.keys(this.configObjects).forEach(key => {
             
             let object = this.configObjects[key];
-            object.id = key; //id of the object will be the name given to the object such as player,npc1,npc2 etc
+            //id of the object will be the name given to the object such as player,npc1,npc2 etc
+            object.id = key; 
             //create the game instance of class from gameconfig object
             let instance;
             if (object.type === "Character") {
@@ -81,10 +88,12 @@ class OverworldMap {
                 event: events[i],
                 map : this,
             })
-            await eventHandler.init(); //wait for all the events in the loop to finish before initialising the event
+            //wait for all the events in the loop to finish before initialising the event
+            await eventHandler.init(); 
         }
 
-        this.cutScene = false; //Once cutscene is done, the cutScene flag will be set back to false and everyone's movement will be back to normal
+        //Once cutscene is done, the cutScene flag will be set back to false and everyone's movement will be back to normal
+        this.cutScene = false; 
 
         //Reset npc behaviour
         // Object.values(this.gameObjects).forEach(object => object.doBehaviourEvent(this));
@@ -598,7 +607,8 @@ window.OverworldMaps = {
                             { type: "textMessage", text: "Hey, this room is where I place the people that has been a part of my journey so far." , faceMain: "me"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "I am currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
                             { type: "textMessage", text: "This is also the main place where you can find all information about me!."},
-                            { type: "textMessage", text: "On the left there is a PC that stores all my projects, and on my right it stores all my experiences!"},
+                            { type: "textMessage", text: "On the left there is a PC that stores all my projects, and on my right it stores all my experiences."},
+                            { type: "textMessage", text: "The yellow arcade machine is where all my skills and tools I use are held."},
                         ]
                     },
                 ]
@@ -614,7 +624,8 @@ window.OverworldMaps = {
                             { type: "textMessage", text: "Hey, this room is where I place the people that has been a part of my journey so far." , faceMain: "me"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "I am currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
                             { type: "textMessage", text: "This is also the main place where you can find all information about me!."},
-                            { type: "textMessage", text: "On the left there is a PC that stores all my projects, and on my right it stores all my experiences!"},
+                            { type: "textMessage", text: "On the left there is a PC that stores all my projects, and on my right it stores all my experiences."},
+                            { type: "textMessage", text: "The yellow arcade machine is where all my skills and tools I use are held."},
                         ]
                     },
                 ]
@@ -640,6 +651,17 @@ window.OverworldMaps = {
                 pcType: 'work',
                 projects: [
                     "Cybernatics", "Shopee", "WSAudiology", "Switcheo"
+                ],
+            },
+            // TODO: Change colors of pcs
+            skillsPc: {
+                type: "ProjectPc",
+                x : utilities.withGrid(4),
+                y : utilities.withGrid(10),
+                src : "./images/objects/arcade-yellow.png",
+                pcType: 'skills',
+                projects: [
+                    "Languages", "Frameworks", "Tools"
                 ],
             },
         },
