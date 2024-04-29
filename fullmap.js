@@ -39,7 +39,8 @@ class Map{
 
             //if the player pauses causing the flag isPause to become true, gameloop will stop so that everything will not move
             if (!this.map.isPause) {
-                requestAnimationFrame( () => { //mad loop that works better than setInterval, which will call this function again whenever a new frame starts
+                //mad loop that works better than setInterval, which will call this function again whenever a new frame starts
+                requestAnimationFrame( () => { 
                     step();
                 });
             };
@@ -67,7 +68,6 @@ class Map{
     bindMainPositionCheck() {
         document.addEventListener("PersonWalkingComplete", e => { 
             if (e.detail.whoId === "main") {
-                // console.log("new main character position check")
                 //main character position changed
                 this.map.checkForFootstepCutscene();
             }
