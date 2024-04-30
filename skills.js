@@ -23,6 +23,11 @@ window.Skills = {
             link: "https://kotlinlang.org/",
         },
         {
+            name: "JavaScript",
+            description: "",
+            link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+        },
+        {
             name: "TypeScript",
             description: "",
             link: "https://www.typescriptlang.org/",
