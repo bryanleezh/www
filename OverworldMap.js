@@ -604,11 +604,10 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "Hey, this room is where I place the people that has been a part of my journey so far." , faceMain: "me"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "I am currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
-                            { type: "textMessage", text: "This is also the main place where you can find all information about me!."},
-                            { type: "textMessage", text: "On the left there is a PC that stores all my projects, and on my right it stores all my experiences."},
-                            { type: "textMessage", text: "The yellow arcade machine is where all my skills and tools I use are held."},
+                            { type: "textMessage", text: "Hey! This building is the main place where you can find all information about me!." , faceMain: "me"},
+                            { type: "textMessage", text: "The green PC stores all my skills, the blue PC stores all my projects and the red PC stores all my work experiences!"},
+                            { type: "textMessage", text: "This building is also where I place the people that has been a part of my journey so far."},
+                            { type: "textMessage", text: "However, I am also currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
                         ]
                     },
                 ]
@@ -621,11 +620,10 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "Hey, this room is where I place the people that has been a part of my journey so far." , faceMain: "me"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "I am currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
-                            { type: "textMessage", text: "This is also the main place where you can find all information about me!."},
-                            { type: "textMessage", text: "On the left there is a PC that stores all my projects, and on my right it stores all my experiences."},
-                            { type: "textMessage", text: "The yellow arcade machine is where all my skills and tools I use are held."},
+                            { type: "textMessage", text: "Hey! This building is the main place where you can find all information about me!." , faceMain: "me"},
+                            { type: "textMessage", text: "The green PC stores all my skills, the blue PC stores all my projects and the red PC stores all my work experiences!"},
+                            { type: "textMessage", text: "This building is also where I place the people that has been a part of my journey so far."},
+                            { type: "textMessage", text: "However, I am also currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
                         ]
                     },
                 ]
@@ -634,6 +632,7 @@ window.OverworldMaps = {
                 type: "ProjectPc",
                 x : utilities.withGrid(7),
                 y : utilities.withGrid(10),
+                src : "./images/objects/projectpc.png",
                 pcType: "project",
                 projects: [
                     "Money-Pig", 
@@ -648,17 +647,17 @@ window.OverworldMaps = {
                 type: "ProjectPc",
                 x : utilities.withGrid(14),
                 y : utilities.withGrid(10),
+                src : "./images/objects/projectpc-red.png",
                 pcType: 'work',
                 projects: [
                     "Cybernatics", "Shopee", "WSAudiology", "Switcheo"
                 ],
             },
-            // TODO: Change colors of pcs
             skillsPc: {
                 type: "ProjectPc",
                 x : utilities.withGrid(4),
                 y : utilities.withGrid(10),
-                src : "./images/objects/arcade-yellow.png",
+                src : "./images/objects/projectpc-green.png",
                 pcType: 'skills',
                 projects: [
                     "Languages", "Frameworks", "Tools"
