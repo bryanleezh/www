@@ -2,4 +2,4 @@
 
 Interactive Version of my personal website
 
-Site: https://bryanleezh.github.io/website-portfolio/
+Site: bryanlee-dev.vercel.app/
