@@ -628,6 +628,54 @@ window.OverworldMaps = {
                     },
                 ]
             },
+            // cybernaticsMan: {
+            //     type: "Character",
+            //     x : utilities.withGrid(6),
+            //     y : utilities.withGrid(13),
+            //     src: "./images/characters/people/office_man.png",
+            //     behaviourLoop : [
+            //         {type : "stand", direction : "left", time : 700},
+            //         {type : "stand", direction : "down", time : 1400},
+            //         {type : "walk", direction : "left"},
+            //         {type : "stand", direction : "left", time : 700},
+            //         {type : "stand", direction : "up", time : 1000},
+            //         {type : "walk", direction : "right"},
+            //         {type : "stand", direction : "right", time : 1200},
+            //     ],
+            //     talking: [
+            //         {
+            //             events: [
+            //                 { type: "textMessage", text: "Hey!" , faceMain: "cybernaticsMan"},
+            //             ]
+            //         },
+            //     ]
+            // },
+            // shopeeWoman: {
+            //     type: "Character",
+            //     x : utilities.withGrid(12),
+            //     y : utilities.withGrid(13),
+            //     src: "./images/characters/people/office_lady.png",
+            //     behaviourLoop : [
+            //         {type : "stand", direction : "left", time : 400},
+            //         {type : "stand", direction : "right", time : 1200},
+            //         {type : "walk", direction : "right"},
+            //         {type : "stand", direction : "right", time : 1200},
+            //         {type : "stand", direction : "up", time : 1000},
+            //         {type : "walk", direction : "up"},
+            //         {type : "stand", direction : "up", time : 400},
+            //         {type : "stand", direction : "down", time : 800},
+            //         {type : "walk", direction : "down"},
+            //         {type : "stand", direction : "left", time : 800},
+            //         {type : "walk", direction : "left"},
+            //     ],
+            //     talking: [
+            //         {
+            //             events: [
+            //                 { type: "textMessage", text: "Hey!" , faceMain: "oldwoman"},
+            //             ]
+            //         },
+            //     ]
+            // },
             projectsPc: {
                 type: "ProjectPc",
                 x : utilities.withGrid(7),
