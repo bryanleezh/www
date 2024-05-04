@@ -607,7 +607,7 @@ window.OverworldMaps = {
                             { type: "textMessage", text: "Hey! This building is the main place where you can find all information about me!." , faceMain: "me"},
                             { type: "textMessage", text: "The green PC stores all my skills, the blue PC stores all my projects and the red PC stores all my work experiences!"},
                             { type: "textMessage", text: "This building is also where I place the people that has been a part of my journey so far."},
-                            { type: "textMessage", text: "However, I am also currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
+                            { type: "textMessage", text: "Feel free to speak to any of them for details on my experiences!"},
                         ]
                     },
                 ]
@@ -622,60 +622,66 @@ window.OverworldMaps = {
                         events: [
                             { type: "textMessage", text: "Hey! This building is the main place where you can find all information about me!." , faceMain: "me"},
                             { type: "textMessage", text: "The green PC stores all my skills, the blue PC stores all my projects and the red PC stores all my work experiences!"},
-                            { type: "textMessage", text: "This building is also where I place the people that has been a part of my journey so far."},
-                            { type: "textMessage", text: "However, I am also currently in the midst of drawing out and populating them here! So come visit this world again in the near future!"},
+                            { type: "textMessage", text: "This building is also where I place the people that has been a part of my working journey so far."},
+                            { type: "textMessage", text: "Feel free to speak to any of them for details on my experiences!"},
                         ]
                     },
                 ]
             },
-            // cybernaticsMan: {
-            //     type: "Character",
-            //     x : utilities.withGrid(6),
-            //     y : utilities.withGrid(13),
-            //     src: "./images/characters/people/office_man.png",
-            //     behaviourLoop : [
-            //         {type : "stand", direction : "left", time : 700},
-            //         {type : "stand", direction : "down", time : 1400},
-            //         {type : "walk", direction : "left"},
-            //         {type : "stand", direction : "left", time : 700},
-            //         {type : "stand", direction : "up", time : 1000},
-            //         {type : "walk", direction : "right"},
-            //         {type : "stand", direction : "right", time : 1200},
-            //     ],
-            //     talking: [
-            //         {
-            //             events: [
-            //                 { type: "textMessage", text: "Hey!" , faceMain: "cybernaticsMan"},
-            //             ]
-            //         },
-            //     ]
-            // },
-            // shopeeWoman: {
-            //     type: "Character",
-            //     x : utilities.withGrid(12),
-            //     y : utilities.withGrid(13),
-            //     src: "./images/characters/people/office_lady.png",
-            //     behaviourLoop : [
-            //         {type : "stand", direction : "left", time : 400},
-            //         {type : "stand", direction : "right", time : 1200},
-            //         {type : "walk", direction : "right"},
-            //         {type : "stand", direction : "right", time : 1200},
-            //         {type : "stand", direction : "up", time : 1000},
-            //         {type : "walk", direction : "up"},
-            //         {type : "stand", direction : "up", time : 400},
-            //         {type : "stand", direction : "down", time : 800},
-            //         {type : "walk", direction : "down"},
-            //         {type : "stand", direction : "left", time : 800},
-            //         {type : "walk", direction : "left"},
-            //     ],
-            //     talking: [
-            //         {
-            //             events: [
-            //                 { type: "textMessage", text: "Hey!" , faceMain: "oldwoman"},
-            //             ]
-            //         },
-            //     ]
-            // },
+            cybernaticsMan: {
+                type: "Character",
+                x : utilities.withGrid(6),
+                y : utilities.withGrid(13),
+                src: "./images/characters/people/office_man.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 700},
+                    {type : "stand", direction : "down", time : 1400},
+                    {type : "walk", direction : "left"},
+                    {type : "stand", direction : "left", time : 700},
+                    {type : "stand", direction : "up", time : 1000},
+                    {type : "walk", direction : "right"},
+                    {type : "stand", direction : "right", time : 1200},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Hey! Bryan has worked at Cybernatics as a software engineer intern." , faceMain: "cybernaticsMan"},
+                            { type: "textMessage", text: "There, he has built SIEM dashboards in React and TypeScript, which has enhanced client's cybersecurity visualisation infrastructure!" },
+                            { type: "textMessage", text: "He has also designed & implemented NGINX-load balancing solutions to optimize resource distribution across server clusters, improving handling of incoming traffic by 40%." },
+                            { type: "textMessage", text: "Setting up and configuring Linux virtual machines, implementing networking and security hardening measures for project architectures was also part of his job scope!" },
+                            { type: "textMessage", text: "If you want to learn more about this, you can check it out on the red PC!" },
+                        ]
+                    },
+                ]
+            },
+            shopeeWoman: {
+                type: "Character",
+                x : utilities.withGrid(12),
+                y : utilities.withGrid(13),
+                src: "./images/characters/people/office_lady.png",
+                behaviourLoop : [
+                    {type : "stand", direction : "left", time : 400},
+                    {type : "stand", direction : "right", time : 1200},
+                    {type : "walk", direction : "right"},
+                    {type : "stand", direction : "right", time : 1200},
+                    {type : "stand", direction : "up", time : 1000},
+                    {type : "walk", direction : "up"},
+                    {type : "stand", direction : "up", time : 400},
+                    {type : "stand", direction : "down", time : 800},
+                    {type : "walk", direction : "down"},
+                    {type : "stand", direction : "left", time : 800},
+                    {type : "walk", direction : "left"},
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Hey! At Shopee, Bryan held a role as a data analyst intern, there he mainly conducted analysis and forecasts on different aspects in Python and SQL!" , faceMain: "shopeeWoman"},
+                            { type: "textMessage", text: "Aside from his main job scope, he also initiated and led the development of a cross-departmental server communications bot which automated internal departmental communications, integrating together with Shopee's internal communications application as well!"},
+                            { type: "textMessage", text: "If you want to learn more about this, you can check it out on the red PC!" },
+                        ]
+                    },
+                ]
+            },
             projectsPc: {
                 type: "ProjectPc",
                 x : utilities.withGrid(7),
@@ -760,10 +766,10 @@ window.OverworldMaps = {
             ]
         }
     },
-    DemoRoom: {
-        id: "DemoRoom" ,
-        lowerSrc: "./images/maps/DemoLower.png",
-        upperSrc: "./images/maps/DemoUpper.png",
+    TestRoom: {
+        id: "TestRoom" ,
+        lowerSrc: "./images/maps/testRoom_lower.png",
+        upperSrc: "./images/maps/testRoom_upper.png",
         configObjects: {
             main: {
                 type: "Character",
