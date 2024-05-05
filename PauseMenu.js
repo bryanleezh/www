@@ -16,6 +16,28 @@ class PauseMenu {
                 //     }
                 // },
                 {
+                    label: "Github",
+                    description: "Access Bryan's Github profile",
+                    handler: () => {
+                        this.redirect("https://github.com/bryanleezh");
+                    }
+                },
+                {
+                    label: "LinkedIn",
+                    description: "Access Bryan's LinkedIn profile",
+                    handler: () => {
+                        this.redirect("https://www.linkedin.com/in/leezhihaobryan");
+                    }
+                },
+                // TODO: Add resume
+                // {
+                //     label: "Download Resume",
+                //     description: "Download Bryan's resume here!",
+                //     handler: () => {
+                //         this.redirect("");
+                //     }
+                // },
+                {
                     label : "Save",
                     description: "Save the game in current map",
                     handler: () => {
@@ -43,6 +65,11 @@ class PauseMenu {
         this.element.innerHTML = (`
             <h2>Pause Menu</h2>
         `)
+    }
+
+    // redirect to separate link
+    redirect(link) {
+        window.open(link, '_blank');
     }
 
     //Close the pausemenu
