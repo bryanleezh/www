@@ -653,7 +653,8 @@ window.OverworldMaps = {
                     {
                         events: [
                             { type: "textMessage", text: "Hey! At Shopee, Bryan held a role as a data analyst intern, there he mainly conducted analysis and forecasts on different aspects in Python and SQL!" , faceMain: "shopeeWoman"},
-                            { type: "textMessage", text: "Aside from his main job scope, he also initiated and led the development of a cross-departmental server communications bot which automated internal departmental communications, integrating together with Shopee's internal communications application as well!"},
+                            { type: "textMessage", text: "Aside from his main job scope, he also initiated and led the development of a cross-departmental server communications bot which"},
+                            { type: "textMessage", text: " automated internal departmental communications, integrating together with Shopee's internal communications application as well!"},
                             { type: "textMessage", text: "If you want to learn more about this, you can check it out on the red PC!" },
                         ]
                     },
