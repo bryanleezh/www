@@ -28,22 +28,22 @@ body{
 }
 
 .game-container {
-    position: relative;
+    /* position: relative;
+    aspect-ratio: 3/2;
     width: 352px;
     height: 198px;
     margin: 0 auto;
     outline: 2px solid white;
-    transform: scale(3) translateY(50%);
-
-    /* position: relative;
+    transform: scale(3) translateY(50%); */
+    
+    display: flex;
+    justify-content: center;
     width: 25%;
     height: 25%;
     margin: 0 auto;
     outline: 2px solid white;
-    margin-top: 20%;
-    transform: scale(3);
-    overflow: hidden; */
-    /* transform: scale(3) translateY(50%); */
+    overflow: hidden;
+    transform: scale(3) translateY(50%);
 }
 
 
