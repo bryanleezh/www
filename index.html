@@ -28,15 +28,15 @@
     <body>
         <div class="game-container">
             <!-- width & height here can be zoomed in and out -->
-            <canvas class="game-canvas" width="352" height="198"></canvas>
+            <canvas class="game-canvas" width="352" height="198" />
         </div>
         <p class="controls">Use Arrow Keys to move. Space for more actions.</p>
 
         <!-- player state -->
         <script src="./State/PlayerState.js"></script>
-        <script src="projects.js"></script>
-        <script src="work.js"></script>
-        <script src="skills.js"></script>
+        <script src="./data/projects.js"></script>
+        <script src="./data/work.js"></script>
+        <script src="./data/skills.js"></script>
 
         <!-- javascript files -->
         <script src="utilities.js"></script>
@@ -65,16 +65,19 @@
             function updateOrientation() {
                 var gameContainer = document.querySelector(".game-container");
                 if (window.innerWidth < 468) {
+                    console.log("small");
                     gameContainer.style.width = "300px";
                     gameContainer.style.height = "280px";
                     gameContainer.style.transform =
                         "scale(1.5) translateY(50%) rotate(90deg)";
                     gameContainer.style.overflow = "hidden";
                 } else if ((window, innerWidth < 768)) {
+                    console.log("medium");
                     gameContainer.style.width = "352px";
                     gameContainer.style.height = "198px";
                     gameContainer.style.transform = "scale(2) translateY(50%)";
                 } else {
+                    console.log("large");
                     gameContainer.style.width = "352px";
                     gameContainer.style.height = "198px";
                     gameContainer.style.transform = "scale(3) translateY(50%)";
