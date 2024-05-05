@@ -27,6 +27,12 @@ body{
     font-family: 'DotGothic16', sans-serif;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .game-container {
     /* position: relative;
     aspect-ratio: 3/2;
@@ -35,7 +41,7 @@ body{
     margin: 0 auto;
     outline: 2px solid white;
     transform: scale(3) translateY(50%); */
-    
+
     display: flex;
     justify-content: center;
     width: 25%;
@@ -68,9 +74,7 @@ body{
 
 
 .controls {
-    position: absolute;
-    left:0; right:0;
-    bottom: 0;
+    padding-top: 32rem;
     text-align:center;
     font-size: 16px;
     color: white;

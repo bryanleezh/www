@@ -24,11 +24,15 @@
         <link href="assets/TitleScreen.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <div class="game-container">
-            <!-- width & height here can be zoomed in and out -->
-            <canvas class="game-canvas" width="352" height="198" />
+        <div class="container">
+            <div class="game-container">
+                <!-- width & height here can be zoomed in and out -->
+                <canvas class="game-canvas" width="352" height="198" />
+            </div>
+            <p class="controls">
+                Use Arrow Keys to move. Space for more actions.
+            </p>
         </div>
-        <p class="controls">Use Arrow Keys to move. Space for more actions.</p>
 
         <!-- player state -->
         <script src="./State/PlayerState.js"></script>
