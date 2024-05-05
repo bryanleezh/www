@@ -191,9 +191,9 @@ window.OverworldMaps = {
                         events: [
                             { type: "textMessage", text: "Hey! Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "I am excited to show you whatI have built so far!"},
-                            { type: "textMessage", text: "As you step out,you will be able to explore all the buildings"},
+                            { type: "textMessage", text: "As you step out,you will be able to explore all the buildings."},
                             { type: "textMessage", text: "Additionally, the projects arcade is finally open, so be sure to go check it out!"},
-                            { type: "textMessage", text: "If you are lost or unsure of what each building represents,feel free to interact with anyone around!"},
+                            { type: "textMessage", text: "If you are lost or unsure of what each building represents, feel free to interact with anyone around!"},
                             { who: "main_character" ,type: "walk", direction: "right" },
                             { who: "main_character" ,type: "walk", direction: "down" },
                             { who: "main_character" ,type: "stand", direction: "up" },
@@ -457,24 +457,6 @@ window.OverworldMaps = {
                 x : utilities.withGrid(3),
                 y : utilities.withGrid(10),
             },
-            // TODO: Update laptop to have keyboard menu
-            laptop: {
-                type: "Character",
-                x : utilities.withGrid(13),
-                y : utilities.withGrid(9),
-                src: "./images/characters/laptop_room.png",
-                behaviourLoop :[
-                    {type : "stand", direction: "left", time: 1200},
-                ],
-                talking: [ 
-                    {
-                        events: [
-                            { type: "textMessage", text: "Log: I am currently proficient in Python, Java, TypeScript, JavaScript and SQL"},
-                            { type: "textMessage", text: "Tech & Libraries: React.js, Next.js, Vue.js, AWS, Node.js,SpringBoot, Flask, Firebase, MongoDB."}
-                        ]
-                    }
-                ]
-            },
             me: {
                 type: "Character",
                 x : utilities.withGrid(8),
@@ -493,14 +475,23 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "Hey,it's me again,seems like you managed to find your way here." , faceMain: "me"}, //faceMain allows character to face main character when interacting
-                            { type: "textMessage", text: "I am currently an undergraduate at Singapore Management University,pursuing a degree in Information Systems."},
-                            { type: "textMessage", text: "I will be specialising in Digitalisation & Cloud Solutions, with the intention of pursuing a full-stack or"},
-                            { type: "textMessage", text: "software engineering role in the future."},
-                            { type: "textMessage", text: "For my technical skills,you can access it from the laptop at the bottom right of my house."},
+                            { type: "textMessage", text: "Hey, it's me again,seems like you managed to find your way here." , faceMain: "me"}, //faceMain allows character to face main character when interacting
+                            { type: "textMessage", text: "I am currently an undergraduate at Singapore Management University, pursuing a degree in Information Systems, specialising in Digitalisation & Cloud Solutions,"},
+                            { type: "textMessage", text: "with the intention of pursuing a full-stack or software engineering role in the future."},
+                            { type: "textMessage", text: "For my technical skills, you can access it from the pc in the house!"},
                         ]
                     },
                 ]
+            },
+            skillsPc: {
+                type: "ProjectPc",
+                x : utilities.withGrid(12),
+                y : utilities.withGrid(3),
+                src : "./images/objects/projectpc.png",
+                pcType: 'skills',
+                projects: [
+                    "Languages", "Frameworks", "Tools"
+                ],
             },
             npc1: {
                 type: "Character",
@@ -1096,7 +1087,7 @@ window.OverworldMaps = {
                     events: [
                         { who: "securityGuard" ,type: "walk", direction: "left" },
                         { type: "textMessage", text: "This is the projects building! Where all Bryan's projects are held.", faceMain: "securityGuard"},
-                        { type: "textMessage", text: "Right up ahead on the main table, you can see a list of all his projects, and click on it for more information!" },
+                        { type: "textMessage", text: "Right up ahead on the main table, you can see a list of all his projects, and interact with it for more information!" },
                         { type: "textMessage", text: "Each individual project is also stored on separate arcade machines! The oldest project starts from the left! Go check them out too!" },
                         { type: "textMessage", text: "Alright, I'll let you explore now, if you need anything, I'll be here!" },
                         { type: "addStoryFlag", flag: "PROJECT_BUILDING_TUTORIAL"},
