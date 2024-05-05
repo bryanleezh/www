@@ -37,9 +37,8 @@ class ProjectMenu {
                     }
                 }
             } else if (this.pcType === "skills") {
-                // TODO: Add skills to pc
                 base = Skills[id];
-                console.log(base);
+
                 return {
                     label: `${id}`,
                     description: "",
