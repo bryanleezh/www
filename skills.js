@@ -79,6 +79,16 @@ window.Skills = {
             description: "",
             link: "https://firebase.google.com/",
         },
+        {
+            name: "Drizzle",
+            description: "",
+            link: "https://orm.drizzle.team/",
+        },
+        // {
+        //     name: "Prisma",
+        //     description: "",
+        //     link: "https://www.prisma.io/",
+        // },
     ],
     Tools: [
         {
