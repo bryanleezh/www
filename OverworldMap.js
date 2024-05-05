@@ -191,7 +191,8 @@ window.OverworldMaps = {
                         events: [
                             { type: "textMessage", text: "Hey! Welcome to my world!" , faceMain: "main_character"}, //faceMain allows character to face main character when interacting
                             { type: "textMessage", text: "I am excited to show you whatI have built so far!"},
-                            { type: "textMessage", text: "As you step out,you will be able to explore all the buildings."},
+                            { type: "textMessage", text: "As you step out, you will be able to explore all the buildings."},
+                            { type: "textMessage", text: "To quickly access my LinkedIn or Github profiles, you can just hit the 'escape' button on the keyboard."},
                             { type: "textMessage", text: "Additionally, the projects arcade is finally open, so be sure to go check it out!"},
                             { type: "textMessage", text: "If you are lost or unsure of what each building represents, feel free to interact with anyone around!"},
                             { who: "main_character" ,type: "walk", direction: "right" },
@@ -348,22 +349,6 @@ window.OverworldMaps = {
                     },
                 ]
             },
-            // PC that lists all projects
-            // projectsPc: {
-            //     type: "ProjectPc",
-            //     x : utilities.withGrid(28),
-            //     y : utilities.withGrid(13),
-            //     src : "./images/objects/projectpc.png",
-            //     pcType: "project",
-            //     projects: [
-            //         "Money-Pig", 
-            //         "Access-Logger", 
-            //         "Portfolio-Manager", 
-            //         "Algo-Visualizer", 
-            //         "Club-Management", 
-            //         "PyPlatformer"
-            //     ],
-            // }
         },
         walls: function() {
             let walls  = {};
@@ -493,6 +478,7 @@ window.OverworldMaps = {
                     "Languages", "Frameworks", "Tools"
                 ],
             },
+            // men guarding staircase
             npc1: {
                 type: "Character",
                 x : utilities.withGrid(4),
@@ -729,6 +715,7 @@ window.OverworldMaps = {
             return walls;
         }(),
         cutsceneSpaces :{
+            // exit doors
             [utilities.gridCoord(10,17)] : [
                 {
                     events: [
@@ -835,7 +822,7 @@ window.OverworldMaps = {
                 type: "ProjectPc",
                 x : utilities.withGrid(2),
                 y : utilities.withGrid(6),
-                src : "./images/objects/arcade-green.png",
+                src : "./images/objects/projectpc-green.png",
                 pcType: 'skills',
                 projects: [
                     "Languages", "Frameworks", "Tools"
@@ -845,7 +832,7 @@ window.OverworldMaps = {
                 type: "ProjectPc",
                 x : utilities.withGrid(3),
                 y : utilities.withGrid(5),
-                src : "./images/objects/workpc.png",
+                src : "./images/objects/projectpc-red.png",
                 pcType: 'work',
                 projects: [
                     "Cybernatics", "Shopee", "WSAudiology", "Switcheo"
@@ -897,8 +884,7 @@ window.OverworldMaps = {
     },
     ProjectBuilding: {
         id: "ProjectBuilding" ,
-        // lowerSrc: "./images/maps/projects_map_lower.png",
-        lowerSrc: "./images/maps/new_proj_room_lower.png",
+        lowerSrc: "./images/maps/projects_map_lower.png",
         upperSrc: "./images/maps/projects_map_upper.png",
         configObjects: {
             main: {
