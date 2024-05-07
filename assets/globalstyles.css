@@ -44,8 +44,8 @@ body{
 
     display: flex;
     justify-content: center;
-    width: 25%;
-    height: 25%;
+    width: 20%;
+    height: 11rem;
     margin: 0 auto;
     outline: 2px solid white;
     overflow: hidden;
@@ -68,15 +68,15 @@ body{
 /* Media Query for mobile + tablet portrait Devices */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .game-container {
-        width: 25%;
+        width: 20%;
         height: 10rem;
     }
 }
 
 /* Media Query for tablet landscape Devices */
-@media only screen and (min-width: 1024px) and (max-width: 1600px) {
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
     .game-container {
-        width: 25%;
+        width: 20%;
         height: 10rem;
     }
 }
