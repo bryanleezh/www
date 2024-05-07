@@ -12,7 +12,7 @@
     --menu-font-color: #fff6d3;
     /* --menu-selected-background: #7fc2ff; */
     --menu-selected-background: #f9a875;
-    
+    --controls-size: 10vh;
 }
 
 * {
@@ -57,25 +57,51 @@ body{
     image-rendering: pixelated;
 }
 
-
-/* @media (max-width: 768px){
-    .game-container {
-        transform: scale(1.5) transformY(50%);
-    }
-} */
-/* @media (max-width: 768px){
-    .game-container{
-        transform: scale(2) rotate(90deg) translateX(50%) translateY(50%);
-    }
-    .game-container canvas {
-        transform: scale(2) rotate(90deg) translateX(100%);
-    }
-} */
-
-
 .controls {
     padding-top: 32rem;
     text-align:center;
     font-size: 16px;
     color: white;
-  }
+}
+
+/* TODO: Edit for responsiveness */
+/* Media Query for mobile + tablet portrait Devices */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .game-container {
+        width: 25%;
+        height: 10rem;
+    }
+}
+
+/* Media Query for tablet landscape Devices */
+@media only screen and (min-width: 1024px) and (max-width: 1600px) {
+    .game-container {
+        width: 25%;
+        height: 10rem;
+    }
+}
+
+#touchControls:not(.visible) {
+    display: none;
+}
+
+#dpad,
+#apad {
+    position: fixed;
+    bottom: 1rem;
+    z-index: 3;
+}
+
+#dpad {
+    left: 1rem;
+}
+
+#dpad svg {
+    width: calc(2 * var(--controls-size));
+    height: calc(2 * var(--controls-size));
+    fill: var(--color-base);
+}
+
+#dpad svg rect {
+    opacity: 0.6;
+}
