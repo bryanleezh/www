@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
+
         <title>Bryan's portfolio</title>
 
         <!-- Fonts -->
@@ -22,6 +28,11 @@
         <link href="assets/KeyboardMenu.css" type="text/css" rel="stylesheet" />
         <link href="assets/Menus.css" type="text/css" rel="stylesheet" />
         <link href="assets/TitleScreen.css" type="text/css" rel="stylesheet" />
+        <link
+            href="assets/TouchControls.css"
+            type="text/css"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <div class="container">
@@ -32,8 +43,42 @@
             <p class="controls">
                 Use Arrow Keys to move. Space for more actions.
             </p>
+            <div id="touchControls">
+                <div id="dpad" class="unselectable">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+                        <path
+                            id="dpadUp"
+                            data-key="UP"
+                            d="M48,5.8C48,2.5,45.4,0,42,0H29.9C26.6,0,24,2.4,24,5.8V24h24V5.8z"
+                        />
+                        <path
+                            id="dpadRight"
+                            data-key="RIGHT"
+                            d="M66.2,24H48v24h18.2c3.3,0,5.8-2.7,5.8-6V29.9C72,26.5,69.5,24,66.2,24z"
+                        />
+                        <path
+                            id="dpadDown"
+                            data-key="DOWN"
+                            d="M24,66.3c0,3.3,2.6,5.7,5.9,5.7H42c3.3,0,6-2.4,6-5.7V48H24V66.3z"
+                        />
+                        <path
+                            id="dpadLeft"
+                            data-key="LEFT"
+                            d="M5.7,24C2.4,24,0,26.5,0,29.9V42c0,3.3,2.3,6,5.7,6H24V24H5.7z"
+                        />
+                        <rect
+                            id="dpadCenter"
+                            x="24"
+                            y="24"
+                            width="24"
+                            height="24"
+                        />
+                    </svg>
+                </div>
+            </div>
         </div>
 
+        <!-- All JS scripts -->
         <!-- player state -->
         <script src="./State/PlayerState.js"></script>
         <script src="./data/projects.js"></script>
@@ -63,30 +108,5 @@
         <script src="progress.js"></script>
         <script src="TitleScreen.js"></script>
         <script src="init.js"></script>
-        <!-- <script>
-            function updateOrientation() {
-                var gameContainer = document.querySelector(".game-container");
-                if (window.innerWidth < 468) {
-                    console.log("small");
-                    gameContainer.style.width = "300px";
-                    gameContainer.style.height = "280px";
-                    gameContainer.style.transform =
-                        "scale(1.5) translateY(50%) rotate(90deg)";
-                    gameContainer.style.overflow = "hidden";
-                } else if ((window, innerWidth < 768)) {
-                    console.log("medium");
-                    gameContainer.style.width = "352px";
-                    gameContainer.style.height = "198px";
-                    gameContainer.style.transform = "scale(2) translateY(50%)";
-                } else {
-                    console.log("large");
-                    gameContainer.style.width = "352px";
-                    gameContainer.style.height = "198px";
-                    gameContainer.style.transform = "scale(3) translateY(50%)";
-                }
-            }
-            updateOrientation();
-            window.addEventListener("resize", updateOrientation);
-        </script> -->
     </body>
 </html>
