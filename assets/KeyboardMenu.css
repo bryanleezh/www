@@ -59,12 +59,56 @@
     left: 0;
     right: 0;
     color: var(--menu-font-color);
-    border-top: 1px solid var(--border-color);
+    /* border-top: 1px solid var(--border-color); */
+    border-top: 1px solid grey;
     background: var(--menu-background);
     padding: 2px;
+    z-index: 3;
 }
 
 .DescriptionBox p {
     font-size: 10px;
     margin: 0;
+    z-index: 3;
+}
+
+/* TODO: Edit for responsiveness */
+/* Media Query for smaller mobile devices */
+@media only screen and (max-width: 468px) {
+    .KeyboardMenu button {
+        font-size: 6px;
+    }
+    .DescriptionBox p {
+        font-size: 6px;
+    }
+}
+
+/* Media Query for mobile devices (half screen of mac) */
+@media only screen and (min-width: 468px) and (max-width: 768px) {
+    .KeyboardMenu button {
+        font-size: 8px;
+    }
+    .DescriptionBox p {
+        font-size: 8px;
+    }
+}
+
+/* Media Query for larger mobile + tablet portrait devices */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .KeyboardMenu button {
+        font-size: 7px;
+    }
+    .DescriptionBox p {
+        font-size: 7px;
+    }
+}
+
+/* Media Query for tablet landscape Devices */
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+    .KeyboardMenu button {
+        font-size: 8px;
+    }
+    .DescriptionBox p {
+        font-size: 8px;
+    }
 }

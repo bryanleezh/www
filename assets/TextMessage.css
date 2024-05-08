@@ -34,5 +34,33 @@
     right: 2px;
     bottom: 0;
     color: var(--menu-font-color);
+}
 
+/* TODO: Edit for responsiveness */
+/* Media Query for smaller mobile devices */
+@media only screen and (max-width: 468px) {
+    .TextMessage_p {
+        font-size: 8px;
+    }
+}
+
+/* Media Query for mobile devices (half screen of mac) */
+@media only screen and (min-width: 468px) and (max-width: 768px) {
+    .TextMessage_p {
+        font-size: 10px;
+    }
+}
+
+/* Media Query for larger mobile + tablet portrait devices */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .TextMessage_p {
+        font-size: 10px;
+    }
+}
+
+/* Media Query for tablet landscape Devices */
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+    .TextMessage_p {
+        font-size: 10px;
+    }
 }
