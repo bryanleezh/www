@@ -30,13 +30,12 @@
         <link href="assets/TitleScreen.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <!-- <div class="container"> -->
         <div class="game-container">
             <!-- width & height here can be zoomed in and out -->
             <canvas class="game-canvas" width="352" height="198" />
         </div>
         <p class="controls">
-            Use Arrow Keys to move. Space for more actions. Esc to cancel.
+            Use Arrow Keys to move. Space/A for more actions. Esc/B to cancel.
         </p>
         <div id="touchControls">
             <div id="dpad" class="unselectable">
@@ -70,8 +69,23 @@
                     />
                 </svg>
             </div>
+            <div id="apad" class="unselectable">
+                <div
+                    id="apadAction"
+                    class="apadCircBtn apadBtn"
+                    data-key="ACTION"
+                >
+                    <text id="apadLabelAction" class="apadLabel">A</text>
+                </div>
+                <div
+                    id="apadCancel"
+                    class="apadCircBtn apadBtn"
+                    data-key="CANCEL"
+                >
+                    <text id="apadLabelCancel" class="apadLabel">B</text>
+                </div>
+            </div>
         </div>
-        <!-- </div> -->
 
         <!-- All JS scripts -->
         <!-- player state -->
