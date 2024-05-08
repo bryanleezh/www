@@ -30,48 +30,46 @@
         <link href="assets/TitleScreen.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <div class="container">
-            <div class="game-container">
-                <!-- width & height here can be zoomed in and out -->
-                <canvas class="game-canvas" width="352" height="198" />
-            </div>
-            <p class="controls">
-                Use Arrow Keys to move. Space for more actions.
-            </p>
-            <div id="touchControls">
-                <div id="dpad" class="unselectable">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
-                        <path
-                            id="dpadUp"
-                            data-key="UP"
-                            d="M48,5.8C48,2.5,45.4,0,42,0H29.9C26.6,0,24,2.4,24,5.8V24h24V5.8z"
-                        />
-                        <path
-                            id="dpadRight"
-                            data-key="RIGHT"
-                            d="M66.2,24H48v24h18.2c3.3,0,5.8-2.7,5.8-6V29.9C72,26.5,69.5,24,66.2,24z"
-                        />
-                        <path
-                            id="dpadDown"
-                            data-key="DOWN"
-                            d="M24,66.3c0,3.3,2.6,5.7,5.9,5.7H42c3.3,0,6-2.4,6-5.7V48H24V66.3z"
-                        />
-                        <path
-                            id="dpadLeft"
-                            data-key="LEFT"
-                            d="M5.7,24C2.4,24,0,26.5,0,29.9V42c0,3.3,2.3,6,5.7,6H24V24H5.7z"
-                        />
-                        <rect
-                            id="dpadCenter"
-                            x="24"
-                            y="24"
-                            width="24"
-                            height="24"
-                        />
-                    </svg>
-                </div>
+        <!-- <div class="container"> -->
+        <div class="game-container">
+            <!-- width & height here can be zoomed in and out -->
+            <canvas class="game-canvas" width="352" height="198" />
+        </div>
+        <p class="controls">Use Arrow Keys to move. Space for more actions.</p>
+        <div id="touchControls">
+            <div id="dpad" class="unselectable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+                    <path
+                        id="dpadUp"
+                        data-key="UP"
+                        d="M48,5.8C48,2.5,45.4,0,42,0H29.9C26.6,0,24,2.4,24,5.8V24h24V5.8z"
+                    />
+                    <path
+                        id="dpadRight"
+                        data-key="RIGHT"
+                        d="M66.2,24H48v24h18.2c3.3,0,5.8-2.7,5.8-6V29.9C72,26.5,69.5,24,66.2,24z"
+                    />
+                    <path
+                        id="dpadDown"
+                        data-key="DOWN"
+                        d="M24,66.3c0,3.3,2.6,5.7,5.9,5.7H42c3.3,0,6-2.4,6-5.7V48H24V66.3z"
+                    />
+                    <path
+                        id="dpadLeft"
+                        data-key="LEFT"
+                        d="M5.7,24C2.4,24,0,26.5,0,29.9V42c0,3.3,2.3,6,5.7,6H24V24H5.7z"
+                    />
+                    <rect
+                        id="dpadCenter"
+                        x="24"
+                        y="24"
+                        width="24"
+                        height="24"
+                    />
+                </svg>
             </div>
         </div>
+        <!-- </div> -->
 
         <!-- All JS scripts -->
         <!-- player state -->

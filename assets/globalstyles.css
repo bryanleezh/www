@@ -54,6 +54,7 @@ body{
 
 
 .game-container canvas {
+    z-index: -1;
     image-rendering: pixelated;
 }
 
