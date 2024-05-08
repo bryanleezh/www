@@ -99,12 +99,12 @@ body{
 /* Media Query for tablet landscape Devices */
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {
     .game-container {
-        width: 30%;
+        width: 20%;
         height: 10rem;
-        transform: scale(2) translateY(50%);
+        transform: scale(2.5a) translateY(50%);
     }
     .controls {
-        padding-top: 16rem;
+        padding-top: 25rem;
     }
 }
 
