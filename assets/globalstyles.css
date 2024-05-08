@@ -34,18 +34,11 @@ body{
 }
 
 .game-container {
-    /* position: relative;
-    aspect-ratio: 3/2;
-    width: 352px;
-    height: 198px;
-    margin: 0 auto;
-    outline: 2px solid white;
-    transform: scale(3) translateY(50%); */
-
     display: flex;
     justify-content: center;
     width: 20%;
     height: 11rem;
+    aspect-ratio: 1/1;
     margin: 0 auto;
     outline: 2px solid white;
     overflow: hidden;
@@ -66,19 +59,52 @@ body{
 }
 
 /* TODO: Edit for responsiveness */
-/* Media Query for mobile + tablet portrait Devices */
+/* Media Query for smaller mobile devices */
+@media only screen and (max-width: 468px) {
+    .game-container {
+        width: 60%;
+        height: 10rem;
+        transform: scale(1.5) translateY(50%);
+    }
+    .controls {
+        padding-top: 10rem;
+        font-size: 12px;
+    }
+}
+
+/* Media Query for mobile devices (half screen of mac) */
+@media only screen and (min-width: 468px) and (max-width: 768px) {
+    .game-container {
+        width: 40%;
+        height: 10rem;
+        transform: scale(2) translateY(50%);
+    }
+    .controls {
+        padding-top: 16rem;
+    }
+}
+
+/* Media Query for larger mobile + tablet portrait devices */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .game-container {
-        width: 20%;
+        width: 30%;
         height: 10rem;
+        transform: scale(2) translateY(50%);
+    }
+    .controls {
+        padding-top: 16rem;
     }
 }
 
 /* Media Query for tablet landscape Devices */
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {
     .game-container {
-        width: 20%;
+        width: 30%;
         height: 10rem;
+        transform: scale(2) translateY(50%);
+    }
+    .controls {
+        padding-top: 16rem;
     }
 }
 
