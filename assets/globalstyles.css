@@ -110,9 +110,9 @@ body{
     }
 }
 
-/* #touchControls:not(.visible) {
+#touchControls:not(.visible) {
     display: none;
-} */
+}
 
 #dpad,
 #apad {
