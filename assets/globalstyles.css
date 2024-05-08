@@ -1,18 +1,20 @@
 :root {
-    /* --border-color: #291D4D; */
     --dialog-background: #FFF3B4;
-    /* --dialog-background: #94b0c2; */
-
-    /* --menu-background: #FFE8D2; */
     --menu-background: #94b0c2;
-    /* --menu-border-color: #A48465; */
     --menu-border-color: black;
-
-    /* --menu-font-color: #3A160D; */
     --menu-font-color: #fff6d3;
-    /* --menu-selected-background: #7fc2ff; */
     --menu-selected-background: #f9a875;
+    
+    --color-base: hsl(0, 0%, 55%);
+    --color-light: hsl(0, 0%, 90%);
+    --color-dark: hsl(0, 0%, 10%);
     --controls-size: 10vh;
+    --text-shadow-size: 0.65vh;
+}
+
+@font-face {
+    font-family: 'emerald';
+    src: url('./fonts/pokemon-emerald-pro.ttf') format('truetype');
 }
 
 * {
@@ -108,9 +110,9 @@ body{
     }
 }
 
-#touchControls:not(.visible) {
+/* #touchControls:not(.visible) {
     display: none;
-}
+} */
 
 #dpad,
 #apad {
@@ -123,6 +125,10 @@ body{
     left: 1rem;
 }
 
+#apad {
+    right: 2rem;
+}
+
 #dpad svg {
     width: calc(2 * var(--controls-size));
     height: calc(2 * var(--controls-size));
@@ -131,4 +137,35 @@ body{
 
 #dpad svg rect {
     opacity: 0.6;
+}
+
+#apad > * {
+    width: var(--controls-size);
+    height: var(--controls-size);
+}
+
+#apad .apadBtn {
+    width: var(--controls-size);
+    height: var(--controls-size);
+    background-color: var(--color-base);
+    border-radius: 50%;
+}
+
+#apad .apadLabel {
+    font-family: 'emerald';
+    font-size: var(--controls-size);
+    text-shadow: var(--color-dark) var(--text-shadow-size) var(--text-shadow-size);
+    color: var(--color-light);
+    user-select: none;
+}
+
+#apad #apadLabelAction,
+#apad #apadLabelCancel {
+    margin-left: calc(var(--controls-size) / 3);
+    line-height: 0.9;
+}
+
+#apad> :nth-child(2) {
+    position: relative;
+    right: var(--controls-size);
 }
