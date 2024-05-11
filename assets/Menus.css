@@ -71,7 +71,7 @@
     max-height: 175px;
     width: 75%;
     /* Adjust the height as needed */
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .indivProjectMenu .KeyboardMenu {
