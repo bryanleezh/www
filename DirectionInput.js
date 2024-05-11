@@ -35,32 +35,32 @@ class DirectionInput {
         });
 
         // mobile directions
-        document.getElementById("dpadUp").addEventListener("touchstart", e => {
+        document.getElementById("dpadUp").addEventListener("touchstart", () => {
             const dir = this.map["ArrowUp"];
             if (dir && this.heldDirections.indexOf(dir) === -1) {
                 this.heldDirections.unshift(dir);
             }
         });
-        document.getElementById("dpadDown").addEventListener("touchstart", e => {
+        document.getElementById("dpadDown").addEventListener("touchstart", () => {
             const dir = this.map["ArrowDown"];
             if (dir && this.heldDirections.indexOf(dir) === -1) {
                 this.heldDirections.unshift(dir);
             }
         });
-        document.getElementById("dpadLeft").addEventListener("touchstart", e => {
+        document.getElementById("dpadLeft").addEventListener("touchstart", () => {
             const dir = this.map["ArrowLeft"];
             if (dir && this.heldDirections.indexOf(dir) === -1) {
                 this.heldDirections.unshift(dir);
             }
         });
-        document.getElementById("dpadRight").addEventListener("touchstart", e => {
+        document.getElementById("dpadRight").addEventListener("touchstart", () => {
             const dir = this.map["ArrowRight"];
             if (dir && this.heldDirections.indexOf(dir) === -1) {
                 this.heldDirections.unshift(dir);
             }
         });
         // cancels all directions once touch ends
-        document.addEventListener('touchend', e => {
+        document.addEventListener('touchend', () => {
             this.heldDirections = [];
         });
     }
