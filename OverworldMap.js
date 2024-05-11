@@ -563,7 +563,7 @@ window.OverworldMaps = {
             },
             me: {
                 type: "Character",
-                x : utilities.withGrid(10.5),
+                x : utilities.withGrid(11),
                 y : utilities.withGrid(10),
                 src : "./images/characters/people/main_character.png",
                 behaviourLoop : [
@@ -573,23 +573,7 @@ window.OverworldMaps = {
                     {type : "stand", direction : "down", time : 300},
                 ],
             },
-            meEmptySpaceConversation1: {
-                type: "Character",
-                x : utilities.withGrid(10),
-                y : utilities.withGrid(11),
-                src: "./images/objects/empty_object.png",
-                talking: [
-                    {
-                        events: [
-                            { type: "textMessage", text: "Hey! This building is the main place where you can find all information about me!." , faceMain: "me"},
-                            { type: "textMessage", text: "The green PC stores all my skills, the blue PC stores all my projects and the red PC stores all my work experiences!"},
-                            { type: "textMessage", text: "This building is also where I place the people that has been a part of my journey so far."},
-                            { type: "textMessage", text: "Feel free to speak to any of them for details on my experiences!"},
-                        ]
-                    },
-                ]
-            },
-            meEmptySpaceConversation2: {
+            meEmptySpaceConversation: {
                 type: "Character",
                 x : utilities.withGrid(11),
                 y : utilities.withGrid(11),
