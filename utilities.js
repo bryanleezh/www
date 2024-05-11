@@ -49,4 +49,14 @@ const utilities = {
         document.dispatchEvent(event);
     },
     
+    // check if device used is touch screen
+    isMobile() {
+        let ret = false;
+        (function () {
+            if ('ontouchstart' in window || navigator.maxTouchPoints) {
+            ret = true;
+            }
+        })();
+        return ret;
+    }
 }
