@@ -31,11 +31,11 @@ class TextMessage {
         });
 
         // mobile inputs
-        document.getElementById("apadAction").addEventListener("touchstart", e=> {
+        document.getElementById("apadAction").addEventListener("click", e=> {
             this.done();
         });
 
-        document.getElementById("apadCancel").addEventListener("touchstart", e=> {
+        document.getElementById("apadCancel").addEventListener("click", e=> {
             this.done();
         });
     }
