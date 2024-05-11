@@ -36,6 +36,7 @@
         </div>
         <p class="controls">
             Use Arrow Keys to move. Space/A for more actions. Esc/B to cancel.
+            Menus can be clicked!
         </p>
         <div id="touchControls">
             <div id="dpad" class="unselectable">
@@ -117,5 +118,20 @@
         <script src="progress.js"></script>
         <script src="TitleScreen.js"></script>
         <script src="init.js"></script>
+
+        <script>
+            // Check if the device is a touch device
+            const isTouchDevice = utilities.isMobile();
+            console.log(isTouchDevice);
+            // Get the touchControls element
+            const touchControls = document.getElementById("touchControls");
+
+            // If it's a touch device, add the visible class to show touchControls; otherwise, remove the class to hide it
+            if (isTouchDevice) {
+                touchControls.classList.add("visible");
+            } else {
+                touchControls.classList.remove("visible");
+            }
+        </script>
     </body>
 </html>
