@@ -94,8 +94,14 @@ class PauseMenu {
         
         // have a delay to prevent escape key from leaving the menu without it getting to open 1st
         utilities.wait(200);
-        this.esc = new KeyPressListener("Escape" , () => {
-            this.close();
-        })
+        if (!utilities.isMobile()) {
+            this.esc = new KeyPressListener("Escape" , () => {
+                this.close();
+            })
+        } else {
+            document.getElementById("apadCancel").addEventListener("click", () => {
+                this.close();
+            })
+        }
     }
 }

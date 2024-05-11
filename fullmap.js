@@ -64,10 +64,10 @@ class Map{
             }
         });
         // mobile inputs
-        document.getElementById("apadAction").addEventListener("touchstart", e => {
+        document.getElementById("apadAction").addEventListener("click", () => {
             this.map.checkForActionCutscene();
         });
-        document.getElementById("apadCancel").addEventListener("touchstart", e => {
+        document.getElementById("apadCancel").addEventListener("click", () => {
             if (!this.map.cutScene) {
                 this.map.startCutscene([
                     {type : "pause"}

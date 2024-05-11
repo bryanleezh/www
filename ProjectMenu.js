@@ -1,3 +1,5 @@
+// * 2 types of menus: projects, skills
+
 class ProjectMenu {
     constructor({ projects, pcType, onComplete }) {
         this.projects = projects;
@@ -131,8 +133,14 @@ class ProjectMenu {
         // bind escape key to leaving the project menu
         // have a delay to prevent escape key from leaving the menu without it getting to open 1st
         utilities.wait(200);
-        this.esc = new KeyPressListener("Escape" , () => {
-            this.close();
-        })
+        if (!utilities.isMobile()) {
+            this.esc = new KeyPressListener("Escape" , () => {
+                this.close();
+            })
+        } else {
+            document.getElementById("apadCancel").addEventListener("click", () => {
+                this.close();
+            })
+        }
     }
 }
