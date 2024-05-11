@@ -15,15 +15,15 @@ class DirectionInput {
     }
 
     get direction() {
-        return this.heldDirections[0]
+        return this.heldDirections[0];
     }
 
     init() {
+        // keyboard directions
         document.addEventListener("keydown", e => {
             const dir = this.map[e.code];
             if (dir && this.heldDirections.indexOf(dir) === -1) {
                 this.heldDirections.unshift(dir); // when correct key is pressed, it will be added to the start of the list
-                // console.log(this.heldDirections);
             }
         });
         document.addEventListener("keyup", e => {
@@ -31,8 +31,37 @@ class DirectionInput {
             const index = this.heldDirections.indexOf(dir);
             if (index > -1) {
                 this.heldDirections.splice(index,1);
-                // console.log(this.heldDirections);
             }
-        })
+        });
+
+        // mobile directions
+        document.getElementById("dpadUp").addEventListener("touchstart", e => {
+            const dir = this.map["ArrowUp"];
+            if (dir && this.heldDirections.indexOf(dir) === -1) {
+                this.heldDirections.unshift(dir);
+            }
+        });
+        document.getElementById("dpadDown").addEventListener("touchstart", e => {
+            const dir = this.map["ArrowDown"];
+            if (dir && this.heldDirections.indexOf(dir) === -1) {
+                this.heldDirections.unshift(dir);
+            }
+        });
+        document.getElementById("dpadLeft").addEventListener("touchstart", e => {
+            const dir = this.map["ArrowLeft"];
+            if (dir && this.heldDirections.indexOf(dir) === -1) {
+                this.heldDirections.unshift(dir);
+            }
+        });
+        document.getElementById("dpadRight").addEventListener("touchstart", e => {
+            const dir = this.map["ArrowRight"];
+            if (dir && this.heldDirections.indexOf(dir) === -1) {
+                this.heldDirections.unshift(dir);
+            }
+        });
+        // cancels all directions once touch ends
+        document.addEventListener('touchend', e => {
+            this.heldDirections = [];
+        });
     }
 }
