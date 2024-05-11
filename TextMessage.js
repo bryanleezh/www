@@ -28,7 +28,16 @@ class TextMessage {
 
         this.actionListener = new KeyPressListener( "Space", () => {
             this.done(); //calls function below
-        })
+        });
+
+        // mobile inputs
+        document.getElementById("apadAction").addEventListener("touchstart", e=> {
+            this.done();
+        });
+
+        document.getElementById("apadCancel").addEventListener("touchstart", e=> {
+            this.done();
+        });
     }
 
     //removes whole textMessage element

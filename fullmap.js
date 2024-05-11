@@ -50,10 +50,11 @@ class Map{
     }
 
     bindActionInput() {
+        // keyboard inputs
         new KeyPressListener("Space", () => {
             //check on map if there is anything/anyone to interact with
             this.map.checkForActionCutscene();
-        })
+        });
         //when escape key is pressed, if there is no cutscene currently, start a new cutscene so that everything around stops moving and the pause menu will come up
         new KeyPressListener("Escape", () => {
             if (!this.map.cutScene) {
@@ -61,7 +62,18 @@ class Map{
                     {type : "pause"}
                 ])
             }
-        })
+        });
+        // mobile inputs
+        document.getElementById("apadAction").addEventListener("touchstart", e => {
+            this.map.checkForActionCutscene();
+        });
+        document.getElementById("apadCancel").addEventListener("touchstart", e => {
+            if (!this.map.cutScene) {
+                this.map.startCutscene([
+                    {type : "pause"}
+                ])
+            }
+        });
     }
 
     //uses the custom event of PersonWalkingComplete to check at which coords is the main character at, then checks if there is any cutscenes at that particular coordinate
