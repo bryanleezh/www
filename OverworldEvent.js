@@ -82,13 +82,13 @@ class OverworldEvent {
     }
 
     pause(resolve) {
-        this.map.isPause = true;
+        // this.map.isPause = true;
         const menu = new PauseMenu( {
             progress: this.map.overworld.progress,
             onComplete: () => {
                 resolve(); //resolve the event
-                this.map.isPause = false; //unpause the map
-                this.map.overworld.startGameLoop(); //unfreeze the screen by updating evrtyhing again
+                // this.map.isPause = false; //unpause the map
+                // this.map.overworld.startGameLoop(); //unfreeze the screen by updating evrtyhing again
             }
         });
         menu.init(document.querySelector(".game-container")); //initialises the pause menu and brings it up onto the screen
@@ -102,14 +102,14 @@ class OverworldEvent {
 
     // custom event for opening up projects menu on pc
     projectMenu(resolve) {
-        this.map.isPause = true;
+        // this.map.isPause = true;
         const menu = new ProjectMenu({
             projects: this.event.projects,
             pcType: this.event.pcType,
             onComplete: () => {
                 resolve();
-                this.map.isPause = false; //unpause the map
-                this.map.overworld.startGameLoop(); //unfreeze the screen by updating evrtyhing again
+                // this.map.isPause = false; //unpause the map
+                // this.map.overworld.startGameLoop(); //unfreeze the screen by updating evrtyhing again
             }
         });
         menu.init(document.querySelector(`.game-container`));
@@ -117,13 +117,13 @@ class OverworldEvent {
 
     // custom event for opening up individual project on arcade pc
     indivProjectMenu(resolve) {
-        this.map.isPause = true;
+        // this.map.isPause = true;
         const menu = new IndivProjectMenu({
             project: this.event.project,
             onComplete: () => {
                 resolve();
-                this.map.isPause = false; //unpause the map
-                this.map.overworld.startGameLoop(); //unfreeze the screen by updating evrtyhing again
+                // this.map.isPause = false; //unpause the map
+                // this.map.overworld.startGameLoop(); //unfreeze the screen by updating evrtyhing again
             }
         });
         menu.init(document.querySelector(`.game-container`));
