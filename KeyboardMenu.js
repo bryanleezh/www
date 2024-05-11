@@ -35,6 +35,7 @@ class KeyboardMenu {
         }).join("")
 
         this.element.querySelectorAll("button").forEach(button => {
+            // TODO: Add mapping for A button
             button.addEventListener("click", () => {
                 const chosenOption = this.options[Number(button.dataset.button)]; //finds the button that is being chosen by the player since each button has the data-button with its particular index
                 chosenOption.handler(); //uses the handler that is within the options config
@@ -44,7 +45,7 @@ class KeyboardMenu {
                 button.focus();
             })
             button.addEventListener("focus", () => {
-                this.prevFocus = button; //uodate the most recent button that was focused on so that even when u r not focusing on any of the options, it will show the description of the last focused button
+                this.prevFocus = button; //update the most recent button that was focused on so that even when u r not focusing on any of the options, it will show the description of the last focused button
                 this.descriptionElementText.innerText = button.dataset.description; //description text will be from the description that was put in the button data-description
             })
         })
@@ -74,8 +75,10 @@ class KeyboardMenu {
         this.element.remove();
         this.descriptionElement.remove();
         //unbinds all keys
-        this.up.unbind();
-        this.down.unbind();
+        if (!utilities.isMobile()) {
+            this.up.unbind();
+            this.down.unbind();
+        }
     }
 
     removeDesc() {
@@ -95,22 +98,45 @@ class KeyboardMenu {
         (this.descriptionContainer || container).appendChild(this.descriptionElement);
         container.appendChild(this.element);
 
-        this.up = new KeyPressListener("ArrowUp", () => {
-            const current = Number(this.prevFocus.getAttribute("data-button"));
-            //get the array of all the buttons that has "data-button", reverses the whole array and then finds smth
-            const prevButton = Array.from(this.element.querySelectorAll("button[data-button]")).reverse().find(el => { 
-                return el.dataset.button < current && !el.disabled //return true if the button index is more than the current button and the button is not disabled
-            })
-            prevButton?.focus();
-        })
+        // Check for type of inputs needed
+        if (!utilities.isMobile()) {
+            // keyboard inputs
+            this.up = new KeyPressListener("ArrowUp", () => {
+                const current = Number(this.prevFocus.getAttribute("data-button"));
+                //get the array of all the buttons that has "data-button", reverses the whole array and then finds smth
+                const prevButton = Array.from(this.element.querySelectorAll("button[data-button]")).reverse().find(el => { 
+                    return el.dataset.button < current && !el.disabled //return true if the button index is more than the current button and the button is not disabled
+                })
+                prevButton?.focus();
+            });
 
-        this.down = new KeyPressListener("ArrowDown", () => {
-            const current = Number(this.prevFocus.getAttribute("data-button"));
-            //get the array of all the buttons that has "data-button" and then finds smth
-            const nextButton = Array.from(this.element.querySelectorAll("button[data-button]")).find(el => { 
-                return el.dataset.button > current && !el.disabled //return true if the button index is more than the current button and the button is not disabled
+            this.down = new KeyPressListener("ArrowDown", () => {
+                const current = Number(this.prevFocus.getAttribute("data-button"));
+                //get the array of all the buttons that has "data-button" and then finds smth
+                const nextButton = Array.from(this.element.querySelectorAll("button[data-button]")).find(el => { 
+                    return el.dataset.button > current && !el.disabled //return true if the button index is more than the current button and the button is not disabled
+                })
+                nextButton?.focus(); //if nextButton returns true, we will focus on that next button
+            });
+        } else {
+            // mobile inputs
+            this.up = document.getElementById("dpadUp").addEventListener("click", () => {
+                const current = Number(this.prevFocus.getAttribute("data-button"));
+                //get the array of all the buttons that has "data-button", reverses the whole array and then finds smth
+                const prevButton = Array.from(this.element.querySelectorAll("button[data-button]")).reverse().find(el => { 
+                    return el.dataset.button < current && !el.disabled //return true if the button index is more than the current button and the button is not disabled
+                })
+                prevButton?.focus();
+            });
+    
+            this.down = document.getElementById("dpadDown").addEventListener("click", () => {
+                const current = Number(this.prevFocus.getAttribute("data-button"));
+                //get the array of all the buttons that has "data-button" and then finds smth
+                const nextButton = Array.from(this.element.querySelectorAll("button[data-button]")).find(el => { 
+                    return el.dataset.button > current && !el.disabled //return true if the button index is more than the current button and the button is not disabled
+                })
+                nextButton?.focus(); //if nextButton returns true, we will focus on that next button
             })
-            nextButton?.focus(); //if nextButton returns true, we will focus on that next button
-        })
+        }
     }
 }
