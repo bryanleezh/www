@@ -36,13 +36,6 @@ class TextMessage {
             // mobile inputs
             document.getElementById("apadAction").addEventListener("click", this.apadActionEventListener);
             document.getElementById("apadCancel").addEventListener("click", this.apadActionEventListener);
-            // document.getElementById("apadAction").addEventListener("click", () => {
-            //     this.done();
-            // });
-    
-            // document.getElementById("apadCancel").addEventListener("click", () => {
-            //     this.done();
-            // });
         }
     }
 
