@@ -2,7 +2,7 @@ class RevealText {
     constructor(config) {
         this.element = config.element; //text element that will be converted to indiv <span> for slow reveal
         this.text = config.text; //the entire text that will be converted
-        this.speed = config.speed || 25; //speed that text will be revealed
+        this.speed = config.speed || 15; //speed that text will be revealed
 
         this.timeout = null;
         this.isDone = false; //flag to indicate if all the text is fully shown, to allow for enter to show full text instead of slowly waiting for everything to appear
