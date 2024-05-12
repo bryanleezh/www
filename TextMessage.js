@@ -11,8 +11,8 @@ class TextMessage {
         this.element.classList.add("TextMessage");
 
         this.element.innerHTML = (`
-        <p class="TextMessage_p"></p>
-        <button class="TextMessage_button">Next</button>
+            <p class="TextMessage_p"></p>
+            <button class="TextMessage_button">Next</button>
         `);
 
         //Initialize slow text effect on the text message itself, which converts all the text characters into indiv span elements
@@ -20,36 +20,51 @@ class TextMessage {
             element: this.element.querySelector(".TextMessage_p"),
             text: this.text,
         })
+        
+        // keyboard inputs
+        this.actionListener = new KeyPressListener( "Space", () => {
+            this.done(); //calls function below
+        });
 
         this.element.querySelector("button").addEventListener("click", () => {
             //Close text message
             this.done();
         });
 
-        this.actionListener = new KeyPressListener( "Space", () => {
-            this.done(); //calls function below
-        });
-
-        // mobile inputs
-        document.getElementById("apadAction").addEventListener("click", e=> {
-            this.done();
-        });
-
-        document.getElementById("apadCancel").addEventListener("click", e=> {
-            this.done();
-        });
+        
+        if (utilities.isMobile()) {
+            // mobile inputs
+            document.getElementById("apadAction").addEventListener("click", this.apadActionEventListener);
+            document.getElementById("apadCancel").addEventListener("click", this.apadActionEventListener);
+            // document.getElementById("apadAction").addEventListener("click", () => {
+            //     this.done();
+            // });
+    
+            // document.getElementById("apadCancel").addEventListener("click", () => {
+            //     this.done();
+            // });
+        }
     }
 
     //removes whole textMessage element
     done() {
         if (this.revealText.isDone){ //if the whole reveal text is completed
             this.element.remove(); //removes the text element
-            this.actionListener.unbind(); //removes the eventListener for enter key
+            this.actionListener.unbind(); //removes the eventListener for space key
+            if (utilities.isMobile()) {
+                // mobile inputs
+                document.getElementById("apadAction").removeEventListener("click", this.apadActionEventListener);
+                document.getElementById("apadCancel").removeEventListener("click", this.apadActionEventListener);
+            }
             this.onComplete(); //changes flag
         } else { //if the revealing of text is not completed and player presses enter key, the rest of the text will immediately show
             this.revealText.autoComplete(); //immediately shows all the text
         }
         
+    }
+
+    apadActionEventListener = () => {
+        this.done();
     }
 
     //Appends the element into a container which will be put on the HTML file to be shown on screen
