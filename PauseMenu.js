@@ -30,13 +30,13 @@ class PauseMenu {
                     }
                 },
                 // TODO: Add resume
-                // {
-                //     label: "Download Resume",
-                //     description: "Download Bryan's resume here!",
-                //     handler: () => {
-                //         this.redirect("");
-                //     }
-                // },
+                {
+                    label: "View Resume",
+                    description: "View Bryan's resume here!",
+                    handler: () => {
+                        this.redirect("/data/Bryan_Lee_Resume.pdf");
+                    }
+                },
                 {
                     label : "Save",
                     description: "Save the game in current map",
@@ -79,6 +79,13 @@ class PauseMenu {
         this.keyboardMenu.end();
         this.element.remove();
         this.onComplete();
+        if (utilities.isMobile()) {
+            document.getElementById("apadCancel").removeEventListener("click", this.apadCancelEventListener);
+        }
+    }
+
+    apadCancelEventListener = () => {
+        this.close();
     }
 
     async init(container){
@@ -99,9 +106,7 @@ class PauseMenu {
                 this.close();
             })
         } else {
-            document.getElementById("apadCancel").addEventListener("click", () => {
-                this.close();
-            })
+            document.getElementById("apadCancel").addEventListener("click", this.apadCancelEventListener);
         }
     }
 }

@@ -1,15 +1,13 @@
 // * For passing in info on name, description, image and logo of indiv project
-// TODO: IndivProjectMenu
 
 class IndivProjectMenu {
     constructor({ project, onComplete }) {
-        // CAn put this as just one project instead of an array
+        // Can put this as just one project instead of an array
         this.project = project;
         this.onComplete = onComplete;
     }
 
     getOptions() {
-        // TODO: Add info on img and logo
         const base = Projects[this.project];
         // all options for the project
         return [
@@ -73,6 +71,13 @@ class IndivProjectMenu {
         this.keyboardMenu.end();
         this.element.remove();
         this.onComplete();
+        if (utilities.isMobile()) {
+            document.getElementById("apadCancel").removeEventListener("click", this.apadCancelEventListener)
+        }
+    }
+
+    apadCancelEventListener = () => {
+        this.close();
     }
 
     init(container) {
@@ -93,9 +98,7 @@ class IndivProjectMenu {
                 this.close();
             })
         } else {
-            document.getElementById("apadCancel").addEventListener("click", () => {
-                this.close();
-            })
+            document.getElementById("apadCancel").addEventListener("click", this.apadCancelEventListener)
         }
     }
 }

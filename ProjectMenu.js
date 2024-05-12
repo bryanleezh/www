@@ -18,12 +18,18 @@ class ProjectMenu {
                     description: base.description,
                     handler: () => {
                         // this.close();
-                        this.keyboardMenu.removeDesc();
+                        this.esc?.unbind();
+                        this.keyboardMenu.end();
+                        this.element.remove();
+                        if (utilities.isMobile()) {
+                            document.getElementById("apadCancel").removeEventListener("click", this.apadCancelEventListener);
+                        }
+                        // this.keyboardMenu.removeDesc();
                         const menu = new IndivProjectMenu({
                             project: id,
                             onComplete: () => {
-                                // resolve();
-                                // this.keyboardMenu.init();
+                                // this.onComplete();
+                                this.init(document.querySelector(`.game-container`));
                             }
                         });
                         menu.init(document.querySelector(`.game-container`));
@@ -45,7 +51,22 @@ class ProjectMenu {
                     label: `${id}`,
                     description: "",
                     handler: () => {
-                        this.keyboardMenu.setOptions( this.getMoreOptions(Skills,id, finalArray) );
+                        if (!utilities.isMobile()) {
+                            // keyboard inputs
+                            this.esc?.unbind();
+                            this.esc = new KeyPressListener("Escape" , () => {
+                                this.keyboardMenu.setOptions(finalArray);
+                                this.esc?.unbind();
+                                this.esc = new KeyPressListener("Escape", () => {
+                                    this.close();
+                                })
+                            })
+                        } else {
+                            // mobile inputs
+                            document.getElementById("apadCancel").removeEventListener("click", this.apadCancelEventListener);
+                            document.getElementById("apadCancel").addEventListener("click", this.apadCancelExtraOptionsEventListener(finalArray));
+                        }
+                        this.keyboardMenu.setOptions( this.getMoreOptions(Skills, id, finalArray) );
                     }
                 }
             }
@@ -81,6 +102,17 @@ class ProjectMenu {
             description: "Close this menu",
             handler:() => {
                 // returns to prev options
+                if (!utilities.isMobile()) {
+                    // keyboard inputs
+                    this.esc?.unbind();
+                    this.esc = new KeyPressListener("Escape" , () => {
+                        this.close();
+                    })
+                } else {
+                    // mobile inputs
+                    document.getElementById("apadCancel").removeEventListener("click", this.apadCancelExtraOptionsEventListener(prevOptions));
+                    document.getElementById("apadCancel").addEventListener("click", this.apadCancelEventListener);
+                }
                 this.keyboardMenu.setOptions(prevOptions);
             }
         };
@@ -118,6 +150,24 @@ class ProjectMenu {
         this.keyboardMenu.end();
         this.element.remove();
         this.onComplete();
+        if (utilities.isMobile()) {
+            document.getElementById("apadCancel").removeEventListener("click", this.apadCancelEventListener);
+        }
+    }
+
+    apadCancelEventListener = () => {
+        this.close();
+    }
+
+    apadCancelExtraOptionsEventListener = (prevOptions) => {
+        const cancelEventListener = () => {
+            this.keyboardMenu.setOptions(prevOptions);
+            document.getElementById("apadCancel").removeEventListener("click", cancelEventListener);
+            document.getElementById("apadCancel").addEventListener("click", this.apadCancelEventListener);
+        };
+        document.getElementById("apadCancel").addEventListener("click", cancelEventListener);
+
+        return cancelEventListener;
     }
 
     init(container) {
@@ -138,9 +188,7 @@ class ProjectMenu {
                 this.close();
             })
         } else {
-            document.getElementById("apadCancel").addEventListener("click", () => {
-                this.close();
-            })
+            document.getElementById("apadCancel").addEventListener("click", this.apadCancelEventListener);
         }
     }
 }
