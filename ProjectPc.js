@@ -29,7 +29,6 @@ class ProjectPc extends GameObject {
         ];
     }
 
-    // TODO: Figure out how else i can turn on and off pc through state
     update() {
         // this.sprite.currentAnimation = "turned-off";
         // this.sprite.currentAnimation = playerState.storyFlag[this.storyFlag]
