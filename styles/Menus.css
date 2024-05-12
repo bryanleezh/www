@@ -97,6 +97,9 @@
     .projectMenu h2 {
         font-size: 8px;
     }
+    .indivProjectMenu {
+        left: 2em;
+    }
 }
 
 /* Media Query for mobile devices (half screen of mac) */
@@ -106,6 +109,9 @@
     }
     .projectMenu h2 {
         font-size: 8px;
+    }
+    .indivProjectMenu {
+        left: 2.5em;
     }
 }
 
@@ -117,6 +123,9 @@
     .projectMenu {
         left: 3.25em;
         width: 60%;
+    }
+    .indivProjectMenu {
+        left: 2em;
     }
 }
 
@@ -131,5 +140,8 @@
     .projectMenu {
         left: 2rem;
         width: 75%;
+    }
+    .indivProjectMenu {
+        left: 2em;
     }
 }
