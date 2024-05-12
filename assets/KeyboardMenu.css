@@ -72,7 +72,7 @@
     z-index: 3;
 }
 
-/* TODO: Edit for responsiveness */
+/* * Edit for responsiveness */
 /* Media Query for smaller mobile devices */
 @media only screen and (max-width: 468px) {
     .KeyboardMenu button {
