@@ -29,12 +29,18 @@ class PauseMenu {
                         this.redirect("https://www.linkedin.com/in/leezhihaobryan");
                     }
                 },
-                // TODO: Add resume
                 {
                     label: "View Resume",
                     description: "View Bryan's resume here!",
                     handler: () => {
                         this.redirect("/data/Bryan_Lee_Resume.pdf");
+                    }
+                },
+                {
+                    label: "Contact Me",
+                    description: "Contact Bryan via email!",
+                    handler: () => {
+                        this.email();
                     }
                 },
                 {
@@ -70,6 +76,14 @@ class PauseMenu {
     // redirect to separate link
     redirect(link) {
         window.open(link, '_blank');
+    }
+
+    email() {
+        // email logic here
+        const email = "leebryan307@gmail.com"; // Replace with the actual email address
+        const subject = "Contact from Personal Site";
+        const body = "Hello Bryan,";
+        window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
     //Close the pausemenu
