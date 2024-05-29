@@ -9,7 +9,7 @@ Site: [bryanleezh.dev](https://www.bryanleezh.dev/)
 ![](/images/demo/home.png)
 ![](/images/demo/projects.png)
 
-Source code for [bryanlee-dev.vercel.app/](https://bryanlee-dev.vercel.app/).
+Source code for [bryanleezh.dev](https://www.bryanleezh.dev/).
 
 ## License
 
