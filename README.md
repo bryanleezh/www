@@ -2,14 +2,14 @@
 
 Interactive Version of my personal website
 
-Site: [bryanlee-dev.vercel.app/](https://bryanlee-dev.vercel.app/)
+Site: [bryanleezh.dev](https://www.bryanleezh.dev/)
 
 ![](/images/demo/main.png)
 ![](/images/demo/hub.png)
 ![](/images/demo/home.png)
 ![](/images/demo/projects.png)
 
-Source code for [bryanlee-dev.vercel.app/](https://bryanlee-dev.vercel.app/).
+Source code for [bryanleezh.dev](https://www.bryanleezh.dev/).
 
 ## License
 
