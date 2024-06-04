@@ -43,14 +43,14 @@ class PauseMenu {
                         this.email();
                     }
                 },
-                {
-                    label : "Save",
-                    description: "Save the game in current map",
-                    handler: () => {
-                        this.progress.save();
-                        this.close();
-                    }
-                },
+                // {
+                //     label : "Save",
+                //     description: "Save the game in current map",
+                //     handler: () => {
+                //         this.progress.save();
+                //         this.close();
+                //     }
+                // },
                 {
                     label: "Close",
                     description: "Close the pause menu",
