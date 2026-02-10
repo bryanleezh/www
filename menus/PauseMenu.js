@@ -29,13 +29,13 @@ class PauseMenu {
                         this.redirect("https://www.linkedin.com/in/leezhihaobryan");
                     }
                 },
-                {
-                    label: "View Resume",
-                    description: "View Bryan's resume here!",
-                    handler: () => {
-                        this.redirect("/data/Bryan_Lee_Resume.pdf");
-                    }
-                },
+                // {
+                //     label: "View Resume",
+                //     description: "View Bryan's resume here!",
+                //     handler: () => {
+                //         this.redirect("/data/Bryan_Lee_Resume.pdf");
+                //     }
+                // },
                 {
                     label: "Contact Me",
                     description: "Contact Bryan via email!",

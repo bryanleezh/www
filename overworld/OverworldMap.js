@@ -666,7 +666,7 @@ window.OverworldMaps = {
                 src : "./images/objects/projectpc-red.png",
                 pcType: 'work',
                 projects: [
-                    "Cybernatics", "Shopee", "WSAudiology", "Switcheo"
+                    "Okx", "Switcheo", "WSAudiology", "Shopee", "Cybernatics"
                 ],
             },
             skillsPc: {
@@ -820,7 +820,7 @@ window.OverworldMaps = {
                 src : "./images/objects/projectpc-red.png",
                 pcType: 'work',
                 projects: [
-                    "Cybernatics", "Shopee", "WSAudiology", "Switcheo"
+                    "Okx", "Switcheo", "WSAudiology", "Shopee", "Cybernatics"
                 ],
             },
             projectArcade: {

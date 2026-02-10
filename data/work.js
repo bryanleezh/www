@@ -29,6 +29,12 @@ window.Work = {
         name: "Software Engineer Intern - Switcheo Labs",
         description: "",
         link: "https://www.switcheo.com/",
-        techstack: "React.js | TypeScript | Golang | Solidity",
-    }, 
+        techstack: "React.js | TypeScript | Golang",
+    },
+    "Okx": {
+        name: "Backend Software Engineer - OKX",
+        description: "",
+        link: "https://www.okx.com/",
+        techstack: "Java | SpringBoot",
+    },  
 }
